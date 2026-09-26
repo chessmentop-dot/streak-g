@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Streak OS — v9</title>
+<meta name="description" content="Streak OS — ردیاب خصوصی و محلی عادت‌ها و زنجیره‌ها با تقویم شمسی و میلادی" />
+<meta name="theme-color" content="#090e1b" />
+<title>Streak OS — v10</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <style>
 :root{
   --bg:#090e1b;--panel:#10182d;--panel2:#141e38;--panel3:#0c1426;--text:#eef3ff;--muted:#93a0c0;--faint:#667494;--line:#253250;
@@ -347,16 +351,91 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
   .topbar{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
   .content{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
 }
+/* ============ v10: category combobox dropdown ============ */
+.catCombo{position:relative;display:flex;gap:0}
+.catCombo .input{flex:1;border-radius:10px;border-start-end-radius:0;border-end-end-radius:0;min-width:0}
+.catComboBtn{flex:0 0 auto;width:38px;border-radius:10px;border-start-start-radius:0;border-end-start-radius:0;background:var(--panel2);color:var(--muted);border:1px solid var(--line);border-inline-start:0;font-size:12px;transition:.16s;min-height:38px}
+.catComboBtn:hover{color:var(--text);background:var(--panel3)}
+.catComboBtn svg,.catComboBtn .chevGlyph{transition:transform .18s}
+.catCombo.open .catComboBtn .chevGlyph{transform:rotate(180deg)}
+.catComboList{position:absolute;top:calc(100% + 6px);inset-inline-end:0;width:min(300px,86vw);max-height:236px;overflow:auto;background:var(--panel2);border:1px solid var(--line);border-radius:13px;box-shadow:0 22px 55px rgba(0,0,0,.42);z-index:95;padding:6px}
+.catComboItem{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:9px;cursor:pointer;font-size:12px;color:var(--text)}
+.catComboItem:hover,.catComboItem.activeOpt{background:rgba(123,92,255,.14)}
+.catComboItem.sel{background:rgba(45,204,138,.13);color:#9df2c6}
+.catComboCount{font-size:9px;color:var(--muted);background:var(--panel3);border:1px solid var(--line);border-radius:999px;padding:2px 7px;white-space:nowrap}
+.catComboCreate{padding:8px 11px;margin-top:4px;border-top:1px solid var(--line);font-size:11px;color:#8df2c3;cursor:pointer;border-radius:9px}
+.catComboCreate:hover{background:rgba(45,204,138,.1)}
+.catComboEmpty{padding:12px;color:var(--muted);font-size:11px;text-align:center}
+/* ============ v10: collapsible settings panels ============ */
+#settings .panel .panelhead{cursor:pointer;user-select:none}
+#settings .panel .panelhead:hover{background:rgba(255,255,255,.022)}
+#settings .panel .panelhead .headActions{pointer-events:auto}
+.settingsChevron{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-size:11px;flex:0 0 auto;transition:transform .22s ease,background .16s,color .16s}
+#settings .panel:not(.collapsed) .settingsChevron{transform:rotate(180deg);color:var(--text)}
+#settings .panel .panelhead:hover .settingsChevron{background:var(--panel3);color:var(--text)}
+#settings .panel .panelBody{display:grid;grid-template-rows:1fr;transition:grid-template-rows .26s ease}
+#settings .panel.collapsed .panelBody{grid-template-rows:0fr}
+#settings .panel .panelBodyInner{overflow:hidden;min-height:0}
+#settings .panel.collapsed .panelhead{border-bottom-color:transparent}
+#settings .panelhead .headRow{display:flex;align-items:center;gap:10px;min-width:0}
+#settings .panelhead .headRow>div:first-child{min-width:0}
+/* ============ v10: easy mode ============ */
+[data-easy="on"] .layout{grid-template-columns:minmax(0,1fr)}
+[data-easy="on"] .sidebar{display:none}
+[data-easy="on"] #dashboard .hero{display:none}
+[data-easy="on"] #dayTrophy{display:none}
+[data-easy="on"] #statGrid{display:none}
+[data-easy="on"] #dashboard .panel > .panelhead{display:none}
+[data-easy="on"][data-easy-search="on"] #dashboard .panel > .panelhead{display:flex}
+[data-easy="on"] .content{padding-top:14px}
+.easyWrap{max-width:720px;margin:0 auto;width:100%}
+.easyHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+.easyHeadRight{display:flex;align-items:center;gap:7px}
+.easySummary{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:750;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+.easySummary b{color:var(--text)}
+.easyBtn{border-radius:11px;padding:9px 12px;background:var(--panel2);color:var(--text);border:1px solid var(--line);font-size:12px;font-weight:700;transition:.16s}
+.easyBtn:hover{background:var(--panel);transform:translateY(-1px)}
+.easyRow{display:flex;align-items:center;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,color-mix(in srgb,var(--card) 92%,#fff 2%),var(--card));margin-bottom:8px;transition:border-color .2s,opacity .2s}
+.easyRow.done{opacity:.66;border-color:rgba(45,204,138,.24)}
+.easyRow.flash{animation:easyFlash 1.1s ease}
+@keyframes easyFlash{0%{border-color:rgba(45,204,138,.85);box-shadow:0 0 0 3px rgba(45,204,138,.16)}100%{border-color:var(--line);box-shadow:0 0 0 0 rgba(45,204,138,0)}}
+.easyName{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
+.easyName .a-name{font-weight:800;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.easyName .a-meta{font-size:10px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.easyStreak{font-weight:900;font-size:12px;color:var(--muted);flex:0 0 auto}
+.easyTarget{font-size:10.5px;color:var(--muted);flex:0 0 auto;white-space:nowrap}
+.easyProgress{flex:0 0 66px}
+.easyProgress .progress{height:7px}
+.easyLog{display:flex;gap:6px;align-items:center;flex:0 0 auto}
+.easyInputWrap{display:flex;align-items:center;background:var(--panel3);border:1px solid var(--line);border-radius:12px;padding-inline-start:11px;min-width:0;transition:border-color .16s}
+.easyInputWrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}
+.easyInput{width:82px;min-width:0;border:0;outline:0;background:transparent;color:var(--text);padding:11px 8px;font-weight:750;font-size:14px}
+[data-easy-touch="on"] .easyInput{width:96px;padding:13px 9px;font-size:16px}
+[data-easy-touch="on"] .quickLogBtn{width:48px;height:48px;font-size:19px}
+.easyUnit{font-size:10px;color:var(--muted);padding-inline-end:10px;white-space:nowrap}
+.easyEmpty{padding:46px 18px;text-align:center;color:var(--muted)}
+.easyEmpty strong{display:block;color:var(--text);margin-bottom:7px;font-size:14px}
+.easySettingsCard p{line-height:1.7}
+.easyCheckRow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;border-bottom:1px dashed rgba(255,255,255,.05);font-size:12px}
+.easyCheckRow:last-of-type{border-bottom:0}
+.easyCheckRow .toggle input{accent-color:var(--accent)}
+.easyPresetRow{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.easyPresetRow .input{flex:1;min-width:130px}
+.easyOnOffRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.easyOnOffPill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;border-radius:999px;padding:5px 10px;border:1px solid rgba(45,204,138,.3);background:rgba(45,204,138,.1);color:#8df2c3}
+.easyOnOffPill.off{border-color:var(--line);background:var(--panel2);color:var(--muted)}
+#easyToggleBtn.easyActiveBtn{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,var(--panel2)),var(--panel2));border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:#fff;box-shadow:0 0 calc(18px*var(--glow)) color-mix(in srgb,var(--accent) calc(30%*var(--glow)),transparent)}
+@media(max-width:700px){.easyRow{flex-wrap:wrap}.easyLog{flex:1 1 100%;justify-content:flex-end}.easyProgress{flex:1 1 100%}}
 </style>
 </head>
 <body>
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v9</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v10</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
-    <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div><div class="dbConnectRow"><button id="langToggleLogin" class="ghostbtn" type="button" data-no-iconify title="Switch language / تغییر زبان">🌐 فارسی</button></div>
+    <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
     <div id="loginDbInfo" class="loginDbInfo hidden"></div>
     <div id="loginError" class="loginError" role="alert" aria-live="polite"></div>
     <div class="notice" id="setupNotice" style="margin-top:13px">First launch: connect an existing JSON database, or create/open the local database. Password is requested only when the selected database is encrypted.</div><div class="diagPanel" id="diagPanel">
@@ -377,10 +456,10 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 
 <div id="appView" class="hidden">
   <header class="topbar">
-    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v9</span></h1><small id="brandDate"></small></div></div>
+    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10</span></h1><small id="brandDate"></small></div></div>
     <div class="toolbar">
       <div class="dateNav"><button class="smallbtn" id="prevDayBtn">←</button><button class="smallbtn" id="todayBtn">Today</button><input id="selectedDateInput" class="dateInput dpInput" type="text" autocomplete="off" data-dp="1" /><button class="smallbtn" id="nextDayBtn">→</button></div>
-      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="langToggleBtn" data-no-iconify type="button" title="Switch language / تغییر زبان">🌐 FA</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
+      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="calToggleBtn" type="button" data-no-iconify title="تغییر تقویم نمایش (شمسی/میلادی)">🗓️ شمسی</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
     </div>
   </header>
   <div class="layout">
@@ -423,9 +502,10 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
         <div class="hero"><div><h2>Help & Guide</h2><p>A complete tour of every feature in Streak OS — logging, streaks and savers, history, the analytics dashboard, themes, backups, and security — with practical tips for each.</p></div></div>
         <div class="panel"><div class="panelhead"><h3>Getting started</h3><span class="muted">Built-in guide</span></div><div class="metricSection">
           <div class="settingsGrid">
-            <div class="settingsCard"><h4>What is Streak OS?</h4><p>Streak OS is a private, local-first habit and streak tracker. Everything lives inside this browser, protected by your password — nothing is sent to any server. It is fully bilingual (English/Persian), supports both Gregorian and Shamsi (Jalali) calendars, and turns daily logs into streaks, shields, trophies, and rich charts.</p><div class="notice">Use the 🌐 button in the toolbar to switch the language at any time. In Persian the whole interface, dates, and digits become RTL and Jalali.</div></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>Streak OS چیست؟</h4><p>Streak OS یک ردیاب خصوصی و محلی برای عادت‌ها و زنجیره‌هاست. همه چیز داخل همین مرورگر و با رمز عبور شما محافظت می‌شود — هیچ داده‌ای به هیچ سروری ارسال نمی‌شود. رابط کاربری کاملاً فارسی است و هر دو تقویم شمسی (جلالی) و میلادی پشتیبانی می‌شوند؛ ثبت‌های روزانه به زنجیره، سپر، جام و نمودارهای غنی تبدیل می‌شوند.</p><div class="notice">با دکمه «🗓️» در نوار بالا هر لحظه بین تقویم شمسی و میلادی جابه‌جا شوید. داده‌ها ثابت می‌مانند و فقط نمایش تاریخ عوض می‌شود.</div></div>
             <div class="settingsCard"><h4>First run & your vault</h4><p>The first launch asks you to create a password. That password encrypts the vault — all activities, logs, and settings — inside the browser local database, so the stored data is unreadable without it. Press 🔒 to lock instantly, and after reloading the page unlock with the same password. You can change the password later in Settings → Security.</p></div>
-            <div class="settingsCard"><h4>Toolbar & navigation</h4><p>The toolbar holds the date controls: the ← and → buttons step one day, Today jumps to the current day, and the date field opens a popup calendar with its own year and month arrows plus Today and Clear buttons. ＋ Log selected day opens the logging form for the chosen date, ↶ and ↷ undo or redo changes, and 🔒 locks the app. The ☰ button in the corner collapses or expands the sidebar.</p></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>⌨️ نوار ابزار و ناوبری</h4><p>نوار بالا جای اصلی کنترل برنامه است: دکمه‌های ← و → یک روز جابه‌جا می‌شوند، «امروز» به روز جاری می‌پرد و فیلد تاریخ، تقویم بازشو را با فلش‌های سال و ماه خودش باز می‌کند. «＋ ثبت روز انتخاب‌شده» فرم ثبت کامل را می‌گشاید، ↶ و ↷ تغییرات را واگرد/ازنو می‌کنند و 🔒 برنامه را قفل می‌کند. ☰ سایدبار را جمع می‌کند، 🗓️ بین تقویم شمسی و میلادی جابه‌جا می‌شود و ⚡ حالت آسان را روشن و خاموش می‌کند.</p></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>⚡ حالت آسان</h4><p>حالت آسان یک نمایش مینیمال برای ثبت سریع است: با یک کلیک روی دکمه «⚡ حالت آسان» در نوار بالا، همه پنل‌ها و جزئیات اضافه کنار می‌روند و فقط فهرست فعالیت‌ها می‌ماند — هر ردیف فقط نام فعالیت و یک فیلد ثبت سریع دارد. با Enter مقدار ثبت می‌شود و فوکوس خودکار روی فعالیت بعدی می‌رود تا چند فعالیت را پشت سر هم سریع ثبت کنید. اینکه در این حالت کدام جزئیات (وضعیت، دسته، زنجیره، پیشرفت، هدف، جستجو و…) دیده شوند از تنظیمات ← حالت آسان قابل انتخاب است و می‌توانید برایش پریست هم بسازید.</p><div class="notice">تنظیمات حالت آسان از دکمه ⚙️ داخل خودِ حالت آسان هم در دسترس است.</div></div>
             <div class="settingsCard"><h4>Your daily routine — a quick tutorial</h4><p>A simple loop covers everything: pick the date (usually today), type each activity amount into its quick box and press Enter, then watch the status dot and progress bar update. When a day goes badly, open it later and log or edit the missing amounts — streaks, savers, and every chart recalculate instantly. End the week in Analytics to see totals, consistency, and the heatmap.</p><div class="notice">Quick log accepts the activity amount directly. The full Log dialog also supports date and note entry.</div></div>
           </div>
         </div></div>
@@ -463,7 +543,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
         </div></div>
         <div class="panel"><div class="panelhead"><h3>Settings & data</h3></div><div class="metricSection">
           <div class="settingsGrid">
-            <div class="settingsCard"><h4>Language, direction & calendar</h4><p>Settings → Language & layout switches every label between English and Persian. The calendar follows the language — Shamsi (Jalali) in Persian and Gregorian in English — and page direction can be automatic, forced RTL, or forced LTR. The saver reset calendar, Gregorian or Shamsi months, is also chosen here.</p></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم و حالت آسان</h4><p>رابط کاربری همیشه فارسی و راست‌به‌چپ است و نیازی به تنظیم زبان نیست. تقویم نمایش (شمسی/میلادی) با دکمه 🗓️ نوار بالا یا از تنظیمات ← زبان و تقویم عوض می‌شود؛ هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند. جدا از آن، «تقویم ریست نجات‌دهنده‌ها» مشخص می‌کند پر شدن ماهانه سپرها با کدام تقویم محاسبه شود. حالت آسان (⚡) هم نمایش مینیمال ثبت سریع است که جزئیاتش از تنظیمات ← حالت آسان قابل تغییر و پریست است.</p></div>
             <div class="settingsCard"><h4>🎨 Themes & appearance</h4><p>Seventeen theme presets restyle the whole app in one click, and custom colors fine-tune the accent, panels, and text. Sliders control the interface scale, corner radius, density, glow, and sidebar width. Charts, the heatmap, and every highlight follow these colors; press 💾 to save your appearance or reset to the defaults.</p></div>
             <div class="settingsCard"><h4>Backup & JSON database</h4><p>The vault can live in the browser or in a portable JSON database file with optional encryption, so you can carry it between devices. Settings → Backup / import exports and restores full backups, and the activity history can additionally be exported as JSON or CSV. The Diagnostics log records technical messages for troubleshooting and can be copied with one click.</p></div>
             <div class="settingsCard"><h4>Security</h4><p>Settings → Security lets you change the password used to unlock the vault. Locking with 🔒 instantly hides all data until the password is re-entered. Choosing an encrypted JSON database keeps everything unreadable even outside this app.</p></div>
@@ -475,11 +555,11 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
       
       <section id="settings" class="section">
         <div class="hero"><div><h2>Settings</h2><p>Security, backups, and app preferences.</p></div></div>
-        <div class="panel"><div class="panelhead"><div><h3>🌐 Language & layout</h3><div class="muted">Choose the interface language, page direction, and the saver reset calendar.</div></div></div><div class="settingsGrid">
-<div class="settingsCard"><h4>🗣️ Interface language</h4><p>Switch all labels, messages, dialogs, and guides between English and Persian.</p><div class="field"><label>Language</label><select id="langSelect" class="select" style="width:100%"><option value="en">English</option><option value="fa">فارسی — Persian</option></select></div><div class="helper">The choice is stored in this browser and applied immediately.</div><div class="helper">📅 The calendar follows the interface language: Shamsi (Jalali) in Persian, Gregorian in English.</div></div>
-<div class="settingsCard"><h4>📐 Page direction</h4><p>Set how the page is aligned. "Auto" follows the language: Persian becomes right-to-left, English left-to-right.</p><div class="field"><label>Direction</label><select id="dirSelect" class="select" style="width:100%"><option value="auto">Auto (follow language)</option><option value="ltr">Left-to-right (LTR)</option><option value="rtl">Right-to-left (RTL)</option></select></div><div class="helper">Applies immediately and is remembered in this browser.</div></div>
-<div class="settingsCard"><h4>🗓️ Saver reset calendar</h4><p>Savers refill at the start of every month. Choose which calendar defines that month boundary.</p><div class="field"><label>Saver reset basis</label><select id="saverCalSelect" class="select" style="width:100%"><option value="gregorian">Gregorian months</option><option value="persian">Solar Hijri (Shamsi) months</option></select></div><div class="helper">Changing this recalculates streaks, deficits, and saver usage across the whole history.</div></div>
+        <div class="panel" id="calendarPanel"><div class="panelhead"><div><h3>🌐 زبان و تقویم</h3><div class="muted" data-no-i18n="1">رابط کاربری همیشه فارسی است؛ تقویم نمایش و تقویم ریست نجات‌دهنده‌ها را اینجا انتخاب کنید.</div></div></div><div class="settingsGrid">
+<div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم نمایش</h4><p>تاریخ‌ها در کل برنامه (نوار بالا، تاریخچه، تحلیل‌ها و تقویم بازشو) با این تقویم نمایش داده می‌شوند. هر دو تقویم پشتیبانی می‌شوند.</p><div class="field"><label>تقویم</label><select id="calSelect" class="select" style="width:100%"><option value="persian">شمسی (جلالی)</option><option value="gregorian">میلادی</option></select></div><div class="helper">می‌توانید از دکمه «🗓️» در نوار بالا هم سریع عوض کنید. داده‌های شما تغییر نمی‌کند — فقط نمایش تاریخ عوض می‌شود.</div><div class="helper">هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند.</div></div>
+<div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم ریست نجات‌دهنده‌ها</h4><p>نجات‌دهنده‌ها در آغاز هر ماه دوباره پر می‌شوند. انتخاب کنید مرز ماه بر پایه کدام تقویم باشد.</p><div class="field"><label>مبنای ریست نجات‌دهنده‌ها</label><select id="saverCalSelect" class="select" style="width:100%"><option value="gregorian">ماه‌های میلادی</option><option value="persian">ماه‌های شمسی (جلالی)</option></select></div><div class="helper">با تغییر این گزینه، زنجیره‌ها، کسری‌ها و مصرف نجات‌دهنده‌ها در کل تاریخچه از نو محاسبه می‌شود.</div></div>
 </div></div>
+<div class="panel" id="easyModePanel"><div class="panelhead"><div><h3 data-no-i18n="1">⚡ حالت آسان</h3><div class="muted" data-no-i18n="1">نمایشی مینیمال برای ثبت سریع فعالیت‌ها — قابل شخصی‌سازی و پریست.</div></div></div><div id="easyModeConfig" data-no-i18n="1"></div></div>
 <div class="panel"><div class="panelhead"><div><h3>Program defaults</h3><div class="muted">These values are used when you create a new activity. Existing activities keep their own settings.</div></div></div><div class="settingsGrid"><div class="settingsCard"><h4>Default activity rule</h4><p>Choose the starting metric and target for new activities.</p><div class="field"><label>📏 Measurement type</label><select id="dType" class="select" style="width:100%"></select></div><div class="field"><label>🔢 Unit</label><select id="dUnit" class="select" style="width:100%"></select></div><div class="field"><label>🎯 Daily target</label><input id="dTarget" class="input" type="number" min="0.0001" step="any" /></div></div><div class="settingsCard"><h4>Default streak protection</h4><p>Set the standard saver and partial-progress rules for new activities.</p><div class="field"><label>🛡️ Monthly savers</label><input id="dSavers" class="input" type="number" min="0" step="1" /></div><div class="field"><label>📉 Minimum meaningful amount</label><input id="dMin" class="input" type="number" min="0" step="any" /></div><div class="field"><label>Default priority</label><input id="dPriority" class="input" type="number" min="1" step="1" placeholder="Leave blank for none" /></div></div></div><div class="saveSettingsBar"><button class="primarybtn" id="saveDefaultsBtn">Save defaults</button></div></div>
 <div class="panel"><div class="panelhead"><div><h3>📐 Measurement types & units</h3><div class="muted">Each measurement type has its own unit list. Built-in types can be edited, and new types can be added.</div></div><button class="primarybtn" id="addMeasurementTypeBtn" title="Add a custom measurement type">＋ Add type</button></div><div id="measurementTypeConfig" class="settingsGrid"></div></div><div class="panel"><div class="panelhead"><h3>🗃️ JSON database</h3><div class="muted" id="jsonDbStatus">Local database · not connected to a file</div></div><div class="settingsGrid">
   <div class="settingsCard"><h4>📁 Portable database</h4><p>Connect a JSON database file and use the same data from another browser. Changes are cached locally and written to the connected file with a small debounce to keep the UI responsive.</p><div class="entryRow"><span>Status</span><strong id="jsonDbConnectionLabel">Local only</strong></div><div class="entryRow"><span>Database</span><strong id="jsonDbFileLabel">—</strong></div><div class="configActions"><button class="tinybtn" id="connectJsonDbBtn" title="Connect an existing JSON database file">📂</button><button class="tinybtn" id="newJsonDbBtn" title="Create a new JSON database file">🆕</button><button class="tinybtn" id="saveJsonDbBtn" title="Write current data to the connected JSON database">💾</button><button class="tinybtn" id="disconnectJsonDbBtn" title="Disconnect the JSON file and continue locally">⛓️‍💥</button></div><div class="helper">On browsers that support the File System Access API, the file can be updated directly. Otherwise use import/export to move the database.</div></div>
@@ -513,7 +593,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
   </div>
 </div>
 
-<div id="activityModal" class="modal"><div class="modalCard"><div class="modalHead"><h3 id="activityModalTitle">New activity</h3><button class="iconbtn" data-close="activityModal">✕</button></div><div class="modalBody"><div class="formgrid"><div class="field full"><label>📝 Name</label><input id="fName" placeholder="e.g. Study, Sport, Face" /></div><div class="field full"><label>🏷️ Category</label><input id="fCategory" list="activityCategoryOptions" placeholder="e.g. Health, Study, Work" /><datalist id="activityCategoryOptions"></datalist><div class="helper">Use a category to organize activities and filter them in Daily workspace.</div></div><div class="field full"><label>📅 Changes effective from</label><input id="fEffectiveFrom" class="dpInput" type="text" autocomplete="off" data-dp="1" /><div class="helper">When editing an existing activity, only this date and future dates use the new settings. Earlier dates keep their previous settings.</div></div><div class="field"><label>📏 Measurement type</label><select id="fType"></select><div class="helper">Units available here belong to the selected measurement type.</div></div><div class="field"><label>🔢 Unit</label><select id="fUnit" class="select"></select></div><div class="field"><label>🎯 Daily target</label><input id="fTarget" type="number" min="0.0001" step="any" value="60" /></div><div class="field"><label>🛡️ Monthly savers</label><input id="fSavers" type="number" min="0" step="1" value="4" /><div class="helper">The saver balance refills at the start of each month — Gregorian or Shamsi, as chosen in Settings.</div></div><div class="field"><label>⭐ Priority <span style="color:#7b89aa">(lower = higher)</span></label><input id="fPriority" type="number" min="1" step="1" placeholder="1 = highest" /></div><div class="field"><label>📉 Minimum meaningful amount</label><input id="fMin" type="number" min="0" step="any" value="0" placeholder="0 = any amount counts as partial" /><div class="helper">Below this value, the day behaves like a skip and needs a saver.</div></div><div class="field"><label>🔥 Initial current streak</label><input id="fInitialStreak" type="number" min="0" step="1" value="0" /><div class="helper">Use this when migrating an existing streak.</div></div><div class="field"><label>🏆 Initial best streak</label><input id="fInitialBest" type="number" min="0" step="1" value="0" /></div><div class="field full"><label>🗒️ Notes</label><input id="fNotes" placeholder="Optional description or rule" /></div></div></div><div class="modalFoot"><button class="ghostbtn" data-close="activityModal">Cancel</button><button class="primarybtn" id="saveActivityBtn">Save activity</button></div></div></div>
+<div id="activityModal" class="modal"><div class="modalCard"><div class="modalHead"><h3 id="activityModalTitle">New activity</h3><button class="iconbtn" data-close="activityModal">✕</button></div><div class="modalBody"><div class="formgrid"><div class="field full"><label>📝 Name</label><input id="fName" placeholder="e.g. Study, Sport, Face" /></div><div class="field full"><label>🏷️ Category</label><div class="catCombo" id="fCategoryWrap"><input id="fCategory" class="input" placeholder="e.g. Health, Study, Work" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="fCategoryList" aria-autocomplete="list" /><button type="button" class="catComboBtn" id="fCategoryBtn" tabindex="-1" title="نمایش دسته‌بندی‌های موجود" aria-label="نمایش دسته‌بندی‌های موجود" data-no-iconify>▾</button><div class="catComboList hidden" id="fCategoryList" role="listbox"></div></div><div class="helper">از لیست بازشو یک دسته‌بندی موجود را انتخاب کنید یا متن دلخواه تایپ کنید تا دسته جدید ساخته شود. خالی بگذارید تا فعالیت بدون دسته‌بندی بماند.</div></div><div class="field full"><label>📅 Changes effective from</label><input id="fEffectiveFrom" class="dpInput" type="text" autocomplete="off" data-dp="1" /><div class="helper">When editing an existing activity, only this date and future dates use the new settings. Earlier dates keep their previous settings.</div></div><div class="field"><label>📏 Measurement type</label><select id="fType"></select><div class="helper">Units available here belong to the selected measurement type.</div></div><div class="field"><label>🔢 Unit</label><select id="fUnit" class="select"></select></div><div class="field"><label>🎯 Daily target</label><input id="fTarget" type="number" min="0.0001" step="any" value="60" /></div><div class="field"><label>🛡️ Monthly savers</label><input id="fSavers" type="number" min="0" step="1" value="4" /><div class="helper">The saver balance refills at the start of each month — Gregorian or Shamsi, as chosen in Settings.</div></div><div class="field"><label>⭐ Priority <span style="color:#7b89aa">(lower = higher)</span></label><input id="fPriority" type="number" min="1" step="1" placeholder="1 = highest" /></div><div class="field"><label>📉 Minimum meaningful amount</label><input id="fMin" type="number" min="0" step="any" value="0" placeholder="0 = any amount counts as partial" /><div class="helper">Below this value, the day behaves like a skip and needs a saver.</div></div><div class="field"><label>🔥 Initial current streak</label><input id="fInitialStreak" type="number" min="0" step="1" value="0" /><div class="helper">Use this when migrating an existing streak.</div></div><div class="field"><label>🏆 Initial best streak</label><input id="fInitialBest" type="number" min="0" step="1" value="0" /></div><div class="field full"><label>🗒️ Notes</label><input id="fNotes" placeholder="Optional description or rule" /></div></div></div><div class="modalFoot"><button class="ghostbtn" data-close="activityModal">Cancel</button><button class="primarybtn" id="saveActivityBtn">Save activity</button></div></div></div>
 
 <div id="logModal" class="modal"><div class="modalCard"><div class="modalHead"><h3 id="logModalTitle">Log activity</h3><button class="iconbtn" data-close="logModal">✕</button></div><div class="modalBody"><div class="formgrid"><div class="field full"><label>Activity</label><select id="lActivity"></select></div><div class="field"><label>📅 Date</label><input id="lDate" class="dpInput" type="text" autocomplete="off" data-dp="1" /></div><div class="field"><label>🔢 Amount</label><input id="lAmount" type="number" min="0" step="any" placeholder="0" /></div><div class="field full"><label>🗒️ Note</label><input id="lNote" placeholder="Optional note for this log" /></div></div><div class="helper" id="logHint" style="margin-top:12px"></div></div><div class="modalFoot"><button class="ghostbtn" data-close="logModal">Cancel</button><button class="primarybtn" id="addEntryBtn">Add entry</button></div></div></div>
 
@@ -533,7 +613,7 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='9';
+const APP_VERSION='10';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
@@ -549,14 +629,17 @@ const todayKey=()=>keyFromDate(new Date());
 const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
 
-/* ================= i18n bilingual layer (EN/FA) ================= */
-const I18N_LANG_KEY='streakos.ui.lang',I18N_DIR_KEY='streakos.ui.dir';
-let __uiLang='en',__dirMode='auto';
+/* ================= i18n layer — Persian-only UI (v10) =================
+   The interface language is ALWAYS Persian (fa, RTL).
+   The DISPLAY CALENDAR (Shamsi / Gregorian) is an independent user choice
+   and no longer follows the language. */
+const I18N_CAL_KEY='streakos.ui.cal';
+const __uiLang='fa'; /* single-language build: Persian only */
+let __uiCal='persian';
 const i18nStore={get(k){try{return window.localStorage?window.localStorage.getItem(k):null}catch(e){return null}},set(k,v){try{if(window.localStorage)window.localStorage.setItem(k,v)}catch(e){}}};
 function uiLang(){return __uiLang}
-function uiDirMode(){return __dirMode}
-function uiLocale(){return __uiLang==='fa'?'fa-IR-u-ca-persian':'en-US'}
-function uiCal(){return __uiLang==='fa'?'persian':'gregorian'}
+function uiLocale(){return uiCal()==='persian'?'fa-IR-u-ca-persian':'fa-IR-u-ca-gregory'}
+function uiCal(){return __uiCal}
 /* ---- Jalali (Shamsi) conversions - jalaali algorithm ---- */
 function _jdiv(a,b){return ~~(a/b)}
 function _jmod(a,b){return a-~~(a/b)*b}
@@ -920,10 +1003,10 @@ faPat(/^Undo \((\d+) available\)$/,m=>`واگرد (${m[1]} مورد موجود)`
 faPat(/^Redo \((\d+) available\)$/,m=>`ازنو (${m[1]} مورد موجود)`);
 faPat(/^Best (\d+)$/,m=>`بهترین: ${m[1]}`);
 faPat(/^Logged (.+)$/,m=>`ثبت شد: ${m[1]}`);
-faPat(/^Log · Today$/,'ثبت · امروز');
+faPat(/^Log · Today$/,()=>'ثبت · امروز');
 faPat(/^Log · (.+)$/,m=>`ثبت · ${m[1]}`);
 faPat(/^Log (.+)$/,m=>`ثبت ${m[1]}`);
-faPat(/^(\d+) selected$/,'$1 انتخاب شده');
+faPat(/^(\d+) selected$/,m=>`${m[1]} انتخاب شده`);
 faPat(/^Delete selected \((\d+)\)$/,m=>`حذف انتخاب‌شده‌ها (${m[1]})`);
 faPat(/^Permanently delete \((\d+)\)$/,m=>`حذف همیشگی (${m[1]})`);
 faPat(/^(\d+) rules$/,m=>`${m[1]} قانون`);
@@ -941,8 +1024,8 @@ faPat(/^Workspace · (.+)$/,m=>`میزکار · ${m[1]}`);
 faPat(/^(\d+) activities · selected date (.+)$/,m=>`${m[1]} فعالیت · تاریخ انتخابی ${m[2]}`);
 faPat(/^⚠️ (\d+)% of today’s target is still incomplete\. Keep an eye on this task so unfinished progress does not accumulate\.$/,m=>`⚠️ ${m[1]}٪ از هدف امروز هنوز کامل نشده است. مراقب این کار باشید تا پیشرفت ناتمام انباشته نشود.`);
 faPat(/^(\d+) savers? protected the streak after unfinished progress accumulated\.$/,m=>`${m[1]} نجات‌دهنده پس از انباشت پیشرفت ناتمام از زنجیره محافظت کردند.`);
-faPat(/^A saver protected the streak because the activity had no completed progress that day\.$/,'یک نجات‌دهنده از زنجیره محافظت کرد چون فعالیت در آن روز پیشرفت کاملی نداشت.');
-faPat(/^The streak broke because accumulated unfinished progress exceeded available savers\.$/,'زنجیره قطع شد چون پیشرفت ناتمام انباشته‌شده از نجات‌دهنده‌های موجود بیشتر شد.');
+faPat(/^A saver protected the streak because the activity had no completed progress that day\.$/,()=>'یک نجات‌دهنده از زنجیره محافظت کرد چون فعالیت در آن روز پیشرفت کاملی نداشت.');
+faPat(/^The streak broke because accumulated unfinished progress exceeded available savers\.$/,()=>'زنجیره قطع شد چون پیشرفت ناتمام انباشته‌شده از نجات‌دهنده‌های موجود بیشتر شد.');
 faPat(/^(\d+)\/month savers$/,m=>`${m[1]} نجات‌دهنده در ماه`);
 faPat(/^🛡️ (\d+)\/(\d+) savers$/,m=>`🛡️ ${m[1]}/${m[2]} نجات‌دهنده`);
 faPat(/^Start: (.+)$/,m=>{const t=m[1].replace(/ (Active|Disabled|Deleted) from (.+)$/,(x,lab,dt)=>' '+(FA_EXACT.get(lab)||lab)+' از '+dt);return `شروع: ${t}`});
@@ -1129,36 +1212,52 @@ function scheduleI18n(){
   requestAnimationFrame(()=>{__i18nQueued=false;if(__uiLang!=='fa')return;__i18nApplying=true;try{localizeDom(document.body)}catch(e){}finally{__i18nApplying=false}});
 }
 const __i18nObs=('MutationObserver' in window)?new MutationObserver(()=>{
-  if(__i18nApplying||__uiLang!=='fa')return;
+  if(__i18nApplying)return;
   scheduleI18n();
 }):null;
 function applyDirection(){
-  const dir=__dirMode==='auto'?(__uiLang==='fa'?'rtl':'ltr'):__dirMode;
-  document.documentElement.setAttribute('dir',dir);
-  document.documentElement.setAttribute('data-ui-dir',dir);
+  /* Persian-only build: always RTL */
+  document.documentElement.setAttribute('dir','rtl');
+  document.documentElement.setAttribute('data-ui-dir','rtl');
 }
-function syncI18nControls(){
-  const ls=$('langSelect');if(ls)ls.value=__uiLang;
-  const ds=$('dirSelect');if(ds)ds.value=__dirMode;
-  const tb=$('langToggleBtn');if(tb)tb.textContent=__uiLang==='fa'?'🌐 EN':'🌐 FA';
-  const lb=$('langToggleLogin');if(lb)lb.textContent=__uiLang==='fa'?'🌐 English':'🌐 فارسی';
+function calendarMonthStart(dt){
+  /* month start of the given Date according to the CURRENT display calendar —
+     fixes: History used to land on the previous Jalali month because the cursor
+     was always set to the 1st of the GREGORIAN month. */
+  if(uiCal()==='persian'){const j=toJalali(dt);return jalaliToDate(j.jy,j.jm,1)}
+  return new Date(dt.getFullYear(),dt.getMonth(),1);
 }
+function syncCalendarControls(){
+  const cal=uiCal();
+  const tb=$('calToggleBtn');if(tb){tb.textContent=cal==='persian'?'🗓️ شمسی':'🗓️ میلادی';tb.title=cal==='persian'?'تقویم فعال: شمسی — کلیک کنید به میلادی تغییر کند':'تقویم فعال: میلادی — کلیک کنید به شمسی تغییر کند'}
+  const cs=$('calSelect');if(cs)cs.value=cal;
+}
+function setUiCalendar(cal){
+  const next=cal==='gregorian'?'gregorian':'persian';
+  if(next===__uiCal)return;
+  __uiCal=next;i18nStore.set(I18N_CAL_KEY,__uiCal);
+  const dt=new Date(selectedDate+'T12:00:00');
+  if(!Number.isNaN(dt.getTime()))historyCursor=calendarMonthStart(dt);
+  if(typeof dpClose==='function')dpClose();
+  syncCalendarControls();
+  try{dpRefreshInputs()}catch(e){}
+  if(state){render()}
+  toast(next==='persian'?'تقویم شمسی فعال شد 🗓️':'تقویم میلادی فعال شد 🗓️');
+}
+function toggleUiCalendar(){setUiCalendar(uiCal()==='persian'?'gregorian':'persian')}
 function applyI18n(){
   applyDirection();
-  document.documentElement.setAttribute('lang',__uiLang);
+  document.documentElement.setAttribute('lang','fa');
   __i18nApplying=true;
   try{
     if(typeof render==='function'&&state){render();if(typeof renderSettings==='function'&&$('settings')&&$('settings').classList.contains('active'))renderSettings();if(typeof renderHistory==='function'&&$('history')&&$('history').classList.contains('active'))renderHistory();if(typeof renderAnalytics==='function'&&$('analytics')&&$('analytics').classList.contains('active'))renderAnalytics()}
-    if(__uiLang==='fa')localizeDom(document.body);else restoreDom(document.body)
+    localizeDom(document.body);
   }catch(e){}
   finally{__i18nApplying=false}
   if(typeof dpRefreshInputs==='function'){try{dpRefreshInputs()}catch(e){}}
   if(typeof applySidebarMode==='function'){try{applySidebarMode()}catch(e){}}
-  syncI18nControls();
+  syncCalendarControls();
 }
-function setUiLanguage(l){__uiLang=l==='fa'?'fa':'en';i18nStore.set(I18N_LANG_KEY,__uiLang);applyI18n()}
-function setUiDirection(d){__dirMode=(d==='rtl'||d==='ltr')?d:'auto';i18nStore.set(I18N_DIR_KEY,__dirMode);applyDirection();syncI18nControls()}
-function toggleUiLanguage(){setUiLanguage(__uiLang==='fa'?'en':'fa')}
 /* translate native dialogs */
 (function(){
   try{
@@ -1167,9 +1266,8 @@ function toggleUiLanguage(){setUiLanguage(__uiLang==='fa'?'en':'fa')}
     if(window.alert){const _al=window.alert.bind(window);window.alert=m=>_al(typeof m==='string'?tt(m):m)}
   }catch(e){}
 })();
-/* init bilingual layer */
-__uiLang=i18nStore.get(I18N_LANG_KEY)==='fa'?'fa':'en';
-__dirMode=(function(){const v=i18nStore.get(I18N_DIR_KEY);return (v==='rtl'||v==='ltr')?v:'auto'})();
+/* init Persian-only layer: restore the user's calendar choice, apply RTL + translate the login UI */
+__uiCal=(function(){const v=i18nStore.get(I18N_CAL_KEY);return v==='gregorian'?'gregorian':'persian'})();
 applyI18n();
 if(__i18nObs&&document.body)try{__i18nObs.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['title','placeholder','aria-label']})}catch(e){}
 /* ================= end i18n ================= */
@@ -1182,7 +1280,7 @@ function dpFormatDisplay(isoDate){
   if(!isoDate)return '';
   const d=new Date(isoDate+'T12:00:00');if(Number.isNaN(d.getTime()))return isoDate;
   if(uiCal()==='persian'){const j=toJalali(d);return faNumStr(j.jd)+' '+DP_MONTHS_FA[j.jm-1]+' '+faNumStr(j.jy)}
-  return isoDate;
+  try{return d.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'})}catch(e){return isoDate}
 }
 function dpSetISO(el,isoDate){if(!el)return;el.dataset.iso=isoDate||'';el.value=dpFormatDisplay(el.dataset.iso);el.classList.remove('dpInvalid')}
 function dpGetISO(el){return el&&el.dataset.iso?el.dataset.iso:''}
@@ -1193,11 +1291,11 @@ function dpParseInput(el,raw){
   const lat=s.replace(/[۰-۹]/g,ch=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(ch)).replace(/[٠-٩]/g,ch=>'٠١٢٣٤٥٦٧٨٩'.indexOf(ch));
   let isoOut='';
   const gregParse=t=>{const m=t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);if(!m)return '';const y=+m[1],mo=+m[2],da=+m[3];const dt=new Date(y,mo-1,da);return (dt.getFullYear()===y&&dt.getMonth()===mo-1&&dt.getDate()===da)?iso(y,mo-1,da):''};
+  const jalParse=t=>{const m=t.match(/^(\d{3,4})[\/\-. ](\d{1,2})[\/\-. ](\d{1,2})$/);if(!m)return '';const jy=+m[1],jm=+m[2],jd=+m[3];if(jm>=1&&jm<=12&&jd>=1&&jd<=jalaliMonthLength(jy,jm)){const g=jalaliToDate(jy,jm,jd);return iso(g.getFullYear(),g.getMonth(),g.getDate())}return ''};
   if(uiCal()==='persian'){
-    let m=lat.match(/^(\d{3,4})[\/\-. ](\d{1,2})[\/\-. ](\d{1,2})$/);
-    if(m){const jy=+m[1],jm=+m[2],jd=+m[3];if(jm>=1&&jm<=12&&jd>=1&&jd<=jalaliMonthLength(jy,jm)){const g=jalaliToDate(jy,jm,jd);isoOut=iso(g.getFullYear(),g.getMonth(),g.getDate())}}
+    isoOut=jalParse(lat);
     if(!isoOut)isoOut=gregParse(lat);
-  }else isoOut=gregParse(lat);
+  }else{isoOut=gregParse(lat);if(!isoOut)isoOut=jalParse(lat)}
   if(isoOut){dpSetISO(el,isoOut);return isoOut}
   el.classList.add('dpInvalid');return '';
 }
@@ -1257,20 +1355,20 @@ function dpRender(){
     }
   }else{
     const first=new Date(dpView.gy,dpView.gm,1);
-    title=first.toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    startDow=(first.getDay()+6)%7;dim=new Date(dpView.gy,dpView.gm+1,0).getDate();
+    try{title=first.toLocaleDateString('fa-IR-u-ca-gregory',{month:'long',year:'numeric'})}catch(e){title=first.toLocaleDateString('en-US',{month:'long',year:'numeric'})}
+    startDow=(first.getDay()+1)%7;/* Iranian convention: weeks start on Saturday */dim=new Date(dpView.gy,dpView.gm+1,0).getDate();
     const prevLen=new Date(dpView.gy,dpView.gm,0).getDate();
-    for(let i=0;i<startDow;i++)cells+='<div class="dpDay other">'+(prevLen-startDow+i+1)+'</div>';
+    for(let i=0;i<startDow;i++)cells+='<div class="dpDay other">'+faNumStr(prevLen-startDow+i+1)+'</div>';
     for(let d=1;d<=dim;d++){
       const dIso=iso(dpView.gy,dpView.gm,d);
-      cells+=`<div class="dpDay${dIso===selV?' sel':''}${dIso===todayV?' today':''}" data-dp-action="pick" data-dp-value="${dIso}">${d}</div>`;
+      cells+=`<div class="dpDay${dIso===selV?' sel':''}${dIso===todayV?' today':''}" data-dp-action="pick" data-dp-value="${dIso}">${faNumStr(d)}</div>`;
     }
   }
   const total=startDow+dim,rows=Math.ceil(total/7);
-  for(let i=total;i<rows*7;i++)cells+='<div class="dpDay other">'+(fa?faNumStr(i-total+1):String(i-total+1))+'</div>';
-  const dows=(fa?DP_DOWS_FA:DP_DOWS_EN).map(x=>'<div class="dpDow">'+x+'</div>').join('');
-  const lblToday=fa?'امروز':'Today',lblClear=fa?'پاک کردن':'Clear';
-  const t1=fa?'سال قبل':'Previous year',t2=fa?'ماه قبل':'Previous month',t3=fa?'ماه بعد':'Next month',t4=fa?'سال بعد':'Next year';
+  for(let i=total;i<rows*7;i++)cells+='<div class="dpDay other">'+faNumStr(i-total+1)+'</div>';
+  const dows=DP_DOWS_FA.map(x=>'<div class="dpDow">'+x+'</div>').join('');
+  const lblToday='امروز',lblClear='پاک کردن';
+  const t1='سال قبل',t2='ماه قبل',t3='ماه بعد',t4='سال بعد';
   dpEl.innerHTML=`<div class="dpHead"><button class="dpNav" data-dp-action="py" title="${t1}">«</button><button class="dpNav" data-dp-action="pm" title="${t2}">‹</button><div class="dpTitle">${title}</div><button class="dpNav" data-dp-action="nm" title="${t3}">›</button><button class="dpNav" data-dp-action="ny" title="${t4}">»</button></div><div class="dpGrid">${dows}${cells}</div><div class="dpFoot"><button data-dp-action="today">${lblToday}</button><button data-dp-action="clear">${lblClear}</button></div>`;
 }
 function dpPlace(){
@@ -1340,6 +1438,12 @@ faAdd([
 faPat(/^📐 (.+)$/,m=>'📐 '+(FA_EXACT.get(m[1])||m[1]));
 faPat(/^Start: (.+) · (Active|Disabled|Deleted) from (.+)$/,m=>`شروع: ${m[1]} · ${(FA_EXACT.get(m[2])||m[2])} از ${m[3]}`);
 faPat(/^(Active|Disabled|Deleted) from (.+)$/,m=>`${FA_EXACT.get(m[1])||m[1]} از ${m[2]}`);
+/* v10 additions: quick-log toast, category helper */
+faPat(/^(.+) logged ✅$/,m=>`${m[1]} ثبت شد ✅`);
+faAdd([
+['Use a category to organize activities and filter them in Daily workspace.','از دسته‌بندی برای سازمان‌دهی فعالیت‌ها و فیلترکردن آن‌ها در میزکار روزانه استفاده کنید.'],
+['e.g. Health, Study, Work','مثلاً سلامت، درس، کار'],
+]);
 
 const toast=m=>{const t=$('toast');t.textContent=tt(m);t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2400)};
 const fmtDate=d=>new Date(d+'T12:00:00').toLocaleDateString(uiLocale(),{year:'numeric',month:'short',day:'numeric'});
@@ -1529,6 +1633,8 @@ function normalizeState(s){
   });
   return s;
 }
+const EASY_DEFAULTS={showStatus:true,showCategory:true,showStreak:false,showProgress:true,showTarget:true,showSearch:false,showAdd:true,hideDone:false,bigTouch:false};
+const EASY_OPTION_KEYS=Object.keys(EASY_DEFAULTS);
 function defaultViewSettings(){
   return {
     sort:[{field:'urgency',dir:'asc'},{field:'priority',dir:'asc'}],
@@ -1538,7 +1644,7 @@ function defaultViewSettings(){
     },
     ruleColumns:{activity:{visible:true,width:null},priority:{visible:true,width:null},target:{visible:true,width:null},type:{visible:true,width:null},actions:{visible:true,width:null}},
     tabPositions:{},
-    presets:[],ui:defaultUi()
+    presets:[],ui:defaultUi(),easy:{...EASY_DEFAULTS},easyPresets:[]
   };
 }
 const ACTIVITY_COLUMNS=[
@@ -1588,6 +1694,10 @@ function ensureViewSettings(target=state){
   v.ruleColumns=v.ruleColumns&&typeof v.ruleColumns==='object'?v.ruleColumns:{};RULE_COLUMNS.forEach(c=>{if(!v.ruleColumns[c.id]||typeof v.ruleColumns[c.id]!=='object')v.ruleColumns[c.id]={visible:true,width:null};const w=v.ruleColumns[c.id].width;if(w!==null&&w!==''){const n=Number(w);v.ruleColumns[c.id].width=Number.isFinite(n)?Math.max(60,Math.min(1000,n)):null}else v.ruleColumns[c.id].width=null});
   v.tabPositions=v.tabPositions&&typeof v.tabPositions==='object'?v.tabPositions:{};
   v.presets=Array.isArray(v.presets)?v.presets.filter(x=>x&&typeof x==='object'&&x.name&&x.config):[];
+  v.easy=v.easy&&typeof v.easy==='object'?v.easy:{};
+  EASY_OPTION_KEYS.forEach(k=>{if(typeof v.easy[k]!=='boolean')v.easy[k]=EASY_DEFAULTS[k]});
+  v.easyPresets=Array.isArray(v.easyPresets)?v.easyPresets.filter(x=>x&&typeof x==='object'&&x.name&&x.config&&typeof x.config==='object'):
+[];
   if(!v.ui||typeof v.ui!=='object')v.ui=defaults.ui;
   target.viewSettings=v;
   return v;
@@ -2005,17 +2115,16 @@ function iconifyButtons(){
   });
   updateHistoryButtons();
 }
+function catLabel(c){const v=String(c||'').trim();return v==='Uncategorized'?(FA_EXACT.get('Uncategorized')||'دسته‌بندی‌نشده'):v}
 function activityCategories(){const cats=new Set();state.activities.forEach(a=>{const current=String(a.category||'Uncategorized').trim()||'Uncategorized';cats.add(current);(a.history||[]).forEach(h=>{const c=String(h.category||'').trim();if(c)cats.add(c);});});return [...cats].filter(Boolean).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}))}
 function renderActivityCategoryControls(){
   const sel=$('categoryFilter');
   const cats=activityCategories();
   if(sel){
     const current=sel.value;
-    sel.innerHTML='<option value="">All categories</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    sel.innerHTML='<option value="">All categories</option>'+cats.map(c=>`<option data-no-i18n="1" value="${esc(c)}">${esc(c)}</option>`).join('');
     if(cats.includes(current))sel.value=current;
   }
-  const dl=$('activityCategoryOptions');
-  if(dl)dl.innerHTML=cats.map(c=>`<option value="${esc(c)}"></option>`).join('');
 }
 function render(){if(!state)return;__logCounts={};state.entries.forEach(e=>{__logCounts[e.activityId]=(__logCounts[e.activityId]||0)+1});const selectedLabel=fmtDate(selectedDate),today=todayKey();$('brandDate').textContent=`Selected: ${selectedLabel} · ${selectedDate===today?'Today':(selectedDate<today?'Past':'Future')}`;dpSetISO($('selectedDateInput'),selectedDate);$('dashboardTitle').textContent=selectedDate===today?'Today at a glance':`Workspace · ${selectedLabel}`;$('dashboardSubtitle').textContent=selectedDate===today?'Log fast, inspect details when needed, and switch to any date.':'Editing historical data for this date.';
  const stats=state.activities.filter(a=>activityIsActiveOnDate(a,selectedDate)).map(a=>({a,st:activityStats(a,selectedDate)}));const daySum=daySummary(selectedDate);if($('dayTrophy')){$('dayTrophy').innerHTML=daySum.trophy?'<div class="trophyEmoji" title="Trophy day: every applicable activity completed">🏆</div>':'';$('dayTrophy').classList.toggle('show',daySum.trophy)}const done=stats.filter(x=>x.st.today?.status==='full').length;const partial=stats.filter(x=>x.st.today?.status==='partial').length;const warn=stats.filter(x=>{const cfg=activityConfigForResult(x.a,x.st.today);return ['skip','partial'].includes(x.st.today?.status)&&x.st.saversLeft<=Math.max(1,Math.ceil((Number(cfg.savers)||0)/3));}).length;const broken=stats.filter(x=>x.st.today?.broken).length;const streaks=stats.filter(x=>x.st.current>0).length;
@@ -2025,6 +2134,7 @@ function render(){if(!state)return;__logCounts={};state.entries.forEach(e=>{__lo
 function renderList(stats,query,el,quick,category=''){
   let arr=stats.filter(x=>{const cfg=activityConfigForResult(x.a,x.st?.today);return String(cfg.name||'').toLowerCase().includes(query.toLowerCase())&&(!category||String(cfg.category||'Uncategorized')===category)});
   arr=sortActivities(arr);
+  if(easyModeOn()){el.innerHTML=`<div class="easyWrap">${renderEasyList(arr)}</div>`;attachEasyHandlers();return}
   if(!arr.length){el.innerHTML='<div class="empty"><strong>No activities found</strong>Try a different search or add a new activity.</div>';return}
   const v=ensureViewSettings();
   const cols=ACTIVITY_COLUMNS.filter(c=>v.columns[c.id]?.visible!==false);
@@ -2034,7 +2144,7 @@ function renderList(stats,query,el,quick,category=''){
     const saverTone=remaining<=0?'danger':remaining===1?'danger':remaining===2?'hot':'safe';
     const dots=Array.from({length:Math.max(0,Number(cfg.savers)||0)},(_,i)=>`<i class="saverDot ${i<remaining?saverTone:'danger'}" style="opacity:${i<remaining?1:.22}"></i>`).join('');
     return `<div class="activity ${complete?'completed':''}">
-      ${cell('activity',`<div class="a-name">${esc(cfg.name)}</div><div class="a-meta">${cfg.category?`🏷️ ${esc(cfg.category)} · `:''}${cfg.notes?esc(cfg.notes):''}</div>`)}
+      ${cell('activity',`<div class="a-name" data-no-i18n="1">${esc(cfg.name)}</div><div class="a-meta">${cfg.category?`<span data-no-i18n="1">🏷️ ${esc(catLabel(cfg.category))}</span> · `:''}${cfg.notes?`<span data-no-i18n="1">${esc(cfg.notes)}</span>`:''}</div>`)}
        ${cell('savers',`<span class="pill ${remaining<=Math.max(1,Math.ceil((Number(cfg.savers)||0)/3))?'danger':'green'}">${remaining}/${Number(cfg.savers)||0}</span><span class="saverGauge">${dots}</span>`)}${cell('totalLogs',`<span class="pill green" title="Total times this activity was logged">${__logCounts[a.id]||0}</span>`)}
        ${cell('target',`<strong>${esc(cfg.target)}</strong> <span class="a-meta">${esc(cfg.unit)}</span>`)}
        ${cell('deficit',`<span class="pill ${Number(r.deficit||0)>0?'warn':'green'}" title="Outstanding shortfall. Extra progress on a later day can reduce it.">${Math.round((r.deficit||0)*100)}%</span>`)}
@@ -2050,6 +2160,186 @@ function renderList(stats,query,el,quick,category=''){
   el.style.setProperty('--activity-grid',activityGridStyle());
   enhanceAllGrids();
 }
+
+/* ================= v10: EASY MODE (minimal quick-log UI) ================= */
+const EASY_KEY='streakos.ui.easy';
+function easyModeOn(){return document.documentElement.getAttribute('data-easy')==='on'}
+function easyCfg(){return state?ensureViewSettings().easy:{...EASY_DEFAULTS}}
+function applyEasyMode(){
+  const on=i18nStore.get(EASY_KEY)==='on';
+  const root=document.documentElement;
+  root.setAttribute('data-easy',on?'on':'off');
+  const cfg=easyCfg();
+  root.setAttribute('data-easy-search',cfg.showSearch?'on':'off');
+  root.setAttribute('data-easy-touch',cfg.bigTouch?'on':'off');
+  const b=$('easyToggleBtn');
+  if(b){b.classList.toggle('easyActiveBtn',on);b.title=on?'خروج از حالت آسان و بازگشت به نمایش کامل':'حالت آسان — فقط فعالیت‌ها و ثبت سریع'}
+}
+function toggleEasyMode(force){
+  const on=force!==undefined?!!force:!easyModeOn();
+  i18nStore.set(EASY_KEY,on?'on':'off');
+  applyEasyMode();
+  if(on&&typeof activeSection==='string'&&activeSection!=='dashboard'){showSection('dashboard')}
+  else if(state){render()}
+  toast(on?'حالت آسان روشن شد ⚡':'حالت آسان خاموش شد');
+}
+function renderEasyList(arr){
+  const cfg=easyCfg();
+  const done=arr.filter(x=>x.st?.today?.status==='full').length,total=arr.length;
+  const shown=cfg.hideDone?arr.filter(x=>x.st?.today?.status!=='full'):arr;
+  const isToday=selectedDate===todayKey();
+  const head=`<div class="easyHead" data-no-i18n="1"><div class="easySummary">📅 ${isToday?'امروز':fmtDate(selectedDate)} · <b>${faNumStr(done)}/${faNumStr(total)}</b> تکمیل شد</div><div class="easyHeadRight">${cfg.showAdd?'<button class="easyBtn" id="easyAddBtn" type="button" title="افزودن فعالیت جدید">＋ فعالیت</button>':''}<button class="easyBtn" id="easySettingsBtn" type="button" title="تنظیمات حالت آسان">⚙️ تنظیمات</button></div></div>`;
+  if(!shown.length){
+    return head+`<div class="easyEmpty" data-no-i18n="1"><strong>${total?'فعالیت ناتمامی نمانده 🎉':'هنوز فعالیتی ندارید'}</strong>${total?'همه فعالیت‌های این روز کامل شده‌اند.':'اولین فعالیت خود را از دکمه «＋ فعالیت» بسازید.'}</div>`;
+  }
+  const rows=shown.map(({a,st})=>{
+    const r=st.today||{},cfgA=activityConfigForResult(a,r),viewA={...a,...cfgA},p=pct(r.ratio||0),dclass=dotClass(r.status,st.saversLeft,viewA),complete=r.status==='full';
+    return `<div class="easyRow ${complete?'done':''}" data-easy-row="${a.id}"><div class="easyName">${cfg.showStatus?`<span class="dot ${dclass}" title="وضعیت امروز"></span>`:''}<div style="min-width:0"><div class="a-name" data-no-i18n="1">${esc(viewA.name)}</div>${cfg.showCategory&&viewA.category?`<div class="a-meta" data-no-i18n="1">🏷️ ${esc(catLabel(viewA.category))}</div>`:''}</div></div>${cfg.showStreak?`<div class="easyStreak" title="زنجیره فعلی">🔥 ${faNumStr(st.current)}</div>`:''}${cfg.showTarget?`<div class="easyTarget" data-no-i18n="1">${faNumStr(viewA.target)} ${esc(tt(String(viewA.unit)))}</div>`:''}${cfg.showProgress?`<div class="easyProgress"><div class="progress"><span style="width:${p}%"></span></div></div>`:''}<div class="easyLog"><div class="easyInputWrap"><input class="quickInput easyInput" inputmode="decimal" type="number" min="0" step="any" placeholder="${r.amount?String(r.amount):'—'}" data-quick-input="${a.id}" aria-label="ثبت ${esc(viewA.name)}" />${viewA.unit?`<span class="easyUnit" data-no-i18n="1">${esc(tt(String(viewA.unit)))}</span>`:''}</div><button class="quickLogBtn" data-quick-log="${a.id}" title="ثبت ${esc(viewA.name)}">✓</button></div></div>`;
+  }).join('');
+  return head+`<div class="easyList">${rows}</div>`;
+}
+function attachEasyHandlers(){
+  const add=$('easyAddBtn');if(add)add.onclick=()=>openActivityModal();
+  const st=$('easySettingsBtn');if(st)st.onclick=()=>{showSection('settings');expandSettingsPanel('easyModePanel')};
+}
+function renderEasySettings(){
+  const host=$('easyModeConfig');if(!host)return;
+  if(!state){host.innerHTML='<div style="padding:14px 16px;color:var(--muted);font-size:12px" data-no-i18n="1">پس از باز کردن پایگاه داده، تنظیمات حالت آسان اینجا نمایش داده می‌شود.</div>';return}
+  const v=ensureViewSettings(),cfg=v.easy,on=easyModeOn();
+  const opt=(key,label,desc)=>`<div class="easyCheckRow"><span>${label}${desc?` <span style="color:var(--muted);font-size:10px">— ${desc}</span>`:''}</span><label class="toggle"><input type="checkbox" data-easy-opt="${key}" ${cfg[key]?'checked':''}><span class="toggleTrack"></span></label></div>`;
+  host.innerHTML=`<div style="padding:14px 16px" data-no-i18n="1">
+    <div class="easyOnOffRow"><div><strong style="font-size:12.5px">وضعیت حالت آسان</strong><div class="helper" style="margin-top:3px">با دکمه «⚡ حالت آسان» در نوار بالا هم می‌توانید سریع روشن و خاموشش کنید.</div></div><div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap"><span class="easyOnOffPill ${on?'':'off'}">${on?'روشن':'خاموش'}</span><button class="primarybtn" id="easyOnOffBtn" type="button">${on?'خروج از حالت آسان':'ورود به حالت آسان'}</button></div></div>
+    <div class="settingsGrid" style="margin-top:12px">
+      <div class="settingsCard easySettingsCard"><h4>عناصر قابل نمایش در حالت آسان</h4><p>انتخاب کنید در حالت آسان کدام جزئیات کنار نام فعالیت و فیلد ثبت سریع دیده شوند. خودِ نام فعالیت و فیلد ثبت سریع همیشه نمایش داده می‌شوند.</p>
+        ${opt('showStatus','نقطه وضعیت','رنگ وضعیت امروز')}
+        ${opt('showCategory','دسته‌بندی','برچسب دسته زیر نام')}
+        ${opt('showStreak','زنجیره فعلی','تعداد روزهای پیوسته')}
+        ${opt('showProgress','نوار پیشرفت','درصد پیشرفت امروز')}
+        ${opt('showTarget','هدف و واحد','مثلاً ۶۰ دقیقه')}
+        ${opt('showSearch','فیلد جستجو','بالای فهرست فعالیت‌ها')}
+        ${opt('showAdd','دکمه افزودن فعالیت','ساخت فعالیت جدید')}
+        ${opt('hideDone','پنهان‌کردن کامل‌شده‌ها','تمرکز روی باقی‌مانده‌ها')}
+        ${opt('bigTouch','ورودی‌های بزرگ‌تر','مناسب لمس و موبایل')}
+      </div>
+      <div class="settingsCard easySettingsCard"><h4>پریست‌های حالت آسان</h4><p>ترکیب انتخاب‌های بالا را با یک نام ذخیره کنید و هر وقت خواستید یک‌ضرب بازیابی کنید.</p>
+        <div class="easyPresetRow"><input id="easyPresetName" class="input" placeholder="نام پریست، مثلاً: ثبت سریع موبایل" /><button class="primarybtn" id="easyPresetSaveBtn" type="button">ذخیره پریست</button></div>
+        <div class="easyPresetRow"><select id="easyPresetSelect" class="select" style="flex:1;min-width:140px"><option value="">انتخاب پریست…</option>${(v.easyPresets||[]).map((p,i)=>`<option data-no-i18n="1" value="${i}">${esc(p.name)}</option>`).join('')}</select><button class="ghostbtn" id="easyPresetApplyBtn" type="button">اعمال</button><button class="ghostbtn" id="easyPresetDeleteBtn" type="button">حذف</button></div>
+        <div class="helper" style="margin-top:9px">پریست‌ها در پایگاه داده همین دستگاه ذخیره می‌شوند و با انتقال فایل پایگاه داده همراه شما می‌آیند.</div>
+      </div>
+    </div>
+  </div>`;
+  $('easyOnOffBtn').onclick=()=>toggleEasyMode(!easyModeOn());
+  host.querySelectorAll('[data-easy-opt]').forEach(ch=>ch.onchange=()=>{
+    const v2=ensureViewSettings();v2.easy[ch.dataset.easyOpt]=ch.checked;
+    setPendingHistory('Change easy mode settings',ch.dataset.easyOpt+' = '+ch.checked);
+    applyEasyMode();
+    save().then(()=>{render();renderEasySettings()}).catch(e=>diag('Easy settings save failed',e?.message||String(e)));
+  });
+  const saveP=$('easyPresetSaveBtn');if(saveP)saveP.onclick=()=>{
+    const name=$('easyPresetName').value.trim();
+    if(!name){toast('نام پریست را وارد کنید');$('easyPresetName').focus();return}
+    const v2=ensureViewSettings();
+    v2.easyPresets=(v2.easyPresets||[]).filter(p=>String(p.name).toLowerCase()!==name.toLowerCase());
+    v2.easyPresets.push({name,config:JSON.parse(JSON.stringify(v2.easy))});
+    setPendingHistory('Create easy mode preset',name);
+    save().then(()=>{renderEasySettings();toast('پریست حالت آسان ذخیره شد')}).catch(e=>diag('Easy preset save failed',e?.message||String(e)));
+  };
+  const applyP=$('easyPresetApplyBtn');if(applyP)applyP.onclick=()=>{
+    const i=Number($('easyPresetSelect').value);
+    if(!Number.isInteger(i)||i<0){toast('ابتدا یک پریست انتخاب کنید');return}
+    const p=(ensureViewSettings().easyPresets||[])[i];if(!p)return;
+    const v2=ensureViewSettings();
+    v2.easy={...EASY_DEFAULTS,...(p.config||{})};
+    EASY_OPTION_KEYS.forEach(k=>{if(typeof v2.easy[k]!=='boolean')v2.easy[k]=EASY_DEFAULTS[k]});
+    setPendingHistory('Apply easy mode preset',p.name);
+    applyEasyMode();save().then(()=>{render();renderEasySettings();toast('پریست اعمال شد')}).catch(e=>diag('Easy preset apply failed',e?.message||String(e)));
+  };
+  const delP=$('easyPresetDeleteBtn');if(delP)delP.onclick=()=>{
+    const i=Number($('easyPresetSelect').value);
+    if(!Number.isInteger(i)||i<0){toast('ابتدا یک پریست انتخاب کنید');return}
+    const v2=ensureViewSettings(),p=(v2.easyPresets||[])[i];if(!p)return;
+    if(!confirm(`پریست «${p.name}» حذف شود؟`))return;
+    v2.easyPresets.splice(i,1);
+    setPendingHistory('Delete easy mode preset',p.name);
+    save().then(()=>{renderEasySettings();toast('پریست حذف شد')}).catch(e=>diag('Easy preset delete failed',e?.message||String(e)));
+  };
+}
+
+/* ================= v10: collapsible settings panels ================= */
+const SETTINGS_COLLAPSE_KEY='streakos.settings.collapsed.v1';
+function settingsCollapseState(){try{const raw=i18nStore.get(SETTINGS_COLLAPSE_KEY);const o=JSON.parse(raw||'{}');return (o&&typeof o==='object')?o:{}}catch(e){return{}}}
+function settingsPanelId(p){if(p.id)return p.id;const list=[...document.querySelectorAll('#settings .panel')];return 'sp'+list.indexOf(p)}
+function applySettingsCollapse(){const st=settingsCollapseState();document.querySelectorAll('#settings .panel').forEach(p=>{p.classList.toggle('collapsed',st[settingsPanelId(p)]===undefined?true:!!st[settingsPanelId(p)])})}
+function expandSettingsPanel(idOrEl){
+  const p=typeof idOrEl==='string'?$(idOrEl):idOrEl;if(!p)return;
+  if(p.classList.contains('collapsed')){p.classList.remove('collapsed');const st=settingsCollapseState();st[settingsPanelId(p)]=false;i18nStore.set(SETTINGS_COLLAPSE_KEY,JSON.stringify(st))}
+  try{p.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+}
+function initSettingsCollapse(){
+  document.querySelectorAll('#settings .panel').forEach(p=>{
+    if(p.dataset.collapseInit)return;p.dataset.collapseInit='1';
+    const head=p.querySelector(':scope > .panelhead');if(!head)return;
+    const body=document.createElement('div');body.className='panelBody';
+    const inner=document.createElement('div');inner.className='panelBodyInner';
+    while(head.nextSibling)inner.appendChild(head.nextSibling);
+    body.appendChild(inner);p.appendChild(body);
+    const chev=document.createElement('span');chev.className='settingsChevron';chev.setAttribute('aria-hidden','true');chev.textContent='▾';
+    head.appendChild(chev);
+  });
+  applySettingsCollapse();
+  document.querySelectorAll('#settings .panel > .panelhead').forEach(head=>{
+    if(head.dataset.headInit)return;head.dataset.headInit='1';
+    head.addEventListener('click',e=>{
+      if(e.target.closest('button,input,select,a,textarea,label,.toggle,[data-collapsible-ignore]'))return;
+      const p=head.closest('.panel');if(!p)return;
+      const st=settingsCollapseState();
+      const willCollapse=!p.classList.contains('collapsed');
+      st[settingsPanelId(p)]=willCollapse;
+      i18nStore.set(SETTINGS_COLLAPSE_KEY,JSON.stringify(st));
+      p.classList.toggle('collapsed',willCollapse);
+    });
+  });
+}
+
+/* ================= v10: category combobox (real dropdown) ================= */
+let __catComboOpen=false;
+function catComboClose(){
+  __catComboOpen=false;
+  const w=$('fCategoryWrap');if(w)w.classList.remove('open');
+  const l=$('fCategoryList');if(l)l.classList.add('hidden');
+  const i=$('fCategory');if(i)i.setAttribute('aria-expanded','false');
+}
+function catComboRender(filter){
+  const input=$('fCategory'),list=$('fCategoryList');if(!input||!list||!state)return;
+  const cats=activityCategories();
+  const catCount=c=>state.activities.filter(a=>String(a.category||'Uncategorized').trim()===c).length;
+  const f=(filter||'').trim().toLowerCase();
+  const cur=input.value.trim();
+  const curIsNone=!cur||cur.toLowerCase()==='uncategorized';
+  const items=f?cats.filter(c=>c.toLowerCase().includes(f)||(c==='Uncategorized'&&('دسته‌بندی‌نشده'.includes(f)||'uncategorized'.includes(f)))):cats;
+  let html=items.map(c=>{const isNone=c==='Uncategorized';const sel=(isNone&&curIsNone)||(!isNone&&c===cur);return `<div class="catComboItem${sel?' sel':''}" role="option" data-cat-value="${esc(c)}" data-no-i18n="1"><span>${esc(catLabel(c))}</span><span class="catComboCount">${faNumStr(catCount(c))} فعالیت</span></div>`}).join('');
+  if(!items.length)html+=`<div class="catComboEmpty" data-no-i18n="1">دسته‌بندی‌ای پیدا نشد — می‌توانید دسته جدید بسازید.</div>`;
+  const typed=cur&&!cats.some(c=>c.toLowerCase()===cur.toLowerCase());
+  if(typed)html+=`<div class="catComboCreate" data-cat-create="1" data-no-i18n="1">＋ استفاده از دسته جدید «${esc(cur)}»</div>`;
+  list.innerHTML=html;
+  list.querySelectorAll('[data-cat-value]').forEach(it=>it.addEventListener('mousedown',ev=>{ev.preventDefault();const v=it.dataset.catValue;input.value=v==='Uncategorized'?'':v;catComboClose();input.focus()}));
+  const cr=list.querySelector('[data-cat-create]');if(cr)cr.addEventListener('mousedown',ev=>{ev.preventDefault();catComboClose();input.focus()});
+}
+function catComboOpenUI(){
+  if(__catComboOpen)return;__catComboOpen=true;
+  const w=$('fCategoryWrap');if(w)w.classList.add('open');
+  const l=$('fCategoryList');if(l)l.classList.remove('hidden');
+  const i=$('fCategory');if(i){i.setAttribute('aria-expanded','true');catComboRender(i.value)}
+}
+function initCategoryCombo(){
+  const input=$('fCategory'),btn=$('fCategoryBtn'),wrap=$('fCategoryWrap');if(!input||!btn||!wrap)return;
+  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();__catComboOpen?catComboClose():catComboOpenUI()});
+  input.addEventListener('focus',()=>{if(!__catComboOpen)catComboOpenUI()});
+  input.addEventListener('input',()=>{if(__catComboOpen)catComboRender(input.value)});
+  input.addEventListener('blur',()=>setTimeout(()=>{if(__catComboOpen)catComboClose()},180));
+  wrap.addEventListener('keydown',e=>{if(e.key==='Escape'){catComboClose();e.stopPropagation()}});
+}
+document.addEventListener('mousedown',e=>{const w=$('fCategoryWrap');if(__catComboOpen&&w&&!w.contains(e.target))catComboClose()});
 
 function ruleGridStyle(){const v=ensureViewSettings();return RULE_COLUMNS.map(c=>{const w=v.ruleColumns[c.id]?.width,n=Number(w);return (w!=null&&w!==''&&Number.isFinite(n)&&n>0)?`${Math.max(60,Math.min(1000,n))}px`:c.defaultTrack}).join(' ')||'1fr'}
 function toggleRuleSort(field){const v=ensureViewSettings();const idx=v.sort.findIndex(x=>x.field===field);if(idx>=0){v.sort[idx].dir=v.sort[idx].dir==='asc'?'desc':'asc'}else{v.sort=[{field,dir:'asc'}]};save().then(()=>render()).catch(e=>diag('Rule grid sort save failed',e?.message||String(e)))}
@@ -2120,7 +2410,7 @@ function renderRuleList(stats,el){
       : disabled
         ? `<button class="tinybtn rowPauseBtn" data-act="enable" data-id="${a.id}" title="Enable this activity from the selected date">Enable</button><button class="tinybtn" data-act="edit" data-id="${a.id}" title="Edit this activity">Edit</button>${permanentButton}`
         : `<button class="tinybtn rowPauseBtn" data-act="disable" data-id="${a.id}" title="Disable this activity from the selected date">Disable</button><button class="tinybtn" data-act="edit" data-id="${a.id}" title="Edit this activity">Edit</button><button class="tinybtn rowDeleteBtn" data-act="delete" data-id="${a.id}" title="Stop this activity from the selected date while preserving its history">Delete</button>${permanentButton}`;
-    return `<div class="activity ${inactive?'activityInactive':''}">${cells('activity',`<div class="activityRowMain"><input class="activitySelect" type="checkbox" data-activity-select="${esc(a.id)}" aria-label="Select ${esc(cfg.name)}" ${selectedActivityIds.has(a.id)?'checked':''}><div><div class="a-name">${esc(cfg.name)}${badge}</div><div class="saverInline"><span class="pill green">${Number(cfg.savers)||0}/month savers</span></div><div class="a-meta">${cfg.category?`🏷️ ${esc(cfg.category)} · `:''}${cfg.notes?esc(cfg.notes):'No note'}</div><div class="activityLifecycleMeta">Start: ${a.createdAt?fmtDate(a.createdAt.slice(0,10)):'—'}${lifecycleDate?` · ${activityLifecycleLabel(status)} from ${fmtDate(lifecycleDate)}`:''}</div></div></div>`)}${cells('priority',cfg.priority!=null&&Number.isFinite(Number(cfg.priority))?`<span class="pill green">${cfg.priority}</span>`:'<span class="pill">—</span>')}${cells('target',`<div class="a-meta">${cfg.target} ${esc(cfg.unit)}</div>`)}${cells('type',`<div class="a-meta">${esc(cfg.type)}</div>`)}${cells('actions',`<div class="rowbtn">${actionButtons}</div>`)}</div>`;
+    return `<div class="activity ${inactive?'activityInactive':''}">${cells('activity',`<div class="activityRowMain"><input class="activitySelect" type="checkbox" data-activity-select="${esc(a.id)}" aria-label="Select ${esc(cfg.name)}" ${selectedActivityIds.has(a.id)?'checked':''}><div><div class="a-name" data-no-i18n="1">${esc(cfg.name)}${badge}</div><div class="saverInline"><span class="pill green">${Number(cfg.savers)||0}/month savers</span></div><div class="a-meta">${cfg.category?`<span data-no-i18n="1">🏷️ ${esc(catLabel(cfg.category))}</span> · `:''}${cfg.notes?`<span data-no-i18n="1">${esc(cfg.notes)}</span>`:'<span>No note</span>'}</div><div class="activityLifecycleMeta">Start: ${a.createdAt?fmtDate(a.createdAt.slice(0,10)):'—'}${lifecycleDate?` · ${activityLifecycleLabel(status)} from ${fmtDate(lifecycleDate)}`:''}</div></div></div>`)}${cells('priority',cfg.priority!=null&&Number.isFinite(Number(cfg.priority))?`<span class="pill green">${cfg.priority}</span>`:'<span class="pill">—</span>')}${cells('target',`<div class="a-meta" data-no-i18n="1">${cfg.target} ${esc(tt(String(cfg.unit)))}</div>`)}${cells('type',`<div class="a-meta">${esc(cfg.type)}</div>`)}${cells('actions',`<div class="rowbtn">${actionButtons}</div>`)}</div>`;
   }).join('');
   const heads=cols.map(c=>{const sf=c.sortField,active=sf&&v.sort.find(x=>x.field===sf);const ind=active?(active.dir==='asc'?'↑':'↓'):'';return `<div class="${sf?'sortableHead':''}" ${sf?`data-rule-sort="${sf}"`:''} data-rule-resize="${c.id}"><span>${esc(c.label)}${ind?` <span class="sortIndicator">${ind}</span>`:''}</span><span class="colResizeHandle"></span></div>`}).join('');
   el.innerHTML=`<div class="activity-head">${heads}</div>${rows||'<div class="empty"><strong>No activity rules</strong>Add an activity to create a rule.</div>'}`;el.style.setProperty('--rule-grid',cols.map(c=>{const w=v.ruleColumns[c.id]?.width;return Number.isFinite(Number(w))?`${Math.max(60,Math.min(1000,Number(w)))}px`:c.defaultTrack}).join(' ')||'1fr');attachRuleGridInteractions();syncRuleSelectionControls();
@@ -2175,7 +2465,7 @@ function renderHistoryDayDetail(date){
   const acts=activitiesForDate(date),done=acts.filter(a=>historyStatusInfo(a,date).done),notDone=acts.filter(a=>!historyStatusInfo(a,date).done);
   const card=a=>{
     const r=historyStatusInfo(a,date),cfg=activityConfigForResult(a,r),entries=entriesFor(a,date),noteEntries=entries.filter(e=>e.note);
-    return `<div class="historyActivityCard ${r.done?'done':'notdone'}"><h4>${r.icon} ${esc(cfg.name)}</h4><div class="historyActivityMeta"><div>Result<br><strong>${historyStatusCell(r)}</strong></div><div>Amount<br><strong>${fmtAmount(r.amount,{...a,...cfg})}</strong></div><div>Target<br><strong>${esc(cfg.target)} ${esc(cfg.unit)}</strong></div><div>Incomplete<br><strong>${Number.isFinite(Number(r.missingPct))?r.missingPct:0}%</strong></div><div>Savers<br><strong>${historySaverCell({...a,...cfg},r.saversLeft)}</strong></div><div>Streak<br><strong>🔥 ${r.streak}</strong></div><div>Entries<br><strong>${entries.length}</strong></div><div>Deficit<br><strong>${Math.round((r.deficit||0)*100)}%</strong></div></div>${saverReasonText(r)}${highMissingWarning(r)}${noteEntries.length?`<div class="a-meta" style="margin-top:8px">Notes: ${noteEntries.map(e=>esc(e.note)).join(' · ')}</div>`:''}</div>`;
+    return `<div class="historyActivityCard ${r.done?'done':'notdone'}"><h4 data-no-i18n="1">${r.icon} ${esc(cfg.name)}</h4><div class="historyActivityMeta"><div>Result<br><strong>${historyStatusCell(r)}</strong></div><div>Amount<br><strong>${fmtAmount(r.amount,{...a,...cfg})}</strong></div><div>Target<br><strong>${esc(cfg.target)} ${esc(cfg.unit)}</strong></div><div>Incomplete<br><strong>${Number.isFinite(Number(r.missingPct))?r.missingPct:0}%</strong></div><div>Savers<br><strong>${historySaverCell({...a,...cfg},r.saversLeft)}</strong></div><div>Streak<br><strong>🔥 ${r.streak}</strong></div><div>Entries<br><strong>${entries.length}</strong></div><div>Deficit<br><strong>${Math.round((r.deficit||0)*100)}%</strong></div></div>${saverReasonText(r)}${highMissingWarning(r)}${noteEntries.length?`<div class="a-meta" style="margin-top:8px">Notes: ${noteEntries.map(e=>`<span data-no-i18n="1">${esc(e.note)}</span>`).join(' · ')}</div>`:''}</div>`;
   };
   host.innerHTML=`<div class="historyDayHead"><div><strong>📌 ${fmtDate(date)}</strong><div style="margin-top:3px;font-size:9px;color:var(--muted)">Detailed daily activity record</div></div><span>✅ ${done.length} · ❌ ${notDone.length}</span></div>${acts.length?`<div class="historyDayGrid">${acts.map(card).join('')}</div>`:'<div class="empty">No activities existed on this date.</div>'}`;
 }
@@ -2186,13 +2476,13 @@ function renderActivityHistory(){
   const catOf=a=>String(a.category||'Uncategorized').trim()||'Uncategorized';
   const cats=[...new Set(all.map(catOf))].sort((x,y)=>x.localeCompare(y,undefined,{sensitivity:'base'}));
   const acts=all.filter(a=>(!ahFilterAct||a.id===ahFilterAct)&&(!ahFilterCat||catOf(a)===ahFilterCat));
-  const actSel=$('ahActivityFilter');if(actSel)actSel.innerHTML=`<option value="">All activities</option>`+all.map(a=>`<option value="${a.id}"${a.id===ahFilterAct?' selected':''}>${esc(a.name)}</option>`).join('');
+  const actSel=$('ahActivityFilter');if(actSel)actSel.innerHTML=`<option value="">All activities</option>`+all.map(a=>`<option data-no-i18n="1" value="${a.id}"${a.id===ahFilterAct?' selected':''}>${esc(a.name)}</option>`).join('');
   const catSel=$('ahCategoryFilter');if(catSel)catSel.innerHTML=`<option value="">All categories</option>`+cats.map(c=>`<option value="${esc(c)}"${c===ahFilterCat?' selected':''}>${esc(c)}</option>`).join('');
   host.innerHTML=acts.length?`<div class="activityHistoryGrid">${acts.map(a=>{
     const dates=days.filter(d=>activityIsActiveOnDate(a,d)),infos=dates.map(d=>historyStatusInfo(a,d));
     const done=infos.filter(x=>x.done).length,partial=infos.filter(x=>x.status==='partial').length,miss=infos.filter(x=>x.status==='skip').length;
     const rows=infos.map((r,i)=>{const rowCfg=activityConfigForResult(a,r);return `<tr data-calendar-date="${dates[i]}" style="cursor:pointer"><td>${dayShort(dates[i])}</td><td>${historyStatusCell(r)}</td><td class="num">${fmtAmount(r.amount,{...a,...rowCfg})}</td><td class="num">${Number.isFinite(Number(r.missingPct))?r.missingPct:0}%</td><td class="num">${Math.round((r.deficit||0)*100)}%</td><td class="num">${historySaverCell(a,r.saversLeft)}</td><td>${saverReasonText(r)||'—'}</td><td class="num" title="Current streak through this date">🔥 ${r.streak}</td></tr>`}).join('');
-    return `<div class="activityHistoryCard"><div class="activityHistoryHead"><div><h4>${esc(a.name)}</h4><div class="activityHistorySub">Target ${esc(a.target)} ${esc(a.unit)} · ${esc(mLabel)}</div></div><div class="activityHistoryStats"><span class="pill green" title="Completed days">✅ ${done}</span><span class="pill warn" title="Partial days">🟡 ${partial}</span><span class="pill danger" title="Missed days">❌ ${miss}</span></div></div><div class="activityHistoryBody"><div class="tableScroll"><table class="activityHistoryTable"><thead><tr><th>Date</th><th>Status</th><th>Amount</th><th>Incomplete</th><th>Deficit</th><th>Savers</th><th>Saver reason</th><th>Streak</th></tr></thead><tbody>${rows||'<tr><td colspan="8" class="a-meta">No records.</td></tr>'}</tbody></table></div></div></div>`;
+    return `<div class="activityHistoryCard"><div class="activityHistoryHead"><div><h4 data-no-i18n="1">${esc(a.name)}</h4><div class="activityHistorySub" data-no-i18n="1">Target ${esc(a.target)} ${esc(a.unit)} · ${esc(mLabel)}</div></div><div class="activityHistoryStats"><span class="pill green" title="Completed days">✅ ${done}</span><span class="pill warn" title="Partial days">🟡 ${partial}</span><span class="pill danger" title="Missed days">❌ ${miss}</span></div></div><div class="activityHistoryBody"><div class="tableScroll"><table class="activityHistoryTable"><thead><tr><th>Date</th><th>Status</th><th>Amount</th><th>Incomplete</th><th>Deficit</th><th>Savers</th><th>Saver reason</th><th>Streak</th></tr></thead><tbody>${rows||'<tr><td colspan="8" class="a-meta">No records.</td></tr>'}</tbody></table></div></div></div>`;
   }).join('')}</div>`:(all.length?'<div class="empty"><strong>No activities match this filter.</strong>Adjust the activity or category filters to see more results.</div>':'<div class="empty"><strong>No activities</strong>Add an activity to build per-activity history.</div>');
   host.querySelectorAll('tr[data-calendar-date]').forEach(row=>row.onclick=()=>{historyDetailDate=row.dataset.calendarDate;setSelectedDate(row.dataset.calendarDate)});
 }
@@ -2217,19 +2507,19 @@ function renderHistory(){
     for(let i=0;i<startDow;i++)cells+=`<div class="day other"><div class="date">${faNumStr(prevLen-startDow+i+1)}</div></div>`;
   }else{
     const y=historyCursor.getFullYear(),m=historyCursor.getMonth(),first=new Date(y,m,1),prevLast=new Date(y,m,0).getDate();
-    startDow=(first.getDay()+6)%7;
-    for(let i=0;i<startDow;i++)cells+=`<div class="day other"><div class="date">${prevLast-startDow+i+1}</div></div>`;
+    startDow=(first.getDay()+1)%7;/* Iranian convention: weeks start on Saturday */
+    for(let i=0;i<startDow;i++)cells+=`<div class="day other"><div class="date">${faNumStr(prevLast-startDow+i+1)}</div></div>`;
   }
   days.forEach((date,idx)=>{
-    const d=faCal?faNumStr(idx+1):String(idx+1),s=daySummary(date),ratio=s.total?s.done/s.total:0,fill=ratio>0?Math.max(.06,Math.min(.9,ratio*.72+.06)):.18,gradColor=s.total?completionColor(ratio):'#253250',cls=s.trophy?'gold':'';
+    const d=faNumStr(idx+1),s=daySummary(date),ratio=s.total?s.done/s.total:0,fill=ratio>0?Math.max(.06,Math.min(.9,ratio*.72+.06)):.18,gradColor=s.total?completionColor(ratio):'#253250',cls=s.trophy?'gold':'';
     const symbol=s.trophy?'🏆':s.total?`${Math.round(ratio*100)}%`:'·',selected=historyDetailDate===date?' selectedDay':'';
     const bg=s.total?`linear-gradient(180deg, color-mix(in srgb, ${gradColor} ${Math.round(fill*100)}%, transparent), var(--panel3))`:`linear-gradient(180deg, rgba(37,50,80,.18), var(--panel3))`;
     cells+=`<div class="day ${cls}${selected}" style="background:${bg};${s.trophy?'':`border-color:color-mix(in srgb, ${gradColor} 65%, transparent);`}" data-calendar-date="${date}" title="${fmtDate(date)} · ${s.logged} logged · ${s.done} of ${s.total} completed${s.trophy?' · Trophy day':''}"><div class="date">${d}</div><div class="status">${symbol}</div><div class="dayMeta"><span>${s.logged} logged</span><span>${s.total?`${s.done}/${s.total}`:''}</span></div></div>`;
   });
-  const filled=startDow+days.length;for(let i=filled;i<42;i++)cells+=`<div class="day other"><div class="date">${faCal?faNumStr(i-filled+1):String(i-filled+1)}</div></div>`;
-  const dows=(faCal?J_DOW_FA:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']).map(x=>`<div class="dow"${faCal?' data-no-i18n="1"':''}>${x}</div>`).join('');
+  const filled=startDow+days.length;for(let i=filled;i<42;i++)cells+=`<div class="day other"><div class="date">${faNumStr(i-filled+1)}</div></div>`;
+  const dows=J_DOW_FA.map(x=>`<div class="dow" data-no-i18n="1">${x}</div>`).join('');
   el.innerHTML=`<div class="hero"><div><h2>History</h2><p>See overall daily completion and a separate history for each activity.</p></div><div class="heroRight"><div class="pill green">📅 ${days.length} days</div></div></div>
-  <div class="panel"><div class="panelhead"><div class="calToolbar" style="width:100%"><div><button class="tinybtn iconOnly" id="prevMonth" title="Previous month">←</button> <button class="tinybtn iconOnly" id="nextMonth" title="Next month">→</button> <span class="monthTitle"${faCal?' data-no-i18n="1"':''} style="margin-left:9px">${monthText}</span></div><div class="legend"><span>🟩 completion intensity</span><span>🏆 all applicable activities complete</span></div></div></div>
+  <div class="panel"><div class="panelhead"><div class="calToolbar" style="width:100%"><div><button class="tinybtn iconOnly" id="prevMonth" title="Previous month">←</button> <button class="tinybtn iconOnly" id="nextMonth" title="Next month">→</button> <span class="monthTitle" data-no-i18n="1" style="margin-inline-start:9px">${monthText}</span></div><div class="legend"><span>🟩 completion intensity</span><span>🏆 all applicable activities complete</span></div></div></div>
   <div class="calendarWrap"><div class="calendar">${dows}${cells}</div>
   <div id="historyDayDetail" class="historyDayDetail">${historyDetailDate?'<div class="empty">Loading day details…</div>':'<div class="notice" style="margin-top:12px">Click any day to see exactly what was completed, what was not completed, amounts, targets, saver state, streak, and notes.</div>'}</div></div>
   <div class="historyFooter"><div class="notice">The denominator is calculated from activities that existed on that date. Adding a new activity later does not change earlier days.</div></div></div>
@@ -2253,12 +2543,12 @@ function openActivityModal(id=null){
   $('activityModalTitle').textContent=a?'✏️ Edit activity':'➕ New activity';
   syncMeasurementTypeSelect('fType',cfg?.type||state.settings?.type||'time',cfg?.unit||state.settings?.unit||'minutes');
   if(a){
-    $('fName').value=cfg.name;$('fCategory').value=cfg.category;$('fTarget').value=cfg.target;$('fSavers').value=cfg.savers;
+    $('fName').value=cfg.name;$('fCategory').value=String(cfg.category||'').trim()===''||String(cfg.category).trim()==='Uncategorized'?'':cfg.category;$('fTarget').value=cfg.target;$('fSavers').value=cfg.savers;
     $('fPriority').value=cfg.priority!=null&&Number.isFinite(Number(cfg.priority))?cfg.priority:'';$('fMin').value=cfg.min||0;
     $('fInitialStreak').value=Number(a.initialStreak)||0;$('fInitialBest').value=Number(a.initialBest)||Math.max(0,Number(a.initialStreak)||0);
     $('fNotes').value=cfg.notes||'';dpSetISO($('fEffectiveFrom'),selectedDate);
   }else{
-    const d=state.settings||{};$('fName').value='';$('fCategory').value='Uncategorized';$('fTarget').value=d.target??60;$('fSavers').value=d.savers??4;
+    const d=state.settings||{};$('fName').value='';$('fCategory').value='';$('fTarget').value=d.target??60;$('fSavers').value=d.savers??4;
     $('fPriority').value=d.priority??'';$('fMin').value=d.min??0;$('fInitialStreak').value=0;$('fInitialBest').value=0;$('fNotes').value='';dpSetISO($('fEffectiveFrom'),selectedDate);
   }
   $('activityModal').classList.add('show');setTimeout(()=>$('fName').focus(),30)
@@ -2281,18 +2571,18 @@ function saveActivity(){
   }
   save().then(()=>{closeModal('activityModal');render();toast(editingActivityId?'Activity settings updated':'Activity saved')}).catch(e=>diag('Activity save failed',e?.message||String(e)))
 }
-function openLog(id=null,date=selectedDate){const act=state.activities.find(x=>x.id===id)||state.activities[0];if(!act){toast('Create an activity first');return}$('lActivity').innerHTML=state.activities.map(a=>`<option value="${a.id}" ${a.id===act.id?'selected':''}>${esc(a.name)}</option>`).join('');dpSetISO($('lDate'),date);$('lAmount').value='';$('lNote').value='';updateLogHint();$('logModalTitle').textContent=`Log · ${date===todayKey()?'Today':fmtDate(date)}`;$('logModal').classList.add('show');setTimeout(()=>$('lAmount').focus(),30)}
+function openLog(id=null,date=selectedDate){const act=state.activities.find(x=>x.id===id)||state.activities[0];if(!act){toast('Create an activity first');return}$('lActivity').innerHTML=state.activities.map(a=>`<option data-no-i18n="1" value="${a.id}" ${a.id===act.id?'selected':''}>${esc(a.name)}</option>`).join('');dpSetISO($('lDate'),date);$('lAmount').value='';$('lNote').value='';updateLogHint();$('logModalTitle').textContent=`Log · ${date===todayKey()?'Today':fmtDate(date)}`;$('logModal').classList.add('show');setTimeout(()=>$('lAmount').focus(),30)}
 function updateLogHint(){const a=state.activities.find(x=>x.id===$('lActivity').value),date=dpGetISO($('lDate'))||selectedDate;if(!a)return;const cfg=activityConfigForDate(a,date);$('logHint').textContent=`Target: ${cfg.target} ${cfg.unit}. Multiple entries on ${fmtDate(date)} are combined automatically.`}
 function noteHistoricalEntry(activityId,date){const a=state.activities.find(x=>x.id===activityId);if(!a||!date)return;const prior=a.createdAt?.slice(0,10)||date;if(date<prior)a.createdAt=date+'T12:00:00';const global=state.createdAt?.slice(0,10)||date;if(date<global)state.createdAt=date+'T12:00:00';}
 function recomputeProgramOrigin(){const dates=[];if(state.createdAt)dates.push(state.createdAt.slice(0,10));state.entries.forEach(e=>e.date&&dates.push(e.date));state.activities.forEach(a=>a.createdAt&&dates.push(a.createdAt.slice(0,10)));if(dates.length)state.createdAt=Math.min(...dates.map(d=>new Date(d+'T12:00:00').getTime()))===Infinity?state.createdAt:new Date(Math.min(...dates.map(d=>new Date(d+'T12:00:00').getTime()))).toISOString();}
 function addEntry(){const id=$('lActivity').value,date=dpGetISO($('lDate'))||selectedDate,amount=Number($('lAmount').value);setPendingHistory('Log activity',`${date} · ${state.activities.find(x=>x.id===id)?.name||'Activity'} · ${amount}`);if(!id||!date||!Number.isFinite(amount)||amount<=0){toast('Enter an amount greater than 0');return}noteHistoricalEntry(id,date);state.entries.push({id:uid(),activityId:id,date,amount,note:$('lNote').value.trim(),createdAt:new Date().toISOString()});save().then(()=>{selectedDate=date;render();closeModal('logModal');toast('Logged 📅')})}
-function addQuickEntry(activityId,input){const amount=Number(input?.value);setPendingHistory('Quick log',`${selectedDate} · ${state.activities.find(x=>x.id===activityId)?.name||'Activity'} · ${amount}`);if(!Number.isFinite(amount)||amount<=0){toast('Enter an amount greater than 0');input?.focus();return}noteHistoricalEntry(activityId,selectedDate);state.entries.push({id:uid(),activityId,date:selectedDate,amount,note:'',createdAt:new Date().toISOString()});input.value='';save().then(()=>{render();toast(`${state.activities.find(a=>a.id===activityId)?.name||'Activity'} logged ✅`)})}
-function openDetail(id){selectedActivityId=id;const a=state.activities.find(x=>x.id===id);if(!a)return;const st=activityStats(a,selectedDate),r=st.today||{ratio:0,amount:0,status:'future',saversLeft:activityConfigForDate(a,selectedDate).savers},cfg=activityConfigForResult(a,r),dayEntries=entriesFor(a,selectedDate),label=fmtDate(selectedDate),p=pct(r.ratio||0),total=r.amount||0;const __life=(function(){const me=state.entries.filter(e=>e.activityId===a.id);const __ds=new Set(me.map(e=>e.date));let __tot=0;me.forEach(e=>__tot+=Number(e.amount||0));const segs=[];let cur=null;st.results.forEach(r=>{if(r.status==='inactive'||r.status==='future')return;if(r.streak>0){if(!cur)cur={start:r.date,end:r.date,len:r.streak};else{cur.end=r.date;cur.len=r.streak}}else if(cur){segs.push(cur);cur=null}});if(cur){cur.ongoing=true;segs.push(cur)}segs.sort((x,y)=>y.len-x.len);return{times:me.length,days:__ds.size,total:__tot,segs:segs}})();$('detailModalTitle').textContent=`ℹ️ ${cfg.name} · ${label}`;$('detailBody').innerHTML=`<div class="detailHead"><div><div class="a-meta">🎯 ${cfg.target} ${esc(cfg.unit)} target · 🛡️ ${cfg.savers} savers/month · ⭐ priority ${Number.isFinite(Number(cfg.priority))?cfg.priority:'—'}</div><div class="bigStreak">🔥 ${st.current}</div><div class="a-meta">streak through selected day · best ${st.best}</div></div><div><span class="pill ${r.saversLeft<=Math.max(1,Math.ceil(cfg.savers/3))?'danger':'green'}">🛡️ ${r.saversLeft}/${cfg.savers} savers</span></div></div><div class="detailProgress"><div class="todayVal"><strong>📅 ${label} · ${p}%</strong><span class="a-meta">${fmtAmount(total,{...a,...cfg})}</span></div><div class="progress" style="height:11px;margin-top:8px"><span style="width:${p}%"></span></div></div><div class="inlineTotal"><span>∑ Total</span><input id="detailTotalInput" type="number" min="0" step="any" value="${Number(total)}" title="Edit the total amount for the selected day"><button class="tinybtn iconOnly" id="saveDetailTotalBtn" title="Set the selected day's total amount">💾</button></div><div class="notice" style="margin-top:14px">${cfg.min?`📉 Minimum meaningful amount: ${cfg.min} ${esc(cfg.unit)}.`:'✅ Any positive amount counts as partial.'} ${`<div class="detailLife"><span>🔢 ${tt('Times done')}: <strong>${__life.times}</strong></span><span>📅 ${tt('Days logged')}: <strong>${__life.days}</strong></span><span>📈 ${tt('All-time total')}: <strong>${fmtAmount(__life.total,{...a,...cfg})}</strong></span></div>`+(__life.segs.length?`<div class="listbox" style="margin-top:14px"><h4>🏆 ${tt('Streak records')}</h4><div class="streakRecs">${__life.segs.map((s,i)=>{const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);const dates=s.ongoing?`${fmtDate(s.start)} → ${tt('ongoing')}`:`${fmtDate(s.start)} → ${fmtDate(s.end)}`;return `<div class="streakRec"><span class="recRank">${medal}</span><span class="recLen"><strong>${s.len}</strong></span><span class="recDates">${dates}</span></div>`}).join('')}</div><div class="helper">${tt('Longest streaks are ranked automatically; a broken streak keeps its record here.')}</div></div>`:'')}${cfg.notes?esc(cfg.notes):''}</div><div class="listbox" style="margin-top:14px"><h4>🧾 Entries for ${label}</h4>${dayEntries.length?dayEntries.map(e=>`<div class="entryRow"><span>${fmtAmount(e.amount,{...a,...cfg})}${e.note?` · ${esc(e.note)}`:''}</span><span style="display:flex;gap:5px"><button class="tinybtn iconOnly" data-entry-edit="${e.id}" title="Edit this entry">✏️</button><button class="tinybtn iconOnly" data-entry-delete="${e.id}" title="Delete this entry">🗑️</button></span></div>`).join(''):'<div class="a-meta">No entries yet.</div>'}</div>`;$('saveDetailTotalBtn').onclick=()=>setDayTotal(a.id);$('detailLogBtn').onclick=()=>{closeModal('detailModal');openLog(a.id,selectedDate)};$('detailModal').classList.add('show');applyGlobalTooltips()}
+function addQuickEntry(activityId,input){const easyIdx=(input&&input.classList&&input.classList.contains('easyInput')&&easyModeOn())?Array.prototype.indexOf.call(document.querySelectorAll('.easyInput'),input):-1;const amount=Number(input?.value);setPendingHistory('Quick log',`${selectedDate} · ${state.activities.find(x=>x.id===activityId)?.name||'Activity'} · ${amount}`);if(!Number.isFinite(amount)||amount<=0){toast('Enter an amount greater than 0');input?.focus();return}noteHistoricalEntry(activityId,selectedDate);state.entries.push({id:uid(),activityId,date:selectedDate,amount,note:'',createdAt:new Date().toISOString()});input.value='';save().then(()=>{render();toast(`${state.activities.find(a=>a.id===activityId)?.name||'Activity'} logged ✅`);if(easyIdx>=0){const ins=document.querySelectorAll('.easyInput');const nx=ins[easyIdx]||ins[0];if(nx)nx.focus();const row=document.querySelector(`.easyRow[data-easy-row="${CSS.escape(activityId)}"]`);if(row){row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),1200)}}})}
+function openDetail(id){selectedActivityId=id;const a=state.activities.find(x=>x.id===id);if(!a)return;const st=activityStats(a,selectedDate),r=st.today||{ratio:0,amount:0,status:'future',saversLeft:activityConfigForDate(a,selectedDate).savers},cfg=activityConfigForResult(a,r),dayEntries=entriesFor(a,selectedDate),label=fmtDate(selectedDate),p=pct(r.ratio||0),total=r.amount||0;const __life=(function(){const me=state.entries.filter(e=>e.activityId===a.id);const __ds=new Set(me.map(e=>e.date));let __tot=0;me.forEach(e=>__tot+=Number(e.amount||0));const segs=[];let cur=null;st.results.forEach(r=>{if(r.status==='inactive'||r.status==='future')return;if(r.streak>0){if(!cur)cur={start:r.date,end:r.date,len:r.streak};else{cur.end=r.date;cur.len=r.streak}}else if(cur){segs.push(cur);cur=null}});if(cur){cur.ongoing=true;segs.push(cur)}segs.sort((x,y)=>y.len-x.len);return{times:me.length,days:__ds.size,total:__tot,segs:segs}})();$('detailModalTitle').textContent=`ℹ️ ${cfg.name} · ${label}`;$('detailBody').innerHTML=`<div class="detailHead"><div><div class="a-meta">🎯 ${cfg.target} ${esc(cfg.unit)} target · 🛡️ ${cfg.savers} savers/month · ⭐ priority ${Number.isFinite(Number(cfg.priority))?cfg.priority:'—'}</div><div class="bigStreak">🔥 ${st.current}</div><div class="a-meta">streak through selected day · best ${st.best}</div></div><div><span class="pill ${r.saversLeft<=Math.max(1,Math.ceil(cfg.savers/3))?'danger':'green'}">🛡️ ${r.saversLeft}/${cfg.savers} savers</span></div></div><div class="detailProgress"><div class="todayVal"><strong>📅 ${label} · ${p}%</strong><span class="a-meta">${fmtAmount(total,{...a,...cfg})}</span></div><div class="progress" style="height:11px;margin-top:8px"><span style="width:${p}%"></span></div></div><div class="inlineTotal"><span>∑ Total</span><input id="detailTotalInput" type="number" min="0" step="any" value="${Number(total)}" title="Edit the total amount for the selected day"><button class="tinybtn iconOnly" id="saveDetailTotalBtn" title="Set the selected day's total amount">💾</button></div><div class="notice" style="margin-top:14px">${cfg.min?`📉 Minimum meaningful amount: ${cfg.min} ${esc(cfg.unit)}.`:'✅ Any positive amount counts as partial.'} ${`<div class="detailLife"><span>🔢 ${tt('Times done')}: <strong>${__life.times}</strong></span><span>📅 ${tt('Days logged')}: <strong>${__life.days}</strong></span><span>📈 ${tt('All-time total')}: <strong>${fmtAmount(__life.total,{...a,...cfg})}</strong></span></div>`+(__life.segs.length?`<div class="listbox" style="margin-top:14px"><h4>🏆 ${tt('Streak records')}</h4><div class="streakRecs">${__life.segs.map((s,i)=>{const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);const dates=s.ongoing?`${fmtDate(s.start)} → ${tt('ongoing')}`:`${fmtDate(s.start)} → ${fmtDate(s.end)}`;return `<div class="streakRec"><span class="recRank">${medal}</span><span class="recLen"><strong>${s.len}</strong></span><span class="recDates">${dates}</span></div>`}).join('')}</div><div class="helper">${tt('Longest streaks are ranked automatically; a broken streak keeps its record here.')}</div></div>`:'')}<span data-no-i18n="1">${cfg.notes?esc(cfg.notes):''}</span></div><div class="listbox" style="margin-top:14px"><h4>🧾 Entries for ${label}</h4>${dayEntries.length?dayEntries.map(e=>`<div class="entryRow"><span>${fmtAmount(e.amount,{...a,...cfg})}${e.note?` · ${esc(e.note)}`:''}</span><span style="display:flex;gap:5px"><button class="tinybtn iconOnly" data-entry-edit="${e.id}" title="Edit this entry">✏️</button><button class="tinybtn iconOnly" data-entry-delete="${e.id}" title="Delete this entry">🗑️</button></span></div>`).join(''):'<div class="a-meta">No entries yet.</div>'}</div>`;$('saveDetailTotalBtn').onclick=()=>setDayTotal(a.id);$('detailLogBtn').onclick=()=>{closeModal('detailModal');openLog(a.id,selectedDate)};$('detailModal').classList.add('show');applyGlobalTooltips()}
 function setDayTotal(activityId){const a=state.activities.find(x=>x.id===activityId);setPendingHistory('Correct daily total',`${selectedDate} · ${a?.name||'Activity'}`);if(!a)return;const total=Number($('detailTotalInput')?.value);if(!Number.isFinite(total)||total<0){toast('Total must be zero or greater');return}const dayEntries=entriesFor(a,selectedDate);if(total===0){state.entries=state.entries.filter(e=>!(e.activityId===activityId&&e.date===selectedDate));}else if(dayEntries.length){const keep=dayEntries[dayEntries.length-1];keep.amount=total;state.entries=state.entries.filter(e=>!(e.activityId===activityId&&e.date===selectedDate&&e.id!==keep.id));}else{noteHistoricalEntry(activityId,selectedDate);state.entries.push({id:uid(),activityId,date:selectedDate,amount:total,note:'',createdAt:new Date().toISOString()})}save().then(()=>{openDetail(activityId);render();toast('Daily total corrected ✏️')}).catch(e=>diag('Daily total update failed',e?.message||String(e)))}
 
 function editEntry(entryId){const e=state.entries.find(x=>x.id===entryId);if(!e)return;const a=state.activities.find(x=>x.id===e.activityId);if(!a)return;const cfg=activityConfigForDate(a,e.date);const amount=prompt(`Amount (${cfg.unit})`,String(e.amount));if(amount===null)return;const n=Number(amount);if(!Number.isFinite(n)||n<=0){toast('Amount must be greater than 0');return}const note=prompt('Note (optional)',e.note||'');if(note===null)return;e.amount=n;e.note=note.trim();noteHistoricalEntry(a.id,e.date);setPendingHistory('Edit log entry',`${a.name} · ${e.date}`);save().then(()=>{openDetail(a.id);render();toast('Entry updated ✏️')})}
 function deleteEntry(entryId){const e=state.entries.find(x=>x.id===entryId);if(!e)return;const a=state.activities.find(x=>x.id===e.activityId);if(!a)return;if(!confirm(`Delete this ${a.name} entry?`))return;state.entries=state.entries.filter(x=>x.id!==entryId);recomputeProgramOrigin();setPendingHistory('Delete log entry',`${a.name} · ${e.date}`);save().then(()=>{openDetail(a.id);render();toast('Entry deleted 🗑️')})}
-function closeModal(id){$(id).classList.remove('show')}
+function closeModal(id){$(id).classList.remove('show');if(id==='activityModal'&&typeof catComboClose==='function')catComboClose()}
 
 /* Analytics */
 function metricOptions(){const types=[...new Set(state.activities.map(a=>a.type))];if(!types.length)return['time'];return types}
@@ -2311,8 +2601,8 @@ function timelineSvg(days,acts){const width=Math.max(820,days.length*30+70),heig
 function renderAnalytics(){if(!state)return;renderAnalyticsControls();renderActivityHeatmap();renderAnalyticsKpis();const acts=metricActivities(),days=analyticsDays();$('timelinePanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">Daily timeline · ${esc(analyticsMetricType)}${analyticsMetricType==='time'?' (hours)':''}</div><div class="chartSub">Click a day to drill down. ${acts.length} activities in this metric group.</div></div><div class="pill ${acts.length?'green':'danger'}">${analyticsRange} days</div></div>${acts.length?`<div class="svgWrap">${timelineSvg(days,acts).svg}</div>`:'<div class="chartEmpty">No activities match this metric.</div>'}</div>`;
  $('timelinePanel').querySelectorAll('[data-chart-date]').forEach(el=>el.addEventListener('click',()=>{analyticsSelectedDate=el.dataset.chartDate;renderAnalytics()}));renderAnalyticsDayDetail(acts);renderMetricCharts();}
 function renderAnalyticsDayDetail(acts){const date=analyticsSelectedDate;const activeActs=acts.map(a=>({a,v:metricValueFor(a,date)})).filter(x=>x.v>0);if(!activeActs.length){$('dayDetailPanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">${fmtDate(date)}</div><div class="chartSub">No ${esc(analyticsMetricType)} activity logged on this day.</div></div></div><div class="chartEmpty">Select another day in the timeline.</div></div>`;return}
- const total=activeActs.reduce((s,x)=>s+x.v,0),W=760,H=260,left=70,right=35,barX=280,barW=160,top=32,barH=180;let y=top,parts='';activeActs.forEach((x,xi)=>{const h=barH*(x.v/total);parts+=`<rect x="${barX}" y="${y}" width="${barW}" height="${h}" fill="${themeChartColor(xi)}" opacity=".9"/><text x="${barX+barW+12}" y="${y+h/2+4}" fill="var(--text)" font-size="11">${esc(x.a.name)} · ${metricDisplay(x.v)}</text>`;y+=h});const svg=`<svg class="stackSvg" viewBox="0 0 ${W} ${H}"><text x="${left}" y="21" fill="var(--muted)" font-size="10">${esc(date)}</text><rect x="${barX}" y="${top}" width="${barW}" height="${barH}" rx="8" fill="var(--panel3)"/>${parts}<text x="${barX+barW/2}" y="${H-16}" text-anchor="middle" fill="var(--muted)" font-size="10">Total · ${metricDisplay(total)}</text></svg>`;
- $('dayDetailPanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">${fmtDate(date)} · stacked detail</div><div class="chartSub">Activities are stacked within the selected metric/unit.</div></div><div class="pill green">${activeActs.length} active</div></div><div class="dayInsight"><div class="stackCard">${svg}</div><div class="stackCard"><h4>Day breakdown</h4><div>${activeActs.sort((a,b)=>b.v-a.v).map(x=>`<div class="entryRow"><span>${esc(x.a.name)}</span><strong>${metricDisplay(x.v)}</strong></div>`).join('')}</div></div></div></div>`}
+ const total=activeActs.reduce((s,x)=>s+x.v,0),W=760,H=260,left=70,right=35,barX=280,barW=160,top=32,barH=180;let y=top,parts='';activeActs.forEach((x,xi)=>{const h=barH*(x.v/total);parts+=`<rect x="${barX}" y="${y}" width="${barW}" height="${h}" fill="${themeChartColor(xi)}" opacity=".9"/><text x="${barX+barW+12}" y="${y+h/2+4}" fill="var(--text)" font-size="11" data-no-i18n="1">${esc(x.a.name)} · ${metricDisplay(x.v)}</text>`;y+=h});const svg=`<svg class="stackSvg" viewBox="0 0 ${W} ${H}"><text x="${left}" y="21" fill="var(--muted)" font-size="10">${esc(date)}</text><rect x="${barX}" y="${top}" width="${barW}" height="${barH}" rx="8" fill="var(--panel3)"/>${parts}<text x="${barX+barW/2}" y="${H-16}" text-anchor="middle" fill="var(--muted)" font-size="10">Total · ${metricDisplay(total)}</text></svg>`;
+ $('dayDetailPanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">${fmtDate(date)} · stacked detail</div><div class="chartSub">Activities are stacked within the selected metric/unit.</div></div><div class="pill green">${activeActs.length} active</div></div><div class="dayInsight"><div class="stackCard">${svg}</div><div class="stackCard"><h4>Day breakdown</h4><div>${activeActs.sort((a,b)=>b.v-a.v).map(x=>`<div class="entryRow"><span data-no-i18n="1">${esc(x.a.name)}</span><strong>${metricDisplay(x.v)}</strong></div>`).join('')}</div></div></div></div>`}
 function renderMetricCharts(){const sections=(state.measurementTypes||[]).map(t=>t.id).filter(t=>state.activities.some(a=>a.type===t));const host=$('metricTables');if(!host)return;const html=sections.map(type=>renderMetricChartsSection(type)).join('');host.innerHTML=html||''}
 function shortQty(type,v){const n=Number(v||0);if(type==='time'){const t=Math.round(n),h=Math.floor(t/60),m=t%60;if(uiLang()==='fa')return h?`${faNumStr(h)}س${m?` ${faNumStr(m)}د`:''}`:`${faNumStr(m)}د`;return h?`${h}h${m?` ${m}m`:''}`:`${m}m`}const s=Math.abs(n-Math.round(n))<0.05?String(Math.round(n)):String(Math.round(n*10)/10);return uiLang()==='fa'?faNumStr(s):s}
 function kpiSparkline(vals,color){const W=132,H=30,n=vals.length;if(n<2)return `<svg class="kpiSpark" viewBox="0 0 ${W} ${H}" style="width:100%;height:30px;display:block"></svg>`;const max=Math.max(...vals,1),step=W/(n-1);let line='';vals.forEach((v,i)=>{line+=(i?'L':'M')+(i*step).toFixed(1)+' '+(H-3-(H-8)*(v/max)).toFixed(1)+' '});const area=line+`L ${W} ${H} L 0 ${H} Z`;return `<svg class="kpiSpark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:30px;display:block"><path d="${area}" fill="${color}" opacity=".16"/><path d="${line}" fill="none" stroke="${color}" stroke-width="1.6" opacity=".85"/></svg>`}
@@ -2337,10 +2627,10 @@ function renderMetricChartsSection(type){
     const fmt=v=>fmtQtyFor(type,g.unit,v);
     const pal=themeChartPalette();const colorOf={};g.acts.forEach((a,i)=>{colorOf[a.id]=pal[i%pal.length]});const col=x=>colorOf[x.a.id]||pal[0];
     const rankMax=Math.max(1,...rank.map(x=>x.v));
-    const rankHtml=rank.map(x=>`<div class="hbarRow"><div class="hbarName" title="${esc(x.a.name)}">${esc(x.a.name)}</div><div class="hbarTrack"><div class="hbarFill" style="width:${Math.max(2,x.v/rankMax*100).toFixed(1)}%;background:linear-gradient(90deg,${col(x)},color-mix(in srgb,${col(x)} 55%,#000))"></div></div><div class="hbarVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</div></div>`).join('');
+    const rankHtml=rank.map(x=>`<div class="hbarRow"><div class="hbarName" data-no-i18n="1" title="${esc(x.a.name)}">${esc(x.a.name)}</div><div class="hbarTrack"><div class="hbarFill" style="width:${Math.max(2,x.v/rankMax*100).toFixed(1)}%;background:linear-gradient(90deg,${col(x)},color-mix(in srgb,${col(x)} 55%,#000))"></div></div><div class="hbarVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</div></div>`).join('');
     const segs=rank.filter(x=>x.v>0);const R=52,CIRC=2*Math.PI*R;let accD=0;
     const donut=segs.length?`<svg viewBox="0 0 140 140" style="width:140px;height:140px;flex:0 0 auto"><g transform="rotate(-90 70 70)">${segs.map(x=>{const dash=(x.v/grand*CIRC).toFixed(1);const off=(accD*CIRC).toFixed(1);accD+=x.v/grand;return `<circle cx="70" cy="70" r="${R}" fill="none" stroke="${col(x)}" stroke-width="17" stroke-dasharray="${dash} ${CIRC.toFixed(1)}" stroke-dashoffset="-${off}" opacity=".92"/>`}).join('')}</g><text x="70" y="67" text-anchor="middle" fill="var(--text)" font-size="12.5" font-weight="800">${esc(shortQty(type,gTotal))}</text><text x="70" y="83" text-anchor="middle" fill="var(--muted)" font-size="8.5">${type==='time'?'':esc(tt(String(g.unit)))}</text></svg>`:'';
-    const legend=rank.map(x=>`<div class="donutLegendRow"><span class="donutDot" style="background:${col(x)}"></span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x.a.name)}</span><span class="dlVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</span></div>`).join('');
+    const legend=rank.map(x=>`<div class="donutLegendRow"><span class="donutDot" style="background:${col(x)}"></span><span data-no-i18n="1" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x.a.name)}</span><span class="dlVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</span></div>`).join('');
     const dowOrder=FA?[6,0,1,2,3,4,5]:[1,2,3,4,5,6,0];const dowLetters=FA?J_DOW_FA:DP_DOWS_EN;
     const buckets=dowOrder.map(()=>({sum:0,n:0}));
     days.forEach((d,i)=>{const bi=dowOrder.indexOf(new Date(d+'T12:00:00').getDay());if(bi>=0){buckets[bi].sum+=perDay[i];buckets[bi].n++}});
@@ -2366,7 +2656,7 @@ function renderMetricChartsSection(type){
 
 function currentSettingsSnapshot(){ensureViewSettings();const vs=JSON.parse(JSON.stringify(state.viewSettings));vs.presets=[];return JSON.parse(JSON.stringify({settings:state.settings,viewSettings:vs}));}
 function loadSettingsSnapshot(config){if(!config)return;const currentPresets=ensureViewSettings().presets||[];const __keepSaverCalOnPreset=(function(){try{return state&&state.viewSettings&&state.viewSettings.ui?state.viewSettings.ui.saverCal:'gregorian'}catch(e){return 'gregorian'}})();state.settings=JSON.parse(JSON.stringify(config.settings||state.settings));const loaded=JSON.parse(JSON.stringify(config.viewSettings||defaultViewSettings()));loaded.presets=currentPresets;state.viewSettings=loaded;ensureViewSettings();normalizeUi(state);state.viewSettings.ui.saverCal=(function(){try{return __keepSaverCalOnPreset||'gregorian'}catch(e){return 'gregorian'}})();save().then(()=>{render();renderSettings();toast('Settings applied')}).catch(e=>{diag('Settings apply failed',e?.message||String(e));toast('Could not apply settings')});}
-function renderPresetControls(){const sel=$('presetSelect');if(!sel)return;const v=ensureViewSettings();sel.innerHTML='<option value="">Select preset…</option>'+v.presets.map((p,i)=>`<option value="${i}">${esc(p.name)}</option>`).join('');}
+function renderPresetControls(){const sel=$('presetSelect');if(!sel)return;const v=ensureViewSettings();sel.innerHTML='<option value="">Select preset…</option>'+v.presets.map((p,i)=>`<option data-no-i18n="1" value="${i}">${esc(p.name)}</option>`).join('');}
 function saveAllSettings(){ensureViewSettings();setPendingHistory('Save all settings');save().then(()=>{renderPresetControls();toast('All settings saved')}).catch(e=>{diag('Settings save failed',e?.message||String(e));toast('Could not save settings')});}
 function savePreset(){const name=$('presetName')?.value.trim();if(!name){toast('Enter a preset name');$('presetName')?.focus();return}const v=ensureViewSettings();const snapshot=currentSettingsSnapshot();setPendingHistory('Create preset',name);v.presets=v.presets.filter(p=>String(p.name).toLowerCase()!==name.toLowerCase());v.presets.push({name,config:snapshot});save().then(()=>{renderPresetControls();$('presetName').value='';toast('Preset saved')}).catch(e=>{diag('Preset save failed',e?.message||String(e));toast('Could not save preset')});}
 function applyPreset(){const i=Number($('presetSelect')?.value);if(!Number.isInteger(i)||i<0)return;const p=ensureViewSettings().presets[i];if(!p)return;setPendingHistory('Apply preset',p.name);loadSettingsSnapshot(p.config)}
@@ -2392,19 +2682,19 @@ function renderActivityHeatmap(){
   const totals={};me.forEach(e=>{totals[e.date]=(totals[e.date]||0)+Number(e.amount||0)});
   const yd=new Date(selectedDate+'T12:00:00');let yStart,yEnd,yearLabel;
   if(uiCal()==='persian'){const jy=toJalali(yd).jy+hmYearOffset;const sD=jalaliToDate(jy,1,1),eD=jalaliToDate(jy,12,jalaliMonthLength(jy,12));yStart=iso(sD.getFullYear(),sD.getMonth(),sD.getDate());yEnd=iso(eD.getFullYear(),eD.getMonth(),eD.getDate());yearLabel=faNumStr(jy)}
-  else{const gy=yd.getFullYear()+hmYearOffset;yStart=gy+'-01-01';yEnd=gy+'-12-31';yearLabel=String(gy)}
+  else{const gy=yd.getFullYear()+hmYearOffset;yStart=gy+'-01-01';yEnd=gy+'-12-31';yearLabel=faNumStr(gy)}
   const meY=me.filter(e=>e.date>=yStart&&e.date<=yEnd);const daysY=new Set(meY.map(e=>e.date));let yearTotal=0;meY.forEach(e=>yearTotal+=Number(e.amount||0));
   const hmNum=n=>uiLang()==='fa'?faNumStr(String(n)):String(n);
   const prevG='\u2039',nextG='\u203a';
   const rows=hmMonthsList().map(mo=>{
     let label,startDow,len,dates;
     if(mo.jy){const firstG=jalaliToDate(mo.jy,mo.jm,1);startDow=(firstG.getDay()+1)%7;len=jalaliMonthLength(mo.jy,mo.jm);dates=[];for(let d=1;d<=len;d++){const g=jalaliToDate(mo.jy,mo.jm,d);dates.push(iso(g.getFullYear(),g.getMonth(),g.getDate()))}label=J_MONTHS_FA[mo.jm-1]}
-    else{const first=new Date(mo.gy,mo.gm,1);startDow=(first.getDay()+6)%7;len=new Date(mo.gy,mo.gm+1,0).getDate();dates=[];for(let d=1;d<=len;d++)dates.push(iso(mo.gy,mo.gm,d));label=new Date(mo.gy,mo.gm,1).toLocaleDateString(uiLocale(),{month:'long'})}
+    else{const first=new Date(mo.gy,mo.gm,1);startDow=(first.getDay()+1)%7;/* weeks start on Saturday */len=new Date(mo.gy,mo.gm+1,0).getDate();dates=[];for(let d=1;d<=len;d++)dates.push(iso(mo.gy,mo.gm,d));try{label=new Date(mo.gy,mo.gm,1).toLocaleDateString('fa-IR-u-ca-gregory',{month:'long'})}catch(e){label=new Date(mo.gy,mo.gm,1).toLocaleDateString(uiLocale(),{month:'long'})}}
     const cells=dates.map(dt=>{const v=totals[dt]||0;const c=activityConfigForDate(a,dt);const ratio=c.target?Math.max(0,Math.min(1,v/c.target)):0;const bg=v>0?completionColor(ratio):'var(--panel3)';const op=v>0?(0.4+0.6*ratio):0.55;return `<div class="hmCell" style="background:${bg};opacity:${op.toFixed(2)}" title="${fmtDate(dt)} · ${v} ${esc(c.unit)}${c.target?` · ${Math.round(ratio*100)}%`:''}"></div>`}).join('');
     return `<div class="hmRow"><div class="hmLabel">${label}</div><div class="hmCells">${'<i class="hmCell" style="background:transparent;border-color:transparent"></i>'.repeat(startDow)}${cells}</div></div>`;
   }).join('');
   host.innerHTML=`<div class="panelhead"><div><h3>🗓️ ${tt('Activity heatmap')}</h3><div class="muted">${tt('Pick an activity to see its yearly totals and calendar heatmap. Use the arrows to move between years.')}</div></div><div class="hmStats"><span class="pill green">📅 ${yearLabel} · ∑ ${esc(fmtAmount(yearTotal,{...a,...cfg}))}</span><span class="pill">🔢 ${tt('Times done')}: ${hmNum(meY.length)}</span><span class="pill">📅 ${tt('Days logged')}: ${hmNum(daysY.size)}</span><span class="pill">🏅 ${tt('All-time total')}: ${esc(fmtAmount(lifeTotal,{...a,...cfg}))}</span></div></div>
-  <div style="padding:12px 15px 15px"><div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between"><div class="field" style="flex:1;min-width:210px"><label>${tt('Activity')}</label><select id="hmActivitySelect" class="select" style="width:100%">${acts.map(x=>`<option value="${esc(x.id)}" ${x.id===a.id?'selected':''}>${esc(activityConfigForDate(x,selectedDate).name)}</option>`).join('')}</select></div><div class="hmNav"><button class="hmNavBtn" id="hmPrevYear" type="button" title="${tt('Previous year')}">${prevG}</button><span class="hmYearLabel">${yearLabel}</span><button class="hmNavBtn" id="hmNextYear" type="button" title="${tt('Next year')}">${nextG}</button>${hmYearOffset!==0?`<button class="hmTodayBtn" id="hmCurYear" type="button">${tt('Current year')}</button>`:''}</div></div>
+  <div style="padding:12px 15px 15px"><div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between"><div class="field" style="flex:1;min-width:210px"><label>${tt('Activity')}</label><select id="hmActivitySelect" class="select" style="width:100%">${acts.map(x=>`<option data-no-i18n="1" value="${esc(x.id)}" ${x.id===a.id?'selected':''}>${esc(activityConfigForDate(x,selectedDate).name)}</option>`).join('')}</select></div><div class="hmNav"><button class="hmNavBtn" id="hmPrevYear" type="button" title="${tt('Previous year')}">${prevG}</button><span class="hmYearLabel">${yearLabel}</span><button class="hmNavBtn" id="hmNextYear" type="button" title="${tt('Next year')}">${nextG}</button>${hmYearOffset!==0?`<button class="hmTodayBtn" id="hmCurYear" type="button">${tt('Current year')}</button>`:''}</div></div>
   <div class="hmLegend"><span>${tt('Less')}</span><i style="background:var(--panel3)"></i><i style="background:${completionColor(0.25)}"></i><i style="background:${completionColor(0.5)}"></i><i style="background:${completionColor(0.75)}"></i><i style="background:${completionColor(1)}"></i><span>${tt('More')}</span><span style="margin-inline-start:14px">📅 ${yearLabel}</span></div>
   <div class="hmMonths">${rows}</div></div>`;
   const sel=$('hmActivitySelect');if(sel)sel.onchange=()=>{heatmapActivityId=sel.value;renderActivityHeatmap();applyGlobalTooltips()};
@@ -2422,15 +2712,15 @@ function renderChangeHistory(){
   const shown=changeHistoryShowAll?items:items.slice(0,10);
   host.innerHTML=`<div class="changeHistoryList">${shown.map(x=>{
     const at=x.at?new Date(x.at).toLocaleString(uiLocale(),{dateStyle:'medium',timeStyle:'short'}):'—';
-    return `<div class="changeHistoryItem"><div class="changeHistoryTime">${esc(at)}</div><div><div class="changeHistoryAction">${esc(x.label||'Change')}</div>${x.meta?`<div class="changeHistoryMeta">${esc(x.meta)}</div>`:''}</div><div class="changeHistoryKind">${x.kind==='undo'?'↶ Undo':x.kind==='redo'?'↷ Redo':'Saved change'}</div></div>`;
+    return `<div class="changeHistoryItem"><div class="changeHistoryTime">${esc(at)}</div><div><div class="changeHistoryAction">${esc(x.label||'Change')}</div>${x.meta?`<div class="changeHistoryMeta" data-no-i18n="1">${esc(x.meta)}</div>`:''}</div><div class="changeHistoryKind">${x.kind==='undo'?'↶ Undo':x.kind==='redo'?'↷ Redo':'Saved change'}</div></div>`;
   }).join('')}</div>${items.length>10?`<div style="padding-top:10px"><button class="ghostbtn" id="chShowMoreBtn">${changeHistoryShowAll?tt('Show less'):`${tt('Show more')} (${items.length})`}</button></div>`:''}`;
   const btn=$('chShowMoreBtn');if(btn)btn.onclick=()=>{changeHistoryShowAll=!changeHistoryShowAll;renderChangeHistory()};
 }
-function renderSettings(){if(!state?.settings)return;updateJsonDbUi();renderThemeControls();{const __sc=$('saverCalSelect');if(__sc)__sc.value=(state.viewSettings&&state.viewSettings.ui&&state.viewSettings.ui.saverCal==='persian')?'persian':'gregorian';}syncMeasurementTypeSelect('dType',state.settings.type||'time',state.settings.unit||'minutes');$('dTarget').value=state.settings.target??60;$('dSavers').value=state.settings.savers??4;$('dMin').value=state.settings.min??0;$('dPriority').value=state.settings.priority??'';renderPresetControls();renderMeasurementTypeConfig();if($('diagLogApp'))$('diagLogApp').textContent=__diag.join('\n')||'No diagnostic events yet.';try{window.dispatchEvent(new CustomEvent('streakos:settingsrendered'))}catch(e){}}
+function renderSettings(){if(!state?.settings)return;updateJsonDbUi();renderThemeControls();{const __sc=$('saverCalSelect');if(__sc)__sc.value=(state.viewSettings&&state.viewSettings.ui&&state.viewSettings.ui.saverCal==='persian')?'persian':'gregorian';}syncCalendarControls();syncMeasurementTypeSelect('dType',state.settings.type||'time',state.settings.unit||'minutes');$('dTarget').value=state.settings.target??60;$('dSavers').value=state.settings.savers??4;$('dMin').value=state.settings.min??0;$('dPriority').value=state.settings.priority??'';renderPresetControls();renderMeasurementTypeConfig();renderEasySettings();if($('diagLogApp'))$('diagLogApp').textContent=__diag.join('\n')||'No diagnostic events yet.';try{window.dispatchEvent(new CustomEvent('streakos:settingsrendered'))}catch(e){}}
 function saveDefaults(){setPendingHistory('Save program defaults');const target=Number($('dTarget').value),savers=Math.max(0,Math.floor(Number($('dSavers').value||0))),min=Math.max(0,Number($('dMin').value||0));if(!Number.isFinite(target)||target<=0){toast('Default target must be greater than 0');return}const pr=$('dPriority').value.trim();const priority=pr===''?null:Math.max(1,Math.floor(Number(pr)));if(pr!==''&&!Number.isFinite(priority)){toast('Default priority must be a positive number');return}state.settings={type:$('dType').value,unit:$('dUnit').value.trim()||'minutes',target,savers,min,priority};save().then(()=>{renderSettings();toast('Defaults saved')})}
 function rememberTabPosition(){if(!state)return;const v=ensureViewSettings();v.tabPositions[activeSection]=Math.max(0,Math.round(window.scrollY||document.documentElement.scrollTop||0));}
 function restoreTabPosition(id){if(!state)return;const v=ensureViewSettings();const pos=Number(v.tabPositions[id]||0);requestAnimationFrame(()=>window.scrollTo(0,pos));}
-function setSelectedDate(d){const dt=new Date(d+'T12:00:00');if(Number.isNaN(dt.getTime()))return;selectedDate=d;historyCursor=new Date(dt.getFullYear(),dt.getMonth(),1);analyticsSelectedDate=d;render()}
+function setSelectedDate(d){const dt=new Date(d+'T12:00:00');if(Number.isNaN(dt.getTime()))return;selectedDate=d;historyCursor=calendarMonthStart(dt);analyticsSelectedDate=d;render()}
 function shiftSelectedDate(delta){const d=new Date(selectedDate+'T12:00:00');d.setDate(d.getDate()+delta);setSelectedDate(keyFromDate(d))}
 function showSection(id){rememberTabPosition();activeSection=id;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));render();restoreTabPosition(id);if(state)save().catch(e=>diag('Tab position save failed',e?.message||String(e)));}
 
@@ -3061,7 +3351,9 @@ $('localDbLoginBtn').onclick=async()=>{
 };
 $('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlockBtn').click()});$('lockBtn').onclick=lock;$('saveDefaultsBtn').onclick=saveDefaults;$('fType').onchange=()=>syncMeasurementTypeSelect('fType',$('fType').value,null);$('dType').onchange=()=>syncMeasurementTypeSelect('dType',$('dType').value,null);$('quickAddBtn').onclick=()=>openLog(null,selectedDate);$('prevDayBtn').onclick=()=>shiftSelectedDate(-1);$('nextDayBtn').onclick=()=>shiftSelectedDate(1);$('todayBtn').onclick=()=>setSelectedDate(todayKey());$('selectedDateInput').onchange=e=>{const v=dpParseInput(e.target,e.target.value);if(v)setSelectedDate(v);};
 $('addActivityBtn').onclick=()=>openActivityModal();$('addActivityBtn2').onclick=()=>openActivityModal();$('categoryFilter')?.addEventListener('change',()=>render());$('ruleSelectAll')?.addEventListener('change',e=>{if(!state)return;if(e.target.checked)state.activities.forEach(a=>selectedActivityIds.add(a.id));else selectedActivityIds.clear();syncRuleSelectionControls();});$('ruleDeleteSelected')?.addEventListener('click',()=>deleteActivities([...selectedActivityIds]));$('rulePermanentDeleteSelected')?.addEventListener('click',()=>permanentlyDeleteActivities([...selectedActivityIds]));$('resetTableViewBtn').onclick=()=>{state.viewSettings=defaultViewSettings();setPendingHistory('Reset table view');save().then(()=>{render();toast('Table view reset')})};$('saveActivityBtn').onclick=saveActivity;$('addEntryBtn').onclick=addEntry;$('lActivity').onchange=updateLogHint;$('lDate').onchange=updateLogHint;$('searchInput').oninput=()=>render();$('metricTypeSelect').onchange=e=>{analyticsMetricType=e.target.value;analyticsMetricUnit=availableUnits(analyticsMetricType)[0];renderAnalytics()};$('metricUnitSelect').onchange=e=>{analyticsMetricUnit=e.target.value;renderAnalytics()};
-$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('langSelect')?.addEventListener('change',e=>setUiLanguage(e.target.value));$('dirSelect')?.addEventListener('change',e=>setUiDirection(e.target.value));$('langToggleBtn')?.addEventListener('click',toggleUiLanguage);$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('langToggleLogin')?.addEventListener('click',toggleUiLanguage);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
+$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('calToggleBtn')?.addEventListener('click',toggleUiCalendar);$('calSelect')?.addEventListener('change',e=>setUiCalendar(e.target.value));$('easyToggleBtn')?.addEventListener('click',()=>toggleEasyMode());$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
+/* v10 boot: easy mode attr, collapsible settings, category combobox */
+applyEasyMode();initSettingsCollapse();initCategoryCombo();
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showSection(b.dataset.section));
 document.addEventListener('change',e=>{const cb=e.target.closest('#activityList2 .activitySelect');if(cb){if(cb.checked)selectedActivityIds.add(cb.dataset.activitySelect);else selectedActivityIds.delete(cb.dataset.activitySelect);syncRuleSelectionControls();}});document.addEventListener('click',e=>{const me=e.target.closest('[data-measure-edit]');if(me){editMeasurementType(me.dataset.measureEdit);return}const ma=e.target.closest('[data-measure-add-unit]');if(ma){addMeasurementUnit(ma.dataset.measureAddUnit);return}const c=e.target.closest('[data-close]');if(c)closeModal(c.dataset.close);const b=e.target.closest('[data-act]');if(b){const id=b.dataset.id;if(b.dataset.act==='detail')openDetail(id);if(b.dataset.act==='edit')openActivityModal(id);if(b.dataset.act==='delete')deleteActivity(id);if(b.dataset.act==='permanent-delete')permanentlyDeleteActivities([id]);if(b.dataset.act==='disable')setActivityLifecycle(id,'disabled');if(b.dataset.act==='enable')setActivityLifecycle(id,'active')}const q=e.target.closest('[data-quick-log]');if(q){const inp=document.querySelector(`[data-quick-input="${CSS.escape(q.dataset.quickLog)}"]`);addQuickEntry(q.dataset.quickLog,inp)}const ee=e.target.closest('[data-entry-edit]');if(ee)editEntry(ee.dataset.entryEdit);const de=e.target.closest('[data-entry-delete]');if(de)deleteEntry(de.dataset.entryDelete);const rb=e.target.closest('[data-range]');if(rb){analyticsRange=Number(rb.dataset.range);renderAnalytics()}});
 
@@ -3072,7 +3364,7 @@ async function exportPortableJson(){if(!state){toast('Nothing to export');return
 const __exportBtnEl=$('exportBtn');if(__exportBtnEl)__exportBtnEl.onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('exportBtn2').onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('importBtn').onclick=()=>chooseJsonDatabase().then(async chosen=>{const text=await loadJsonTextFile(chosen);const loaded=await parsePortableDatabase(text);state=loaded;jsonDbHandle=chosen.getFile?chosen:null;jsonDbConnected=!!chosen.getFile;jsonDbName=chosen.getFile?(await chosen.getFile()).name:chosen.name;let p={};try{p=JSON.parse(text)}catch{}jsonDbEncrypted=!!p?.encrypted;if(chosen.getFile){await rememberJsonHandle(chosen);rememberedJsonMeta={name:jsonDbName,encrypted:jsonDbEncrypted};}resetHistoryStacks();await save();render();toast('JSON database imported 📥')}).catch(e=>toast(e?.message||'Invalid database file'));
 $('fileInput').onchange=async e=>{const f=e.target.files[0];if(!f)return;e.target.value=''};
 $('changePwBtn').onclick=()=>{$('pwModal').classList.add('show')};$('changePwConfirm').onclick=async()=>{const old=$('oldPw').value,n1=$('newPw').value,n2=$('newPw2').value;if(!n1||n1!==n2){toast('Enter a matching new password');return}if(jsonDbEncrypted&&old!==currentDbPassword()){toast('Current database password is incorrect');return}try{$('passwordInput').dataset.dbPassword=n1;if($('jsonDbPassword'))$('jsonDbPassword').value=n1;jsonDbEncrypted=true;state.__salt=crypto.getRandomValues(new Uint8Array(16));cryptoKey=await derive(n1,state.__salt);if(jsonDbHandle)await writeJsonDbNow();await cacheLocalState();renderSettings();closeModal('pwModal');$('oldPw').value=$('newPw').value=$('newPw2').value='';toast('Database password updated 🔐')}catch(e){toast(e?.message||'Password update failed')}};
-async function showApp(){render();$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');restoreTabPosition(activeSection);applyGlobalTooltips();try{window.dispatchEvent(new CustomEvent('streakos:appopened'))}catch(e){}}
+async function showApp(){applyEasyMode();render();$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');restoreTabPosition(activeSection);applyGlobalTooltips();try{window.dispatchEvent(new CustomEvent('streakos:appopened'))}catch(e){}}
 $('diagToggle').onclick=()=>{const p=$('diagPanel');p.classList.toggle('open');$('diagToggle').textContent=p.classList.contains('open')?'🙈':'🧾';$('diagToggle').title=p.classList.contains('open')?'Hide log':'Show log';diag('Diagnostic panel '+(p.classList.contains('open')?'opened':'closed'))};$('diagCopy').onclick=async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied');diag('Log copied')}catch(e){diag('Copy log failed',e.message)}};$('diagClear').onclick=()=>{__diag.length=0;$('diagLog').textContent='Log cleared.';diag('Log cleared')};
 
 async function initializeAppStorage(){
