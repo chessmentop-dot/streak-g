@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Streak OS — ردیاب خصوصی و محلی عادت‌ها و زنجیره‌ها با تقویم شمسی و میلادی" />
 <meta name="theme-color" content="#090e1b" />
-<title>Streak OS — v10</title>
+<title>Streak OS — v10.1</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <style>
@@ -17,6 +17,14 @@
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--bg,#090e1b);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 body{overflow-x:hidden}
+/* ===== v10.1: theme-aware scrollbars ===== */
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 24%,var(--panel2)) transparent}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--text) 20%,var(--panel2));border-radius:999px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--accent) 62%,var(--panel2));border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:var(--accent)}
+::-webkit-scrollbar-corner{background:transparent}
 button,input,select{font:inherit}
 button{cursor:pointer;border:0}
 .hidden{display:none!important}
@@ -242,7 +250,7 @@ html[lang="fa"] .calToolbar .monthTitle{direction:rtl;unicode-bidi:isolate;displ
 .sidebar{min-width:0;transition:opacity .18s ease}
 .layout{transition:grid-template-columns .18s ease}
 #sidebarToggleBtn{flex:0 0 auto;margin:0}
-html[data-sidebar="collapsed"] .layout{grid-template-columns:0 minmax(0,1fr)}
+@media(min-width:901px){html[data-sidebar="collapsed"]:not([data-easy="on"]) .layout{grid-template-columns:0 minmax(0,1fr)}}
 html[data-sidebar="collapsed"] .sidebar{opacity:0;pointer-events:none;border-right-width:0;border-left-width:0;padding-left:0;padding-right:0;overflow:hidden}
 html[data-sidebar="collapsed"] .sidebar>*{display:none}
 /* arrows: right side = forward / next, left side = backward / previous (fixed in both LTR & RTL) */
@@ -382,6 +390,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 /* ============ v10: easy mode ============ */
 [data-easy="on"] .layout{grid-template-columns:minmax(0,1fr)}
 [data-easy="on"] .sidebar{display:none}
+[data-easy="on"] #sidebarToggleBtn{display:none}
 [data-easy="on"] #dashboard .hero{display:none}
 [data-easy="on"] #dayTrophy{display:none}
 [data-easy="on"] #statGrid{display:none}
@@ -432,7 +441,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v10</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.1</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
     <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
@@ -456,10 +465,10 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 
 <div id="appView" class="hidden">
   <header class="topbar">
-    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10</span></h1><small id="brandDate"></small></div></div>
+    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.1</span></h1><small id="brandDate"></small></div></div>
     <div class="toolbar">
       <div class="dateNav"><button class="smallbtn" id="prevDayBtn">←</button><button class="smallbtn" id="todayBtn">Today</button><input id="selectedDateInput" class="dateInput dpInput" type="text" autocomplete="off" data-dp="1" /><button class="smallbtn" id="nextDayBtn">→</button></div>
-      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="calToggleBtn" type="button" data-no-iconify title="تغییر تقویم نمایش (شمسی/میلادی)">🗓️ شمسی</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
+      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
     </div>
   </header>
   <div class="layout">
@@ -502,9 +511,9 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
         <div class="hero"><div><h2>Help & Guide</h2><p>A complete tour of every feature in Streak OS — logging, streaks and savers, history, the analytics dashboard, themes, backups, and security — with practical tips for each.</p></div></div>
         <div class="panel"><div class="panelhead"><h3>Getting started</h3><span class="muted">Built-in guide</span></div><div class="metricSection">
           <div class="settingsGrid">
-            <div class="settingsCard" data-no-i18n="1"><h4>Streak OS چیست؟</h4><p>Streak OS یک ردیاب خصوصی و محلی برای عادت‌ها و زنجیره‌هاست. همه چیز داخل همین مرورگر و با رمز عبور شما محافظت می‌شود — هیچ داده‌ای به هیچ سروری ارسال نمی‌شود. رابط کاربری کاملاً فارسی است و هر دو تقویم شمسی (جلالی) و میلادی پشتیبانی می‌شوند؛ ثبت‌های روزانه به زنجیره، سپر، جام و نمودارهای غنی تبدیل می‌شوند.</p><div class="notice">با دکمه «🗓️» در نوار بالا هر لحظه بین تقویم شمسی و میلادی جابه‌جا شوید. داده‌ها ثابت می‌مانند و فقط نمایش تاریخ عوض می‌شود.</div></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>Streak OS چیست؟</h4><p>Streak OS یک ردیاب خصوصی و محلی برای عادت‌ها و زنجیره‌هاست. همه چیز داخل همین مرورگر و با رمز عبور شما محافظت می‌شود — هیچ داده‌ای به هیچ سروری ارسال نمی‌شود. رابط کاربری کاملاً فارسی است و هر دو تقویم شمسی (جلالی) و میلادی پشتیبانی می‌شوند؛ ثبت‌های روزانه به زنجیره، سپر، جام و نمودارهای غنی تبدیل می‌شوند.</p><div class="notice">از تنظیمات ← زبان و تقویم، هر لحظه بین تقویم شمسی و میلادی جابه‌جا شوید. داده‌ها ثابت می‌مانند و فقط نمایش تاریخ عوض می‌شود.</div></div>
             <div class="settingsCard"><h4>First run & your vault</h4><p>The first launch asks you to create a password. That password encrypts the vault — all activities, logs, and settings — inside the browser local database, so the stored data is unreadable without it. Press 🔒 to lock instantly, and after reloading the page unlock with the same password. You can change the password later in Settings → Security.</p></div>
-            <div class="settingsCard" data-no-i18n="1"><h4>⌨️ نوار ابزار و ناوبری</h4><p>نوار بالا جای اصلی کنترل برنامه است: دکمه‌های ← و → یک روز جابه‌جا می‌شوند، «امروز» به روز جاری می‌پرد و فیلد تاریخ، تقویم بازشو را با فلش‌های سال و ماه خودش باز می‌کند. «＋ ثبت روز انتخاب‌شده» فرم ثبت کامل را می‌گشاید، ↶ و ↷ تغییرات را واگرد/ازنو می‌کنند و 🔒 برنامه را قفل می‌کند. ☰ سایدبار را جمع می‌کند، 🗓️ بین تقویم شمسی و میلادی جابه‌جا می‌شود و ⚡ حالت آسان را روشن و خاموش می‌کند.</p></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>⌨️ نوار ابزار و ناوبری</h4><p>نوار بالا جای اصلی کنترل برنامه است: دکمه‌های ← و → یک روز جابه‌جا می‌شوند، «امروز» به روز جاری می‌پرد و فیلد تاریخ، تقویم بازشو را با فلش‌های سال و ماه خودش باز می‌کند. «＋ ثبت روز انتخاب‌شده» فرم ثبت کامل را می‌گشاید، ↶ و ↷ تغییرات را واگرد/ازنو می‌کنند و 🔒 برنامه را قفل می‌کند. ☰ سایدبار را جمع می‌کند و ⚡ حالت آسان را روشن و خاموش می‌کند. جابه‌جایی بین تقویم شمسی و میلادی از تنظیمات ← زبان و تقویم انجام می‌شود.</p></div>
             <div class="settingsCard" data-no-i18n="1"><h4>⚡ حالت آسان</h4><p>حالت آسان یک نمایش مینیمال برای ثبت سریع است: با یک کلیک روی دکمه «⚡ حالت آسان» در نوار بالا، همه پنل‌ها و جزئیات اضافه کنار می‌روند و فقط فهرست فعالیت‌ها می‌ماند — هر ردیف فقط نام فعالیت و یک فیلد ثبت سریع دارد. با Enter مقدار ثبت می‌شود و فوکوس خودکار روی فعالیت بعدی می‌رود تا چند فعالیت را پشت سر هم سریع ثبت کنید. اینکه در این حالت کدام جزئیات (وضعیت، دسته، زنجیره، پیشرفت، هدف، جستجو و…) دیده شوند از تنظیمات ← حالت آسان قابل انتخاب است و می‌توانید برایش پریست هم بسازید.</p><div class="notice">تنظیمات حالت آسان از دکمه ⚙️ داخل خودِ حالت آسان هم در دسترس است.</div></div>
             <div class="settingsCard"><h4>Your daily routine — a quick tutorial</h4><p>A simple loop covers everything: pick the date (usually today), type each activity amount into its quick box and press Enter, then watch the status dot and progress bar update. When a day goes badly, open it later and log or edit the missing amounts — streaks, savers, and every chart recalculate instantly. End the week in Analytics to see totals, consistency, and the heatmap.</p><div class="notice">Quick log accepts the activity amount directly. The full Log dialog also supports date and note entry.</div></div>
           </div>
@@ -543,7 +552,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
         </div></div>
         <div class="panel"><div class="panelhead"><h3>Settings & data</h3></div><div class="metricSection">
           <div class="settingsGrid">
-            <div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم و حالت آسان</h4><p>رابط کاربری همیشه فارسی و راست‌به‌چپ است و نیازی به تنظیم زبان نیست. تقویم نمایش (شمسی/میلادی) با دکمه 🗓️ نوار بالا یا از تنظیمات ← زبان و تقویم عوض می‌شود؛ هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند. جدا از آن، «تقویم ریست نجات‌دهنده‌ها» مشخص می‌کند پر شدن ماهانه سپرها با کدام تقویم محاسبه شود. حالت آسان (⚡) هم نمایش مینیمال ثبت سریع است که جزئیاتش از تنظیمات ← حالت آسان قابل تغییر و پریست است.</p></div>
+            <div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم و حالت آسان</h4><p>رابط کاربری همیشه فارسی و راست‌به‌چپ است و نیازی به تنظیم زبان نیست. تقویم نمایش (شمسی/میلادی) از تنظیمات ← زبان و تقویم عوض می‌شود؛ هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند. جدا از آن، «تقویم ریست نجات‌دهنده‌ها» مشخص می‌کند پر شدن ماهانه سپرها با کدام تقویم محاسبه شود. حالت آسان (⚡) هم نمایش مینیمال ثبت سریع است که جزئیاتش از تنظیمات ← حالت آسان قابل تغییر و پریست است.</p></div>
             <div class="settingsCard"><h4>🎨 Themes & appearance</h4><p>Seventeen theme presets restyle the whole app in one click, and custom colors fine-tune the accent, panels, and text. Sliders control the interface scale, corner radius, density, glow, and sidebar width. Charts, the heatmap, and every highlight follow these colors; press 💾 to save your appearance or reset to the defaults.</p></div>
             <div class="settingsCard"><h4>Backup & JSON database</h4><p>The vault can live in the browser or in a portable JSON database file with optional encryption, so you can carry it between devices. Settings → Backup / import exports and restores full backups, and the activity history can additionally be exported as JSON or CSV. The Diagnostics log records technical messages for troubleshooting and can be copied with one click.</p></div>
             <div class="settingsCard"><h4>Security</h4><p>Settings → Security lets you change the password used to unlock the vault. Locking with 🔒 instantly hides all data until the password is re-entered. Choosing an encrypted JSON database keeps everything unreadable even outside this app.</p></div>
@@ -556,7 +565,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
       <section id="settings" class="section">
         <div class="hero"><div><h2>Settings</h2><p>Security, backups, and app preferences.</p></div></div>
         <div class="panel" id="calendarPanel"><div class="panelhead"><div><h3>🌐 زبان و تقویم</h3><div class="muted" data-no-i18n="1">رابط کاربری همیشه فارسی است؛ تقویم نمایش و تقویم ریست نجات‌دهنده‌ها را اینجا انتخاب کنید.</div></div></div><div class="settingsGrid">
-<div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم نمایش</h4><p>تاریخ‌ها در کل برنامه (نوار بالا، تاریخچه، تحلیل‌ها و تقویم بازشو) با این تقویم نمایش داده می‌شوند. هر دو تقویم پشتیبانی می‌شوند.</p><div class="field"><label>تقویم</label><select id="calSelect" class="select" style="width:100%"><option value="persian">شمسی (جلالی)</option><option value="gregorian">میلادی</option></select></div><div class="helper">می‌توانید از دکمه «🗓️» در نوار بالا هم سریع عوض کنید. داده‌های شما تغییر نمی‌کند — فقط نمایش تاریخ عوض می‌شود.</div><div class="helper">هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند.</div></div>
+<div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم نمایش</h4><p>تاریخ‌ها در کل برنامه (نوار بالا، تاریخچه، تحلیل‌ها و تقویم بازشو) با این تقویم نمایش داده می‌شوند. هر دو تقویم پشتیبانی می‌شوند.</p><div class="field"><label>تقویم</label><select id="calSelect" class="select" style="width:100%"><option value="persian">شمسی (جلالی)</option><option value="gregorian">میلادی</option></select></div><div class="helper">داده‌های شما تغییر نمی‌کند — فقط نمایش تاریخ عوض می‌شود.</div><div class="helper">هفته در هر دو تقویم از شنبه شروع می‌شود و ارقام فارسی هستند.</div></div>
 <div class="settingsCard" data-no-i18n="1"><h4>🗓️ تقویم ریست نجات‌دهنده‌ها</h4><p>نجات‌دهنده‌ها در آغاز هر ماه دوباره پر می‌شوند. انتخاب کنید مرز ماه بر پایه کدام تقویم باشد.</p><div class="field"><label>مبنای ریست نجات‌دهنده‌ها</label><select id="saverCalSelect" class="select" style="width:100%"><option value="gregorian">ماه‌های میلادی</option><option value="persian">ماه‌های شمسی (جلالی)</option></select></div><div class="helper">با تغییر این گزینه، زنجیره‌ها، کسری‌ها و مصرف نجات‌دهنده‌ها در کل تاریخچه از نو محاسبه می‌شود.</div></div>
 </div></div>
 <div class="panel" id="easyModePanel"><div class="panelhead"><div><h3 data-no-i18n="1">⚡ حالت آسان</h3><div class="muted" data-no-i18n="1">نمایشی مینیمال برای ثبت سریع فعالیت‌ها — قابل شخصی‌سازی و پریست.</div></div></div><div id="easyModeConfig" data-no-i18n="1"></div></div>
@@ -613,7 +622,7 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='10';
+const APP_VERSION='10.1';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
@@ -1229,7 +1238,6 @@ function calendarMonthStart(dt){
 }
 function syncCalendarControls(){
   const cal=uiCal();
-  const tb=$('calToggleBtn');if(tb){tb.textContent=cal==='persian'?'🗓️ شمسی':'🗓️ میلادی';tb.title=cal==='persian'?'تقویم فعال: شمسی — کلیک کنید به میلادی تغییر کند':'تقویم فعال: میلادی — کلیک کنید به شمسی تغییر کند'}
   const cs=$('calSelect');if(cs)cs.value=cal;
 }
 function setUiCalendar(cal){
@@ -1244,7 +1252,6 @@ function setUiCalendar(cal){
   if(state){render()}
   toast(next==='persian'?'تقویم شمسی فعال شد 🗓️':'تقویم میلادی فعال شد 🗓️');
 }
-function toggleUiCalendar(){setUiCalendar(uiCal()==='persian'?'gregorian':'persian')}
 function applyI18n(){
   applyDirection();
   document.documentElement.setAttribute('lang','fa');
@@ -1404,6 +1411,7 @@ function applySidebarMode(){
   if(b)b.textContent=mode==='collapsed'?'☰':(document.documentElement.getAttribute('dir')==='rtl'?'▶':'◀');
 }
 function toggleSidebar(){
+  if(easyModeOn())return; /* v10.1: در حالت آسان سایدبار مخفی است — تاخل بی‌اثر */
   const collapsed=document.documentElement.getAttribute('data-sidebar')==='collapsed';
   i18nStore.set(SIDEBAR_KEY,collapsed?'open':'collapsed');
   applySidebarMode();
@@ -1942,7 +1950,7 @@ async function unlock(password){
   }
   throw new Error('The saved database format is invalid.');
 }
-function lock(){rememberTabPosition();state=null;cryptoKey=null;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('passwordInput').value='';$('loginError').textContent='';$('loginTitle').innerHTML=`Streak OS <span class="appVersion">v9</span>`;$('setupNotice').textContent='Enter the password used to unlock this vault.'}
+function lock(){rememberTabPosition();state=null;cryptoKey=null;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('passwordInput').value='';$('loginError').textContent='';$('loginTitle').innerHTML=`Streak OS <span class="appVersion">v${APP_VERSION}</span>`;$('setupNotice').textContent='Enter the password used to unlock this vault.'}
 function entryTotal(a,date){return state.entries.filter(e=>e.activityId===a.id&&e.date===date).reduce((s,e)=>s+Number(e.amount||0),0)}
 function entriesFor(a,date){return state.entries.filter(e=>e.activityId===a.id&&e.date===date).sort((x,y)=>String(y.createdAt).localeCompare(String(x.createdAt)))}
 function simulateTo(a,endDate){
@@ -3351,7 +3359,7 @@ $('localDbLoginBtn').onclick=async()=>{
 };
 $('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlockBtn').click()});$('lockBtn').onclick=lock;$('saveDefaultsBtn').onclick=saveDefaults;$('fType').onchange=()=>syncMeasurementTypeSelect('fType',$('fType').value,null);$('dType').onchange=()=>syncMeasurementTypeSelect('dType',$('dType').value,null);$('quickAddBtn').onclick=()=>openLog(null,selectedDate);$('prevDayBtn').onclick=()=>shiftSelectedDate(-1);$('nextDayBtn').onclick=()=>shiftSelectedDate(1);$('todayBtn').onclick=()=>setSelectedDate(todayKey());$('selectedDateInput').onchange=e=>{const v=dpParseInput(e.target,e.target.value);if(v)setSelectedDate(v);};
 $('addActivityBtn').onclick=()=>openActivityModal();$('addActivityBtn2').onclick=()=>openActivityModal();$('categoryFilter')?.addEventListener('change',()=>render());$('ruleSelectAll')?.addEventListener('change',e=>{if(!state)return;if(e.target.checked)state.activities.forEach(a=>selectedActivityIds.add(a.id));else selectedActivityIds.clear();syncRuleSelectionControls();});$('ruleDeleteSelected')?.addEventListener('click',()=>deleteActivities([...selectedActivityIds]));$('rulePermanentDeleteSelected')?.addEventListener('click',()=>permanentlyDeleteActivities([...selectedActivityIds]));$('resetTableViewBtn').onclick=()=>{state.viewSettings=defaultViewSettings();setPendingHistory('Reset table view');save().then(()=>{render();toast('Table view reset')})};$('saveActivityBtn').onclick=saveActivity;$('addEntryBtn').onclick=addEntry;$('lActivity').onchange=updateLogHint;$('lDate').onchange=updateLogHint;$('searchInput').oninput=()=>render();$('metricTypeSelect').onchange=e=>{analyticsMetricType=e.target.value;analyticsMetricUnit=availableUnits(analyticsMetricType)[0];renderAnalytics()};$('metricUnitSelect').onchange=e=>{analyticsMetricUnit=e.target.value;renderAnalytics()};
-$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('calToggleBtn')?.addEventListener('click',toggleUiCalendar);$('calSelect')?.addEventListener('change',e=>setUiCalendar(e.target.value));$('easyToggleBtn')?.addEventListener('click',()=>toggleEasyMode());$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
+$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('calSelect')?.addEventListener('change',e=>setUiCalendar(e.target.value));$('easyToggleBtn')?.addEventListener('click',()=>toggleEasyMode());$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
 /* v10 boot: easy mode attr, collapsible settings, category combobox */
 applyEasyMode();initSettingsCollapse();initCategoryCombo();
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showSection(b.dataset.section));
