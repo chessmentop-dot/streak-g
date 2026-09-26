@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Streak OS — ردیاب خصوصی و محلی عادت‌ها و زنجیره‌ها با تقویم شمسی و میلادی" />
 <meta name="theme-color" content="#090e1b" />
-<title>Streak OS — v10.1</title>
+<title>Streak OS — v10.2</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <style>
@@ -262,6 +262,14 @@ html[data-sidebar="collapsed"] .sidebar>*{display:none}
 .navtitle{display:flex;align-items:center;gap:6px}
 .navIco{font-style:normal;flex:0 0 auto;font-size:15px;line-height:1}
 @media(max-width:900px){html[data-sidebar="collapsed"] .sidebar{display:none}}
+/* ===== v10.2: collapsible topbar ===== */
+.topbarToggleBtn{flex:0 0 auto;margin:0}
+.topbar{transition:height .18s ease}
+html[data-topbar="collapsed"] .topbar{height:38px;min-height:38px;overflow:hidden}
+html[data-topbar="collapsed"] .toolbar{display:none}
+html[data-topbar="collapsed"] .brand h1{display:none}
+html[data-topbar="collapsed"] .brand .brandmark{width:24px;height:24px;font-size:13px;border-radius:8px}
+html[data-topbar="collapsed"] .sidebar{top:38px;height:calc(100vh - 38px)}
 /* ===== Cloud Sync UI ===== */
 .syncPill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 70%,transparent);font-size:12.5px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .2s,background .2s;white-space:nowrap}
 .syncPill:hover{border-color:var(--accent)}
@@ -374,19 +382,24 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 .catComboCreate{padding:8px 11px;margin-top:4px;border-top:1px solid var(--line);font-size:11px;color:#8df2c3;cursor:pointer;border-radius:9px}
 .catComboCreate:hover{background:rgba(45,204,138,.1)}
 .catComboEmpty{padding:12px;color:var(--muted);font-size:11px;text-align:center}
-/* ============ v10: collapsible settings panels ============ */
-#settings .panel .panelhead{cursor:pointer;user-select:none}
-#settings .panel .panelhead:hover{background:rgba(255,255,255,.022)}
-#settings .panel .panelhead .headActions{pointer-events:auto}
+/* ============ v10.2: collapsible panels (all sections) ============ */
+.section .panel > .panelhead{cursor:pointer;user-select:none}
+.section .panel > .panelhead:hover{background:rgba(255,255,255,.022)}
+.section .panel > .panelhead .headActions{pointer-events:auto}
 .settingsChevron{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-size:11px;flex:0 0 auto;transition:transform .22s ease,background .16s,color .16s}
-#settings .panel:not(.collapsed) .settingsChevron{transform:rotate(180deg);color:var(--text)}
-#settings .panel .panelhead:hover .settingsChevron{background:var(--panel3);color:var(--text)}
-#settings .panel .panelBody{display:grid;grid-template-rows:1fr;transition:grid-template-rows .26s ease}
-#settings .panel.collapsed .panelBody{grid-template-rows:0fr}
-#settings .panel .panelBodyInner{overflow:hidden;min-height:0}
-#settings .panel.collapsed .panelhead{border-bottom-color:transparent}
-#settings .panelhead .headRow{display:flex;align-items:center;gap:10px;min-width:0}
-#settings .panelhead .headRow>div:first-child{min-width:0}
+.section .panel:not(.collapsed) .settingsChevron{transform:rotate(180deg);color:var(--text)}
+.section .panel > .panelhead:hover .settingsChevron{background:var(--panel3);color:var(--text)}
+.panelBody{display:grid;grid-template-rows:1fr;transition:grid-template-rows .26s ease}
+.panel.collapsed > .panelBody{grid-template-rows:0fr}
+.panelBodyInner{overflow:hidden;min-height:0}
+.panel.collapsed > .panelhead{border-bottom-color:transparent}
+.panelhead .headRow{display:flex;align-items:center;gap:10px;min-width:0}
+.panelhead .headRow>div:first-child{min-width:0}
+/* v10.2: promoted heads (analytics chartMeta / heatmap head) */
+.panelhead.promotedHead{padding:12px 16px}
+.panelhead.promotedHead.chartMeta{margin-bottom:0}
+/* v10.2: easy mode always keeps the activity panel open */
+[data-easy="on"] #dashboard .panel > .panelBody{grid-template-rows:1fr !important}
 /* ============ v10: easy mode ============ */
 [data-easy="on"] .layout{grid-template-columns:minmax(0,1fr)}
 [data-easy="on"] .sidebar{display:none}
@@ -441,7 +454,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.1</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.2</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
     <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
@@ -465,10 +478,10 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 
 <div id="appView" class="hidden">
   <header class="topbar">
-    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.1</span></h1><small id="brandDate"></small></div></div>
+    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.2</span></h1><small id="brandDate"></small></div></div>
     <div class="toolbar">
       <div class="dateNav"><button class="smallbtn" id="prevDayBtn">←</button><button class="smallbtn" id="todayBtn">Today</button><input id="selectedDateInput" class="dateInput dpInput" type="text" autocomplete="off" data-dp="1" /><button class="smallbtn" id="nextDayBtn">→</button></div>
-      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
+      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button><button class="ghostbtn iconOnly topbarToggleBtn" id="topbarToggleBtn" type="button" data-no-iconify title="جمع/باز کردن نوار بالا">▴</button>
     </div>
   </header>
   <div class="layout">
@@ -622,7 +635,7 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='10.1';
+const APP_VERSION='10.2';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
@@ -1417,6 +1430,20 @@ function toggleSidebar(){
   applySidebarMode();
 }
 applySidebarMode();
+/* ================= v10.2: collapsible topbar ================= */
+const TOPBAR_KEY='streakos.ui.topbar';
+function applyTopbarMode(){
+  const c=i18nStore.get(TOPBAR_KEY)==='collapsed';
+  document.documentElement.setAttribute('data-topbar',c?'collapsed':'open');
+  const b=$('topbarToggleBtn');
+  if(b)b.textContent=c?'▾':'▴';
+}
+function toggleTopbar(){
+  const c=document.documentElement.getAttribute('data-topbar')==='collapsed';
+  i18nStore.set(TOPBAR_KEY,c?'open':'collapsed');
+  applyTopbarMode();
+}
+applyTopbarMode();
 /* extra FA patterns: standalone numbers, percentages, per-activity history subtitle */
 faPat(/^(\d+(?:\.\d+)?)$/,m=>`${m[1]}`);
 faPat(/^(\d+(?:\.\d+)?)%$/,m=>`${m[1]}٪`);
@@ -2138,7 +2165,7 @@ function render(){if(!state)return;__logCounts={};state.entries.forEach(e=>{__lo
  const stats=state.activities.filter(a=>activityIsActiveOnDate(a,selectedDate)).map(a=>({a,st:activityStats(a,selectedDate)}));const daySum=daySummary(selectedDate);if($('dayTrophy')){$('dayTrophy').innerHTML=daySum.trophy?'<div class="trophyEmoji" title="Trophy day: every applicable activity completed">🏆</div>':'';$('dayTrophy').classList.toggle('show',daySum.trophy)}const done=stats.filter(x=>x.st.today?.status==='full').length;const partial=stats.filter(x=>x.st.today?.status==='partial').length;const warn=stats.filter(x=>{const cfg=activityConfigForResult(x.a,x.st.today);return ['skip','partial'].includes(x.st.today?.status)&&x.st.saversLeft<=Math.max(1,Math.ceil((Number(cfg.savers)||0)/3));}).length;const broken=stats.filter(x=>x.st.today?.broken).length;const streaks=stats.filter(x=>x.st.current>0).length;
  $('statGrid').innerHTML=`<div class="stat"><div class="label">Completed</div><div class="value">${done}/${stats.length}</div><div class="sub">full target reached</div></div><div class="stat"><div class="label">Partial</div><div class="value">${partial}</div><div class="sub">streak advanced</div></div><div class="stat"><div class="label">Active streaks</div><div class="value">${streaks}</div><div class="sub">current streak &gt; 0</div></div><div class="stat"><div class="label">Warnings</div><div class="value">${warn+broken}</div><div class="sub">saver pressure / breaks</div></div>`;
  $('activityCount').textContent=`${stats.length} activities · selected date ${selectedLabel}`;$('activityRuleCount').textContent=`${stats.length} rules`;
- renderActivityCategoryControls();renderList(stats,$('searchInput').value.trim(),$('activityList'),true,$('categoryFilter')?.value||'');renderRuleList(stats,$('activityList2'));renderTableConfig();renderChangeHistory();if($('history').classList.contains('active'))renderHistory();if($('analytics').classList.contains('active'))renderAnalytics();if($('settings').classList.contains('active'))renderSettings();applyGlobalTooltips();iconifyButtons();}
+ renderActivityCategoryControls();renderList(stats,$('searchInput').value.trim(),$('activityList'),true,$('categoryFilter')?.value||'');renderRuleList(stats,$('activityList2'));renderTableConfig();renderChangeHistory();if($('history').classList.contains('active'))renderHistory();if($('analytics').classList.contains('active'))renderAnalytics();if($('settings').classList.contains('active'))renderSettings();initPanelCollapse();applyGlobalTooltips();iconifyButtons();}
 function renderList(stats,query,el,quick,category=''){
   let arr=stats.filter(x=>{const cfg=activityConfigForResult(x.a,x.st?.today);return String(cfg.name||'').toLowerCase().includes(query.toLowerCase())&&(!category||String(cfg.category||'Uncategorized')===category)});
   arr=sortActivities(arr);
@@ -2273,41 +2300,72 @@ function renderEasySettings(){
   };
 }
 
-/* ================= v10: collapsible settings panels ================= */
+/* ================= v10.2: collapsible panels — every section ================= */
 const SETTINGS_COLLAPSE_KEY='streakos.settings.collapsed.v1';
 function settingsCollapseState(){try{const raw=i18nStore.get(SETTINGS_COLLAPSE_KEY);const o=JSON.parse(raw||'{}');return (o&&typeof o==='object')?o:{}}catch(e){return{}}}
-function settingsPanelId(p){if(p.id)return p.id;const list=[...document.querySelectorAll('#settings .panel')];return 'sp'+list.indexOf(p)}
-function applySettingsCollapse(){const st=settingsCollapseState();document.querySelectorAll('#settings .panel').forEach(p=>{p.classList.toggle('collapsed',st[settingsPanelId(p)]===undefined?true:!!st[settingsPanelId(p)])})}
+function settingsPanelId(p){
+  if(p.id)return p.id;
+  const sec=p.closest('.section');
+  const list=sec?[...sec.querySelectorAll('.panel')]:[...document.querySelectorAll('.section .panel')];
+  const idx=list.indexOf(p);
+  if(sec&&sec.id==='settings')return 'sp'+idx; /* legacy v10 keys */
+  return (sec?sec.id:'sec')+'-p'+idx;
+}
+function applySettingsCollapse(){const st=settingsCollapseState();document.querySelectorAll('.section .panel').forEach(p=>{p.classList.toggle('collapsed',st[settingsPanelId(p)]===undefined?true:!!st[settingsPanelId(p)])})}
 function expandSettingsPanel(idOrEl){
   const p=typeof idOrEl==='string'?$(idOrEl):idOrEl;if(!p)return;
   if(p.classList.contains('collapsed')){p.classList.remove('collapsed');const st=settingsCollapseState();st[settingsPanelId(p)]=false;i18nStore.set(SETTINGS_COLLAPSE_KEY,JSON.stringify(st))}
   try{p.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
 }
-function initSettingsCollapse(){
-  document.querySelectorAll('#settings .panel').forEach(p=>{
-    if(p.dataset.collapseInit)return;p.dataset.collapseInit='1';
-    const head=p.querySelector(':scope > .panelhead');if(!head)return;
-    const body=document.createElement('div');body.className='panelBody';
-    const inner=document.createElement('div');inner.className='panelBodyInner';
-    while(head.nextSibling)inner.appendChild(head.nextSibling);
-    body.appendChild(inner);p.appendChild(body);
-    const chev=document.createElement('span');chev.className='settingsChevron';chev.setAttribute('aria-hidden','true');chev.textContent='▾';
-    head.appendChild(chev);
+function initPanelCollapse(){
+  document.querySelectorAll('.section .panel').forEach(p=>{
+   try{
+    let head=p.querySelector(':scope > .panelhead');
+    if(!head||head.classList.contains('promotedHead')){
+      /* analytics shells: promote the injected header out of the host to act as panel head.
+         A fresh candidate only exists right after a re-render — otherwise keep the current head. */
+      const body=p.querySelector(':scope > .panelBody');
+      const host=body?body.querySelector(':scope > .panelBodyInner > *'):p.firstElementChild;
+      let cand=null;
+      if(host){
+        if(host.id==='activityHeatmapPanel')cand=host.querySelector(':scope > .panelhead');
+        else if(host.id==='timelinePanel'||host.id==='dayDetailPanel')cand=host.querySelector(':scope > .chartBox > .chartMeta');
+      }
+      if(cand){
+        p.querySelectorAll(':scope > .panelhead.promotedHead').forEach(h=>h.remove());
+        p.insertBefore(cand,body||host);
+        cand.classList.add('promotedHead','panelhead');
+        head=cand;
+      }
+    }
+    if(!head)return;
+    if(!p.querySelector(':scope > .panelBody')){
+      const bodyEl=document.createElement('div');bodyEl.className='panelBody';
+      const inner=document.createElement('div');inner.className='panelBodyInner';
+      while(head.nextSibling)inner.appendChild(head.nextSibling);
+      bodyEl.appendChild(inner);p.appendChild(bodyEl);
+    }
+    if(!head.querySelector(':scope > .settingsChevron')){
+      const chev=document.createElement('span');chev.className='settingsChevron';chev.setAttribute('aria-hidden','true');chev.textContent='▾';
+      head.appendChild(chev);
+    }
+    if(!head.dataset.headInit){
+      head.dataset.headInit='1';
+      head.addEventListener('click',e=>{
+        if(e.target.closest('button,input,select,a,textarea,label,.toggle,[data-collapsible-ignore]'))return;
+        const pp=head.closest('.panel');if(!pp)return;
+        const st=settingsCollapseState();
+        const willCollapse=!pp.classList.contains('collapsed');
+        st[settingsPanelId(pp)]=willCollapse;
+        i18nStore.set(SETTINGS_COLLAPSE_KEY,JSON.stringify(st));
+        pp.classList.toggle('collapsed',willCollapse);
+      });
+    }
+   }catch(err){try{diag('Panel collapse init failed',err?.message||String(err))}catch(e){}}
   });
   applySettingsCollapse();
-  document.querySelectorAll('#settings .panel > .panelhead').forEach(head=>{
-    if(head.dataset.headInit)return;head.dataset.headInit='1';
-    head.addEventListener('click',e=>{
-      if(e.target.closest('button,input,select,a,textarea,label,.toggle,[data-collapsible-ignore]'))return;
-      const p=head.closest('.panel');if(!p)return;
-      const st=settingsCollapseState();
-      const willCollapse=!p.classList.contains('collapsed');
-      st[settingsPanelId(p)]=willCollapse;
-      i18nStore.set(SETTINGS_COLLAPSE_KEY,JSON.stringify(st));
-      p.classList.toggle('collapsed',willCollapse);
-    });
-  });
 }
+function initSettingsCollapse(){initPanelCollapse()} /* legacy alias */
 
 /* ================= v10: category combobox (real dropdown) ================= */
 let __catComboOpen=false;
@@ -2466,6 +2524,7 @@ function completionColor(ratio){
   const t=(r-a[0])/(b[0]-a[0]);
   const rgb=a.slice(1).map((v,i)=>Math.round(v+(b[i+1]-v)*t));
   return `rgb(${rgb.join(',')})`;
+initPanelCollapse();
 }
 let historyDetailDate=null,ahFilterAct='',ahFilterCat='';
 function renderHistoryDayDetail(date){
@@ -2605,14 +2664,15 @@ function metricAxisValue(v){return analyticsMetricType==='time'?v/60:v}
 function analyticsDays(){const end=selectedDate,start=new Date(end+'T12:00:00');start.setDate(start.getDate()-(analyticsRange-1));return dateList(keyFromDate(start),end)}
 function themeChartPalette(){const cs=getComputedStyle(document.documentElement);const out=[];['--accent','--accent2','--info','--green','--yellow','--orange','--red'].forEach(v=>{const val=(cs.getPropertyValue(v)||'').trim();if(val&&val!=='undefined'&&!out.includes(val))out.push(val)});if(!out.length)out.push('#7b5cff');return out}
 function themeChartColor(i){const p=themeChartPalette();return p[((i%p.length)+p.length)%p.length]}
-function timelineSvg(days,acts){const width=Math.max(820,days.length*30+70),height=300,left=48,right=16,top=20,bottom=42,chartH=height-top-bottom,plotW=width-left-right;const vals=days.map(d=>acts.reduce((s,a)=>s+metricValueFor(a,d),0));const max=Math.max(1,...vals);const step=plotW/days.length;let svg=`<svg class="chartSvg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">`;for(let i=0;i<=4;i++){const y=top+chartH-(chartH*i/4);svg+=`<line x1="${left}" y1="${y}" x2="${width-right}" y2="${y}" class="gridLine"/><text x="${left-7}" y="${y+3}" text-anchor="end" class="axisLabel">${metricAxisValue(max*i/4).toFixed(1)}</text>`}days.forEach((d,i)=>{const v=vals[i],bh=(v/max)*chartH,bw=Math.max(4,step*0.65),x=left+i*step+(step-bw)/2,y=top+chartH-bh,selected=d===analyticsSelectedDate;svg+=`<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(2,bh)}" rx="5" class="bar ${selected?'selected':''}" fill="${selected?'var(--text)':'var(--accent)'}" opacity="${selected?'0.95':'0.72'}" data-chart-date="${d}"/><text x="${x+bw/2}" y="${height-17}" text-anchor="middle" class="axisLabel" transform="rotate(-55 ${x+bw/2} ${height-17})">${new Date(d+'T12:00:00').toLocaleDateString(uiLocale(),{month:'numeric',day:'numeric'})}</text>`});const avgV=vals.reduce((s,v)=>s+v,0)/(vals.length||1);if(avgV>0){const ay=top+chartH-(avgV/max)*chartH;svg+=`<line x1="${left}" y1="${ay.toFixed(1)}" x2="${width-right}" y2="${ay.toFixed(1)}" stroke="#8fa0c5" stroke-width="1.2" stroke-dasharray="5 4" opacity=".55"/><text x="${left+6}" y="${(ay-5).toFixed(1)}" text-anchor="start" class="axisLabel">${tt('avg')} ${uiLang()==='fa'?faNumStr(metricAxisValue(avgV).toFixed(1)):metricAxisValue(avgV).toFixed(1)}</text>`};svg+='</svg>';return{svg,width}}
+function timelineSvg(days,acts){const width=Math.max(820,days.length*30+70),height=300,left=48,right=16,top=20,bottom=42,chartH=height-top-bottom,plotW=width-left-right;const vals=days.map(d=>acts.reduce((s,a)=>s+metricValueFor(a,d),0));const max=Math.max(1,...vals);const step=plotW/days.length;let svg=`<svg class="chartSvg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">`;for(let i=0;i<=4;i++){const y=top+chartH-(chartH*i/4);svg+=`<line x1="${left}" y1="${y}" x2="${width-right}" y2="${y}" class="gridLine"/><text x="${left-7}" y="${y+3}" text-anchor="end" class="axisLabel">${metricAxisValue(max*i/4).toFixed(1)}</text>`}days.forEach((d,i)=>{const v=vals[i],bh=(v/max)*chartH,bw=Math.max(4,step*0.65),x=left+i*step+(step-bw)/2,y=top+chartH-bh,selected=d===analyticsSelectedDate;svg+=`<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(2,bh)}" rx="5" class="bar ${selected?'selected':''}" fill="${selected?'var(--text)':'var(--accent)'}" opacity="${selected?'0.95':'0.72'}" data-chart-date="${d}"/><text x="${x+bw/2}" y="${height-17}" text-anchor="middle" class="axisLabel" transform="rotate(-55 ${x+bw/2} ${height-17})">${new Date(d+'T12:00:00').toLocaleDateString(uiLocale(),{month:'numeric',day:'numeric'})}</text>`});const avgV=vals.reduce((s,v)=>s+v,0)/(vals.length||1);if(avgV>0){const ay=top+chartH-(avgV/max)*chartH;svg+=`<line x1="${left}" y1="${ay.toFixed(1)}" x2="${width-right}" y2="${ay.toFixed(1)}" stroke="#8fa0c5" stroke-width="1.2" stroke-dasharray="5 4" opacity=".55"/><text x="${left+6}" y="${(ay-5).toFixed(1)}" text-anchor="start" class="axisLabel">${faSvgTxt(tt('avg')+' '+(uiLang()==='fa'?faNumStr(metricAxisValue(avgV).toFixed(1)):metricAxisValue(avgV).toFixed(1)))}</text>`};svg+='</svg>';return{svg,width}}
 function renderAnalytics(){if(!state)return;renderAnalyticsControls();renderActivityHeatmap();renderAnalyticsKpis();const acts=metricActivities(),days=analyticsDays();$('timelinePanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">Daily timeline · ${esc(analyticsMetricType)}${analyticsMetricType==='time'?' (hours)':''}</div><div class="chartSub">Click a day to drill down. ${acts.length} activities in this metric group.</div></div><div class="pill ${acts.length?'green':'danger'}">${analyticsRange} days</div></div>${acts.length?`<div class="svgWrap">${timelineSvg(days,acts).svg}</div>`:'<div class="chartEmpty">No activities match this metric.</div>'}</div>`;
- $('timelinePanel').querySelectorAll('[data-chart-date]').forEach(el=>el.addEventListener('click',()=>{analyticsSelectedDate=el.dataset.chartDate;renderAnalytics()}));renderAnalyticsDayDetail(acts);renderMetricCharts();}
+ $('timelinePanel').querySelectorAll('[data-chart-date]').forEach(el=>el.addEventListener('click',()=>{analyticsSelectedDate=el.dataset.chartDate;renderAnalytics()}));renderAnalyticsDayDetail(acts);renderMetricCharts();initPanelCollapse();}
 function renderAnalyticsDayDetail(acts){const date=analyticsSelectedDate;const activeActs=acts.map(a=>({a,v:metricValueFor(a,date)})).filter(x=>x.v>0);if(!activeActs.length){$('dayDetailPanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">${fmtDate(date)}</div><div class="chartSub">No ${esc(analyticsMetricType)} activity logged on this day.</div></div></div><div class="chartEmpty">Select another day in the timeline.</div></div>`;return}
- const total=activeActs.reduce((s,x)=>s+x.v,0),W=760,H=260,left=70,right=35,barX=280,barW=160,top=32,barH=180;let y=top,parts='';activeActs.forEach((x,xi)=>{const h=barH*(x.v/total);parts+=`<rect x="${barX}" y="${y}" width="${barW}" height="${h}" fill="${themeChartColor(xi)}" opacity=".9"/><text x="${barX+barW+12}" y="${y+h/2+4}" fill="var(--text)" font-size="11" data-no-i18n="1">${esc(x.a.name)} · ${metricDisplay(x.v)}</text>`;y+=h});const svg=`<svg class="stackSvg" viewBox="0 0 ${W} ${H}"><text x="${left}" y="21" fill="var(--muted)" font-size="10">${esc(date)}</text><rect x="${barX}" y="${top}" width="${barW}" height="${barH}" rx="8" fill="var(--panel3)"/>${parts}<text x="${barX+barW/2}" y="${H-16}" text-anchor="middle" fill="var(--muted)" font-size="10">Total · ${metricDisplay(total)}</text></svg>`;
+ const total=activeActs.reduce((s,x)=>s+x.v,0),W=760,H=260,left=70,right=35,barX=280,barW=160,top=32,barH=180;let y=top,parts='';activeActs.forEach((x,xi)=>{const h=barH*(x.v/total);parts+=`<rect x="${barX}" y="${y}" width="${barW}" height="${h}" fill="${themeChartColor(xi)}" opacity=".9"/><text x="${barX+barW+12}" y="${y+h/2+4}" fill="var(--text)" font-size="11" data-no-i18n="1">${esc(faSvgTxt(x.a.name+' · '+metricDisplay(x.v)))}</text>`;y+=h});const svg=`<svg class="stackSvg" viewBox="0 0 ${W} ${H}"><text x="${left}" y="21" fill="var(--muted)" font-size="10">${esc(date)}</text><rect x="${barX}" y="${top}" width="${barW}" height="${barH}" rx="8" fill="var(--panel3)"/>${parts}<text x="${barX+barW/2}" y="${H-16}" text-anchor="middle" fill="var(--muted)" font-size="10">${tt('Total')} · ${esc(faSvgTxt(metricDisplay(total)))}</text></svg>`;
  $('dayDetailPanel').innerHTML=`<div class="chartBox"><div class="chartMeta"><div><div class="chartTitle">${fmtDate(date)} · stacked detail</div><div class="chartSub">Activities are stacked within the selected metric/unit.</div></div><div class="pill green">${activeActs.length} active</div></div><div class="dayInsight"><div class="stackCard">${svg}</div><div class="stackCard"><h4>Day breakdown</h4><div>${activeActs.sort((a,b)=>b.v-a.v).map(x=>`<div class="entryRow"><span data-no-i18n="1">${esc(x.a.name)}</span><strong>${metricDisplay(x.v)}</strong></div>`).join('')}</div></div></div></div>`}
 function renderMetricCharts(){const sections=(state.measurementTypes||[]).map(t=>t.id).filter(t=>state.activities.some(a=>a.type===t));const host=$('metricTables');if(!host)return;const html=sections.map(type=>renderMetricChartsSection(type)).join('');host.innerHTML=html||''}
-function shortQty(type,v){const n=Number(v||0);if(type==='time'){const t=Math.round(n),h=Math.floor(t/60),m=t%60;if(uiLang()==='fa')return h?`${faNumStr(h)}س${m?` ${faNumStr(m)}د`:''}`:`${faNumStr(m)}د`;return h?`${h}h${m?` ${m}m`:''}`:`${m}m`}const s=Math.abs(n-Math.round(n))<0.05?String(Math.round(n)):String(Math.round(n*10)/10);return uiLang()==='fa'?faNumStr(s):s}
+function faSvgTxt(s){return uiLang()==='fa'?('\u2067'+String(s)+'\u2069'):String(s)}
+function shortQty(type,v){const n=Number(v||0);if(type==='time'){const t=Math.round(n),h=Math.floor(t/60),m=t%60;if(uiLang()==='fa')return h?`${faNumStr(h)}س${m?`${faNumStr(m)}د`:''}`:`${faNumStr(m)}د`;return h?`${h}h${m?` ${m}m`:''}`:`${m}m`}const s=Math.abs(n-Math.round(n))<0.05?String(Math.round(n)):String(Math.round(n*10)/10);return uiLang()==='fa'?faNumStr(s):s}
 function kpiSparkline(vals,color){const W=132,H=30,n=vals.length;if(n<2)return `<svg class="kpiSpark" viewBox="0 0 ${W} ${H}" style="width:100%;height:30px;display:block"></svg>`;const max=Math.max(...vals,1),step=W/(n-1);let line='';vals.forEach((v,i)=>{line+=(i?'L':'M')+(i*step).toFixed(1)+' '+(H-3-(H-8)*(v/max)).toFixed(1)+' '});const area=line+`L ${W} ${H} L 0 ${H} Z`;return `<svg class="kpiSpark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:30px;display:block"><path d="${area}" fill="${color}" opacity=".16"/><path d="${line}" fill="none" stroke="${color}" stroke-width="1.6" opacity=".85"/></svg>`}
 function kpiRing(pct,color){const r=15,c=2*Math.PI*r,off=c*(1-Math.max(0,Math.min(1,pct)));return `<svg viewBox="0 0 40 40" style="width:34px;height:34px;display:block;flex:0 0 auto"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#22304e" stroke-width="5"/><circle cx="20" cy="20" r="${r}" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 20 20)"/></svg>`}
 function renderAnalyticsKpis(){const host=$('analyticsKpis');if(!host)return;if(!state||!state.activities.length){host.innerHTML='';return}const acts=metricActivities();if(!acts.length){host.innerHTML='';return}const FA=uiLang()==='fa';const num=n=>FA?faNumStr(String(n)):String(n);const days=analyticsDays();const vals=days.map(d=>acts.reduce((s,a)=>s+metricValueFor(a,d),0));const total=vals.reduce((s,v)=>s+v,0);const activeDays=vals.filter(v=>v>0).length;const maxV=vals.length?Math.max(...vals):0;const bestIdx=vals.indexOf(maxV);const bestDate=maxV>0?days[bestIdx]:null;const avg=days.length?total/days.length:0;const pEnd=new Date(days[0]+'T12:00:00');pEnd.setDate(pEnd.getDate()-1);const pStart=new Date(pEnd.getTime());pStart.setDate(pStart.getDate()-(days.length-1));const prevDays=dateList(keyFromDate(pStart),keyFromDate(pEnd));const prevTotal=prevDays.reduce((s,d)=>s+acts.reduce((x,a)=>x+metricValueFor(a,d),0),0);let deltaPct=null;if(prevTotal>0)deltaPct=Math.round((total-prevTotal)/prevTotal*100);else if(total>0)deltaPct=100;const fmt=v=>fmtQtyFor(analyticsMetricType,analyticsMetricUnit,v);const cls=deltaPct===null||deltaPct===0?'kpiFlat':deltaPct>0?'kpiUp':'kpiDown';const deltaTxt=deltaPct===null?'—':`${deltaPct>0?'▲':deltaPct<0?'▼':'■'} ${num(Math.abs(deltaPct))}%`;const cons=days.length?Math.round(activeDays/days.length*100):0;const ringCol=cons>=80?'#2dcc8a':cons>=50?'#f5c957':'#ff5f6e';const accent=(getComputedStyle(document.documentElement).getPropertyValue('--accent')||'#7b5cff').trim();host.innerHTML=[
@@ -2637,7 +2697,7 @@ function renderMetricChartsSection(type){
     const rankMax=Math.max(1,...rank.map(x=>x.v));
     const rankHtml=rank.map(x=>`<div class="hbarRow"><div class="hbarName" data-no-i18n="1" title="${esc(x.a.name)}">${esc(x.a.name)}</div><div class="hbarTrack"><div class="hbarFill" style="width:${Math.max(2,x.v/rankMax*100).toFixed(1)}%;background:linear-gradient(90deg,${col(x)},color-mix(in srgb,${col(x)} 55%,#000))"></div></div><div class="hbarVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</div></div>`).join('');
     const segs=rank.filter(x=>x.v>0);const R=52,CIRC=2*Math.PI*R;let accD=0;
-    const donut=segs.length?`<svg viewBox="0 0 140 140" style="width:140px;height:140px;flex:0 0 auto"><g transform="rotate(-90 70 70)">${segs.map(x=>{const dash=(x.v/grand*CIRC).toFixed(1);const off=(accD*CIRC).toFixed(1);accD+=x.v/grand;return `<circle cx="70" cy="70" r="${R}" fill="none" stroke="${col(x)}" stroke-width="17" stroke-dasharray="${dash} ${CIRC.toFixed(1)}" stroke-dashoffset="-${off}" opacity=".92"/>`}).join('')}</g><text x="70" y="67" text-anchor="middle" fill="var(--text)" font-size="12.5" font-weight="800">${esc(shortQty(type,gTotal))}</text><text x="70" y="83" text-anchor="middle" fill="var(--muted)" font-size="8.5">${type==='time'?'':esc(tt(String(g.unit)))}</text></svg>`:'';
+    const donut=segs.length?`<svg viewBox="0 0 140 140" style="width:140px;height:140px;flex:0 0 auto"><g transform="rotate(-90 70 70)">${segs.map(x=>{const dash=(x.v/grand*CIRC).toFixed(1);const off=(accD*CIRC).toFixed(1);accD+=x.v/grand;return `<circle cx="70" cy="70" r="${R}" fill="none" stroke="${col(x)}" stroke-width="17" stroke-dasharray="${dash} ${CIRC.toFixed(1)}" stroke-dashoffset="-${off}" opacity=".92"/>`}).join('')}</g><text x="70" y="67" text-anchor="middle" fill="var(--text)" font-size="12.5" font-weight="800">${esc(faSvgTxt(shortQty(type,gTotal)))}</text><text x="70" y="83" text-anchor="middle" fill="var(--muted)" font-size="8.5">${type==='time'?'':esc(faSvgTxt(tt(String(g.unit))))}</text></svg>`:'';
     const legend=rank.map(x=>`<div class="donutLegendRow"><span class="donutDot" style="background:${col(x)}"></span><span data-no-i18n="1" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x.a.name)}</span><span class="dlVal">${fmt(x.v)} · ${num(Math.round(x.v/grand*100))}%</span></div>`).join('');
     const dowOrder=FA?[6,0,1,2,3,4,5]:[1,2,3,4,5,6,0];const dowLetters=FA?J_DOW_FA:DP_DOWS_EN;
     const buckets=dowOrder.map(()=>({sum:0,n:0}));
@@ -2651,7 +2711,7 @@ function renderMetricChartsSection(type){
     const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
     const area=line+` L ${(P+(cum.length-1)*step).toFixed(1)} ${H-P} L ${P} ${H-P} Z`;
     const accent=(getComputedStyle(document.documentElement).getPropertyValue('--accent')||'#7b5cff').trim();
-    const cumSvg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:120px;display:block"><path d="${area}" fill="${accent}" opacity=".14"/><path d="${line}" fill="none" stroke="${accent}" stroke-width="2"/><text x="${P}" y="12" fill="var(--muted)" font-size="9">${esc(fmt(gTotal))}</text></svg>`;
+    const cumSvg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:120px;display:block"><path d="${area}" fill="${accent}" opacity=".14"/><path d="${line}" fill="none" stroke="${accent}" stroke-width="2"/><text x="${P}" y="12" fill="var(--muted)" font-size="9">${esc(faSvgTxt(fmt(gTotal)))}</text></svg>`;
     return `<div class="panel"><div class="panelhead"><div><h3>📊 ${esc(tt(measurementTypeName(type)))} · ${esc(tt(String(g.unit)))}</h3><div class="muted">${FA?`${num(g.acts.length)} فعالیت · ${num(days.length)} روز اخیر`:`${num(g.acts.length)} activities · last ${num(days.length)} days`}</div></div><div class="pill green">∑ ${esc(fmt(gTotal))}</div></div><div class="metricSection"><div class="chartGrid2">
     <div class="chartCard"><h5>🏆 ${tt('Activity totals')}</h5>${rankHtml}</div>
     <div class="chartCard"><h5>🥧 ${tt('Share of total')}</h5><div class="donutWrap">${donut}<div class="donutLegend">${legend}</div></div></div>
@@ -3359,7 +3419,7 @@ $('localDbLoginBtn').onclick=async()=>{
 };
 $('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlockBtn').click()});$('lockBtn').onclick=lock;$('saveDefaultsBtn').onclick=saveDefaults;$('fType').onchange=()=>syncMeasurementTypeSelect('fType',$('fType').value,null);$('dType').onchange=()=>syncMeasurementTypeSelect('dType',$('dType').value,null);$('quickAddBtn').onclick=()=>openLog(null,selectedDate);$('prevDayBtn').onclick=()=>shiftSelectedDate(-1);$('nextDayBtn').onclick=()=>shiftSelectedDate(1);$('todayBtn').onclick=()=>setSelectedDate(todayKey());$('selectedDateInput').onchange=e=>{const v=dpParseInput(e.target,e.target.value);if(v)setSelectedDate(v);};
 $('addActivityBtn').onclick=()=>openActivityModal();$('addActivityBtn2').onclick=()=>openActivityModal();$('categoryFilter')?.addEventListener('change',()=>render());$('ruleSelectAll')?.addEventListener('change',e=>{if(!state)return;if(e.target.checked)state.activities.forEach(a=>selectedActivityIds.add(a.id));else selectedActivityIds.clear();syncRuleSelectionControls();});$('ruleDeleteSelected')?.addEventListener('click',()=>deleteActivities([...selectedActivityIds]));$('rulePermanentDeleteSelected')?.addEventListener('click',()=>permanentlyDeleteActivities([...selectedActivityIds]));$('resetTableViewBtn').onclick=()=>{state.viewSettings=defaultViewSettings();setPendingHistory('Reset table view');save().then(()=>{render();toast('Table view reset')})};$('saveActivityBtn').onclick=saveActivity;$('addEntryBtn').onclick=addEntry;$('lActivity').onchange=updateLogHint;$('lDate').onchange=updateLogHint;$('searchInput').oninput=()=>render();$('metricTypeSelect').onchange=e=>{analyticsMetricType=e.target.value;analyticsMetricUnit=availableUnits(analyticsMetricType)[0];renderAnalytics()};$('metricUnitSelect').onchange=e=>{analyticsMetricUnit=e.target.value;renderAnalytics()};
-$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('calSelect')?.addEventListener('change',e=>setUiCalendar(e.target.value));$('easyToggleBtn')?.addEventListener('click',()=>toggleEasyMode());$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
+$('addMeasurementTypeBtn')?.addEventListener('click',addMeasurementType);$('themePreset')?.addEventListener('change',()=>{updateThemeLive();renderThemeControls();});['uiFontScale','uiRadius','uiDensity','uiGlow','uiSidebarW','uiAccent','uiAccent2','uiBg','uiPanel','uiText','uiLine','uiCard','uiInfo'].forEach(id=>$(id)?.addEventListener('input',()=>{if($('themePreset'))$('themePreset').value='custom';updateThemeLive();}));$('applyThemeBtn')?.addEventListener('click',()=>{setPendingHistory('Save appearance');return save().then(()=>toast('Appearance saved 🎨')).catch(e=>diag('Theme save failed',e?.message||String(e)))});$('resetAppearanceBtn')?.addEventListener('click',resetAppearanceOnly);$('connectJsonDbBtn')?.addEventListener('click',connectJsonDatabase);$('newJsonDbBtn')?.addEventListener('click',createJsonDatabase);$('saveJsonDbBtn')?.addEventListener('click',()=>writeJsonDbNow().then(()=>toast('JSON database saved 💾')).catch(e=>toast(e?.message||'Save failed')));$('disconnectJsonDbBtn')?.addEventListener('click',disconnectJsonDatabase);$('jsonDbPassword')?.addEventListener('input',e=>{$('passwordInput').dataset.dbPassword=e.target.value});$('jsonDbEncryption')?.addEventListener('change',e=>setJsonDbEncryption(e.target.checked));$('saveAllSettingsBtn')?.addEventListener('click',saveAllSettings);$('savePresetBtn')?.addEventListener('click',savePreset);$('applyPresetBtn')?.addEventListener('click',applyPreset);$('deletePresetBtn')?.addEventListener('click',deletePreset);$('clearDataBtn')?.addEventListener('click',resetInformationOnly);$('clearSettingsBtn')?.addEventListener('click',resetSettingsOnly);$('calSelect')?.addEventListener('change',e=>setUiCalendar(e.target.value));$('easyToggleBtn')?.addEventListener('click',()=>toggleEasyMode());$('sidebarToggleBtn')?.addEventListener('click',toggleSidebar);$('topbarToggleBtn')?.addEventListener('click',toggleTopbar);$('saverCalSelect')?.addEventListener('change',e=>{if(!state)return;normalizeUi(state);state.viewSettings.ui.saverCal=e.target.value==='persian'?'persian':'gregorian';setPendingHistory('Change saver reset calendar');save().then(()=>{render();toast('Saver reset calendar saved 🗓️')}).catch(err=>diag('Saver calendar save failed',err?.message||String(err)))});$('exportHistoryJsonBtn')?.addEventListener('click',exportHistoryJson);$('exportHistoryCsvBtn')?.addEventListener('click',exportHistoryCsv);$('diagCopyApp')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied')}catch(e){diag('App log copy failed',e?.message||String(e))}});$('diagClearApp')?.addEventListener('click',()=>{__diag.length=0;diag('Application diagnostic log cleared')});
 /* v10 boot: easy mode attr, collapsible settings, category combobox */
 applyEasyMode();initSettingsCollapse();initCategoryCombo();
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showSection(b.dataset.section));
