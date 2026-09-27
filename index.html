@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Streak OS — ردیاب خصوصی و محلی عادت‌ها و زنجیره‌ها با تقویم شمسی و میلادی" />
 <meta name="theme-color" content="#090e1b" />
-<title>Streak OS — v10.2</title>
+<title>Streak OS — v10.2.1</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <style>
@@ -102,7 +102,7 @@ button{cursor:pointer;border:0}
 .login{min-height:100vh;display:grid;place-items:center;padding:24px}.loginCard{width:min(460px,100%);padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.45)}.loginLogo{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:25px;margin-bottom:18px}.login h2{margin:0 0 7px;font-size:24px}.login p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.passwordBox{display:flex;gap:8px;margin-top:17px}.passwordBox input{flex:1;background:var(--panel3);color:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}.toast{position:fixed;right:22px;bottom:22px;z-index:150;background:var(--panel2);color:#fff;border:1px solid #334263;padding:11px 14px;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.35);font-size:11px;transform:translateY(20px);opacity:0;pointer-events:none;transition:.2s}.toast.show{transform:translateY(0);opacity:1}
 
 @media(max-width:1180px){.activity-head,.activity{grid-template-columns:minmax(180px,1.35fr) 80px minmax(220px,1.5fr) 125px 105px}.quickInput{width:72px}.grid{grid-template-columns:repeat(2,1fr)}.dayInsight{grid-template-columns:1fr}}
-@media(max-width:900px){.topbar{height:auto;min-height:76px;padding:12px 16px;gap:10px;flex-wrap:wrap}.brand{min-width:auto}.toolbar{width:100%;min-width:0;justify-content:flex-start}.dateNav{flex:1 1 260px;min-width:0}.dateInput{flex:1;width:auto}.layout{grid-template-columns:1fr}.sidebar{position:static;height:auto;overflow:visible;padding:12px 16px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.nav{flex-direction:row;overflow:auto}.nav button{white-space:nowrap}.content{padding:18px 16px 40px}.activity-head{display:none}.activity{grid-template-columns:1fr;padding:14px}.rowbtn{justify-content:flex-start}.quickLogBtn{flex:0 0 40px}.hero{align-items:flex-start;flex-direction:column}}
+@media(max-width:900px){.topbar{height:auto;min-height:76px;padding:12px 16px;gap:10px;flex-wrap:wrap}.brand{min-width:auto}.toolbar{width:100%;min-width:0;justify-content:flex-start;order:2}.dateNav{flex:1 1 260px;min-width:0}.dateInput{flex:1;width:auto}.layout{grid-template-columns:1fr}.sidebar{position:static;height:auto;overflow:visible;padding:12px 16px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.nav{flex-direction:row;overflow:auto}.nav button{white-space:nowrap}.content{padding:18px 16px 40px}.activity-head{display:none}.activity{grid-template-columns:1fr;padding:14px}.rowbtn{justify-content:flex-start}.quickLogBtn{flex:0 0 40px}.hero{align-items:flex-start;flex-direction:column}}
 @media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.brand small{display:none}.hero h2{font-size:25px}.toolbar #quickAddBtn{display:none}.metricTable th,.metricTable td{padding:8px}.day{min-height:67px;padding:6px}.day .status{font-size:14px}}
 
 .loginError{margin-top:10px;min-height:18px;color:#ff9da7;font-size:11px;font-weight:700}.loginBusy{opacity:.7;pointer-events:none}.settingsGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:15px}.settingsCard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}.settingsCard h4{margin:0 0 6px;font-size:12px}.settingsCard p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.5}.settingsCard .field{margin-top:10px}.saveSettingsBar{padding:0 15px 15px;display:flex;justify-content:flex-end;gap:8px}.saverInline{margin-top:6px}.saverGauge{display:inline-flex;gap:3px;vertical-align:middle;margin-left:6px}.saverDot{width:7px;height:7px;border-radius:50%;display:inline-block}.saverDot.safe{background:var(--green)}.saverDot.warn{background:var(--yellow)}.saverDot.hot{background:var(--orange)}.saverDot.danger{background:var(--red)}@media(max-width:700px){.settingsGrid{grid-template-columns:1fr}}
@@ -262,13 +262,16 @@ html[data-sidebar="collapsed"] .sidebar>*{display:none}
 .navtitle{display:flex;align-items:center;gap:6px}
 .navIco{font-style:normal;flex:0 0 auto;font-size:15px;line-height:1}
 @media(max-width:900px){html[data-sidebar="collapsed"] .sidebar{display:none}}
-/* ===== v10.2: collapsible topbar ===== */
+/* ===== v10.2: collapsible topbar — v10.2.1: toggle moved OUTSIDE .toolbar so it stays clickable when collapsed ===== */
 .topbarToggleBtn{flex:0 0 auto;margin:0}
 .topbar{transition:height .18s ease}
-html[data-topbar="collapsed"] .topbar{height:38px;min-height:38px;overflow:hidden}
+html[data-topbar="collapsed"] .topbar{height:38px;min-height:38px;overflow:hidden;flex-wrap:nowrap}
+html[data-topbar="collapsed"] .brand{min-width:0;flex:1 1 auto;overflow:hidden;gap:8px}
+html[data-topbar="collapsed"] .brand small{white-space:nowrap;margin-top:0}
 html[data-topbar="collapsed"] .toolbar{display:none}
 html[data-topbar="collapsed"] .brand h1{display:none}
 html[data-topbar="collapsed"] .brand .brandmark{width:24px;height:24px;font-size:13px;border-radius:8px}
+html[data-topbar="collapsed"] .topbar .ghostbtn.iconOnly{width:30px;min-width:30px;height:28px;min-height:28px;padding:0;font-size:14px;line-height:1;border-radius:9px}
 html[data-topbar="collapsed"] .sidebar{top:38px;height:calc(100vh - 38px)}
 /* ===== Cloud Sync UI ===== */
 .syncPill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 70%,transparent);font-size:12.5px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .2s,background .2s;white-space:nowrap}
@@ -454,7 +457,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.2</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.2.1</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
     <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
@@ -478,11 +481,12 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 
 <div id="appView" class="hidden">
   <header class="topbar">
-    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.2</span></h1><small id="brandDate"></small></div></div>
+    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.2.1</span></h1><small id="brandDate"></small></div></div>
     <div class="toolbar">
       <div class="dateNav"><button class="smallbtn" id="prevDayBtn">←</button><button class="smallbtn" id="todayBtn">Today</button><input id="selectedDateInput" class="dateInput dpInput" type="text" autocomplete="off" data-dp="1" /><button class="smallbtn" id="nextDayBtn">→</button></div>
-      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button><button class="ghostbtn iconOnly topbarToggleBtn" id="topbarToggleBtn" type="button" data-no-iconify title="جمع/باز کردن نوار بالا">▴</button>
+      <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
     </div>
+    <button class="ghostbtn iconOnly topbarToggleBtn" id="topbarToggleBtn" type="button" data-no-iconify title="جمع/باز کردن نوار بالا">▴</button>
   </header>
   <div class="layout">
     <aside class="sidebar">
@@ -635,7 +639,7 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='10.2';
+const APP_VERSION='10.2.1';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
