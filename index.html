@@ -451,15 +451,45 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 .easyOnOffPill.off{border-color:var(--line);background:var(--panel2);color:var(--muted)}
 #easyToggleBtn.easyActiveBtn{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,var(--panel2)),var(--panel2));border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:#fff;box-shadow:0 0 calc(18px*var(--glow)) color-mix(in srgb,var(--accent) calc(30%*var(--glow)),transparent)}
 @media(max-width:700px){.easyRow{flex-wrap:wrap}.easyLog{flex:1 1 100%;justify-content:flex-end}.easyProgress{flex:1 1 100%}}
+/* ---- v11.1 login database picker ---- */
+.dbPicker{margin-top:13px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:11px}
+.dbPickerHead{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;font-weight:800;margin-bottom:8px}
+.dbPickerHead em{font-style:normal;color:var(--muted);font-weight:650;font-size:10px}
+.dbStorageBadge{font-size:9px;font-weight:800;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel);white-space:nowrap}
+.dbPickerHint{font-size:9.5px;color:var(--muted);line-height:1.5;margin:0 0 8px}
+.dbPickerList{display:flex;flex-direction:column;gap:6px;max-height:178px;overflow:auto}
+.dbPickerItem{display:flex;flex-direction:column;gap:3px;text-align:start;padding:9px 11px;border-radius:11px;border:1px solid var(--line);background:var(--panel);cursor:pointer;color:var(--text);font-family:inherit;transition:border-color .15s,background .15s}
+.dbPickerItem:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.dbPickerItem.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
+.dbPickerItem.unavailable{opacity:.45;cursor:not-allowed}
+.dbPickName{font-size:12px;font-weight:750;display:flex;align-items:center;gap:6px;word-break:break-word}
+.dbPickActive{font-style:normal;font-size:9px;font-weight:800;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);padding:1px 6px;border-radius:999px;white-space:nowrap}
+.dbPickMeta{font-size:9.5px;color:var(--muted)}
+.dbPickMeta b{color:#ff9da7}
+.dbPickEmpty{font-size:11px;color:var(--muted);padding:10px;text-align:center}
+.dbPickerNewRow{display:flex;gap:7px;margin-top:9px}
+.dbPickerInput{flex:1;min-width:0;background:var(--panel3);color:#fff;border:1px solid var(--line);border-radius:11px;padding:9px 11px;outline:0;font-family:inherit;font-size:12px}
+.dbPickerInput:focus{border-color:var(--accent)}
+.dbCreateBtn{white-space:nowrap}
+.dbCreateBtn em,.tinybtn em{font-style:normal;opacity:.65}
+.dbPickerRow2{display:flex;gap:7px;margin-top:7px;flex-wrap:wrap}
+.dbDangerBtn{color:#ff9da7}
 </style>
 </head>
 <body>
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v11</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v11.1</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
+    <div id="dbPicker" class="dbPicker">
+      <div class="dbPickerHead"><span>🗄️ پایگاه‌های داده <em>· Databases</em></span><span id="dbStorageBadge" class="dbStorageBadge" title="Storage engine of the active database">…</span></div>
+      <div id="dbPickerHint" class="dbPickerHint hidden"></div>
+      <div id="dbPickerList" class="dbPickerList" role="listbox" aria-label="Databases"></div>
+      <div class="dbPickerNewRow"><input id="newDbNameInput" class="dbPickerInput" type="text" maxlength="60" placeholder="نام پایگاه داده جدید… (new database name)"><button id="createDbLoginBtn" class="ghostbtn dbCreateBtn" type="button" title="Create a new empty database and open it">＋ ساخت <em>New</em></button></div>
+      <div class="dbPickerRow2"><button id="renameDbBtn" class="tinybtn" type="button" title="Rename the selected database">✏️ تغییر نام <em>Rename</em></button><button id="deleteDbBtn" class="tinybtn dbDangerBtn" type="button" title="Delete the selected database and all of its data">🗑 حذف <em>Delete</em></button></div>
+    </div>
     <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
     <div id="loginDbInfo" class="loginDbInfo hidden"></div>
     <div id="loginError" class="loginError" role="alert" aria-live="polite"></div>
@@ -639,7 +669,9 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='11.0.0';
+const APP_VERSION='11.1.0';
+/* v11.1 multi-database registry (localStorage — available on every origin incl. file://) */
+const REG_KEY='streak-os-registry-v1',WS_LEGACY_ID='default';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
@@ -1818,15 +1850,49 @@ const T_META='t_meta',T_ACT='t_activities',T_ENT='t_entries',T_MEAS='t_measureme
 const META_CORE='core',META_PENDING_SNAP='pendingSnapshot';
 const SCHEMA_VERSION=11,JOURNAL_PRUNE_KEEP=50,SNAPSHOT_EVERY_OPS=800;
 let __dbLastPersisted=null,__dbPendingOpsCount=0,__dbReadyHookRan=false;
-function openDB(timeoutMs=8000){diag('Opening IndexedDB',DB_NAME);return new Promise((res,rej)=>{let settled=false,timer=null;const finish=(ok,value)=>{if(settled)return;settled=true;if(timer)clearTimeout(timer);ok?res(value):rej(value)};try{const r=indexedDB.open(DB_NAME,DB_VERSION);timer=setTimeout(()=>{const e=new Error('IndexedDB initialization timed out. Close any other Streak OS tab using this database, then reload.');diag('IndexedDB open timeout',e.message);finish(false,e)},timeoutMs);r.onupgradeneeded=()=>{diag('IndexedDB upgrade → v'+DB_VERSION);const d=r.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE);if(!d.objectStoreNames.contains(T_META))d.createObjectStore(T_META,{keyPath:'key'});if(!d.objectStoreNames.contains(T_ACT))d.createObjectStore(T_ACT,{keyPath:'id'});if(!d.objectStoreNames.contains(T_ENT)){const s=d.createObjectStore(T_ENT,{keyPath:'id'});try{s.createIndex('activityId','activityId');s.createIndex('date','date')}catch(e){}}if(!d.objectStoreNames.contains(T_MEAS))d.createObjectStore(T_MEAS,{keyPath:'id'});if(!d.objectStoreNames.contains(T_SET))d.createObjectStore(T_SET,{keyPath:'key'});if(!d.objectStoreNames.contains(T_PRE))d.createObjectStore(T_PRE,{keyPath:'name'});if(!d.objectStoreNames.contains(T_HIST))d.createObjectStore(T_HIST,{keyPath:'id'});if(!d.objectStoreNames.contains(T_VIEW))d.createObjectStore(T_VIEW,{keyPath:'key'});if(!d.objectStoreNames.contains(T_JOUR))d.createObjectStore(T_JOUR,{keyPath:'seq',autoIncrement:true});if(!d.objectStoreNames.contains(T_SYNC))d.createObjectStore(T_SYNC,{keyPath:'device'});if(!d.objectStoreNames.contains(T_TOMB))d.createObjectStore(T_TOMB,{keyPath:'key'})};r.onsuccess=()=>{diag('IndexedDB open success');finish(true,r.result)};r.onerror=()=>{const e=r.error||new Error('IndexedDB open failed');diag('IndexedDB open error',e.message||e);finish(false,e)};r.onblocked=()=>diag('IndexedDB open blocked')}catch(e){diag('IndexedDB open threw',e.message);finish(false,e)}})}
-/* ---- generic per-store helpers (one short transaction per call) ---- */
+function openDB(dbName,timeoutMs=8000){dbName=dbName||DB_NAME;diag('Opening IndexedDB',dbName);return new Promise((res,rej)=>{let settled=false,timer=null;const finish=(ok,value)=>{if(settled)return;settled=true;if(timer)clearTimeout(timer);ok?res(value):rej(value)};try{const r=indexedDB.open(dbName,DB_VERSION);timer=setTimeout(()=>{const e=new Error('IndexedDB initialization timed out. Close any other Streak OS tab using this database, then reload.');diag('IndexedDB open timeout',e.message);finish(false,e)},timeoutMs);r.onupgradeneeded=()=>{diag('IndexedDB upgrade → v'+DB_VERSION);const d=r.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE);if(!d.objectStoreNames.contains(T_META))d.createObjectStore(T_META,{keyPath:'key'});if(!d.objectStoreNames.contains(T_ACT))d.createObjectStore(T_ACT,{keyPath:'id'});if(!d.objectStoreNames.contains(T_ENT)){const s=d.createObjectStore(T_ENT,{keyPath:'id'});try{s.createIndex('activityId','activityId');s.createIndex('date','date')}catch(e){}}if(!d.objectStoreNames.contains(T_MEAS))d.createObjectStore(T_MEAS,{keyPath:'id'});if(!d.objectStoreNames.contains(T_SET))d.createObjectStore(T_SET,{keyPath:'key'});if(!d.objectStoreNames.contains(T_PRE))d.createObjectStore(T_PRE,{keyPath:'name'});if(!d.objectStoreNames.contains(T_HIST))d.createObjectStore(T_HIST,{keyPath:'id'});if(!d.objectStoreNames.contains(T_VIEW))d.createObjectStore(T_VIEW,{keyPath:'key'});if(!d.objectStoreNames.contains(T_JOUR))d.createObjectStore(T_JOUR,{keyPath:'seq',autoIncrement:true});if(!d.objectStoreNames.contains(T_SYNC))d.createObjectStore(T_SYNC,{keyPath:'device'});if(!d.objectStoreNames.contains(T_TOMB))d.createObjectStore(T_TOMB,{keyPath:'key'})};r.onsuccess=()=>{diag('IndexedDB open success');finish(true,r.result)};r.onerror=()=>{const e=r.error||new Error('IndexedDB open failed');diag('IndexedDB open error',e.message||e);finish(false,e)};r.onblocked=()=>diag('IndexedDB open blocked')}catch(e){diag('IndexedDB open threw',e.message);finish(false,e)}})}
+/* ================== v11.1 STORAGE ROUTER ==================
+   On file:// pages Chrome denies access to IndexedDB, which used to leave the app
+   stuck on "Database is not ready". The router transparently falls back to a
+   localStorage-backed store namespace: the SAME async helpers (stGet/stPut/
+   dbBulkWrite/idbGet/idbPut) keep working, every store keeps per-record keys
+   (delta writes stay delta), and opening index.html directly always works. */
+let STORE_MODE='idb';            /* 'idb' | 'ls' — active storage engine */
+let __lsPrefix='so-ws-orphan:';  /* active workspace namespace inside localStorage */
+let __lsSeqCache={};             /* journal autoincrement counters (cached) */
+function lsAvailable(){try{const t='__so_probe';window.localStorage.setItem(t,'1');window.localStorage.removeItem(t);return true}catch(e){return false}}
+function lsSer(v){return JSON.stringify(v,function(k,val){if(val instanceof Uint8Array)return{__u8:Array.from(val)};return val})}
+function lsDes(s){return JSON.parse(s,function(k,val){if(val&&val.__u8)return new Uint8Array(val.__u8);return val})}
+function lsStorePrefix(store){return __lsPrefix+store+':'}
+function lsKey(store,key){return lsStorePrefix(store)+String(key)}
+function lsRead(store,key){const s=window.localStorage.getItem(lsKey(store,key));return s==null?undefined:lsDes(s)}
+function lsWrite(store,key,val){try{window.localStorage.setItem(lsKey(store,key),lsSer(val))}catch(e){throw new Error('حافظه محلی پر یا مسدود است — دیتابیس را خروجی بگیرید (JSON/SQLite). / Local storage is full or blocked — export your database (JSON/SQLite).')}}
+function lsRemove(store,key){window.localStorage.removeItem(lsKey(store,key))}
+function lsKeysOf(store){const p=lsStorePrefix(store),out=[];for(let i=0;i<window.localStorage.length;i++){const k=window.localStorage.key(i);if(k&&k.indexOf(p)===0)out.push(k.slice(p.length))}return out}
+function lsGetAll(store){return lsKeysOf(store).map(k=>lsRead(store,k))}
+function lsClearStore(store){lsKeysOf(store).forEach(k=>lsRemove(store,k))}
+function lsCount(store){return lsKeysOf(store).length}
+/* localStorage put: inline keyPath emulation (T_KEY) + journal autoincrement (seq) */
+function lsPut(store,val,key){
+  if(val===null||val===undefined)throw new Error('Refusing to store an empty record');
+  if(store===T_JOUR&&key===undefined&&(val.seq===undefined||val.seq===null)){
+    let n=__lsSeqCache[T_JOUR];if(n===undefined){n=Number(window.localStorage.getItem(__lsPrefix+'__seq:'+T_JOUR))||0}
+    n=n+1;__lsSeqCache[T_JOUR]=n;val.seq=n;
+    try{window.localStorage.setItem(__lsPrefix+'__seq:'+T_JOUR,String(n))}catch(e){}
+  }
+  const k=key!==undefined?key:(T_KEY[store]!==undefined?val[T_KEY[store]]:undefined);
+  if(k===undefined)throw new Error('Local store put: missing record key ('+store+')');
+  lsWrite(store,k,val);
+}
+/* ---- generic per-store helpers (one short transaction per call; routed by STORE_MODE) ---- */
 function stReq(store,mode,fn){return new Promise((res,rej)=>{try{if(!db){rej(new Error('Database is not ready'));return}const tx=db.transaction(store,mode);const rq=fn(tx.objectStore(store));let out;rq&&(out=rq);tx.oncomplete=()=>res(out&&out.result!==undefined?out.result:undefined);tx.onerror=()=>rej(tx.error||new Error('IDB transaction failed'));tx.onabort=()=>rej(tx.error||new Error('IDB transaction aborted'))}catch(e){rej(e)}})}
-const stGet=(st,key)=>stReq(st,'readonly',s=>s.get(key));
-const stGetAll=st=>stReq(st,'readonly',s=>s.getAll());
-const stCount=st=>stReq(st,'readonly',s=>s.count());
-const stPut=(st,val,key)=>stReq(st,'readwrite',s=>key!==undefined?s.put(val,key):s.put(val));
-const stDelete=(st,key)=>stReq(st,'readwrite',s=>s.delete(key));
-const stClear=st=>stReq(st,'readwrite',s=>s.clear());
+const lsMode=()=>STORE_MODE==='ls';
+const stGet=(st,key)=>lsMode()?Promise.resolve(lsRead(st,key)):stReq(st,'readonly',s=>s.get(key));
+const stGetAll=st=>lsMode()?Promise.resolve(lsGetAll(st)):stReq(st,'readonly',s=>s.getAll());
+const stCount=st=>lsMode()?Promise.resolve(lsCount(st)):stReq(st,'readonly',s=>s.count());
+const stPut=(st,val,key)=>{if(lsMode()){try{lsPut(st,val,key);return Promise.resolve()}catch(e){return Promise.reject(e)}}return stReq(st,'readwrite',s=>key!==undefined?s.put(val,key):s.put(val))};
+const stDelete=(st,key)=>lsMode()?Promise.resolve(lsRemove(st,key)):stReq(st,'readwrite',s=>s.delete(key));
+const stClear=st=>lsMode()?Promise.resolve(lsClearStore(st)):stReq(st,'readwrite',s=>s.clear());
 /* ---- record envelope: transparent AES-GCM when the vault is encrypted ----
    Every store uses an inline keyPath, so the envelope must carry that key property
    at the top level too (keyProp) — otherwise encrypted records lose their key. */
@@ -1838,7 +1904,10 @@ async function recUnpackAll(list){const out=new Array(list.length);for(let i=0;i
 /* ---- one readwrite transaction across several stores (pre-encoded values) ----
    All stores use inline keyPaths — the key lives inside the stored value, so puts
    never pass an out-of-line key; deletions pass the plain key value. */
-function dbBulkWrite(writes){return new Promise((res,rej)=>{try{if(!db){rej(new Error('Database is not ready'));return}const names=[...new Set(writes.map(w=>w.store))];if(!names.length){res();return}const tx=db.transaction(names,'readwrite');for(const w of writes){const s=tx.objectStore(w.store);if(w.del)s.delete(w.key);else s.put(w.val)}tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error||new Error('IDB bulk write failed'));tx.onabort=()=>rej(tx.error||new Error('IDB bulk write aborted'))}catch(e){rej(e)}})}
+function dbBulkWrite(writes){
+  if(lsMode()){try{for(const w of writes){if(w.del)lsRemove(w.store,w.key);else lsPut(w.store,w.val,undefined)}return Promise.resolve()}catch(e){diag('LS bulk write failed',e?.message||String(e));return Promise.reject(e)}}
+  return new Promise((res,rej)=>{try{if(!db){rej(new Error('Database is not ready'));return}const names=[...new Set(writes.map(w=>w.store))];if(!names.length){res();return}const tx=db.transaction(names,'readwrite');for(const w of writes){const s=tx.objectStore(w.store);if(w.del)s.delete(w.key);else s.put(w.val)}tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error||new Error('IDB bulk write failed'));tx.onabort=()=>rej(tx.error||new Error('IDB bulk write aborted'))}catch(e){rej(e)}})
+}
 /* ============================ DELTA-CORE-PURE-BEGIN ============================
    Pure, dependency-light delta functions (extracted verbatim by the test suite). */
 function dbCanon(v){return JSON.stringify(v,function(k,val){if(val&&(typeof val==='object')&&!Array.isArray(val)&&!ArrayBuffer.isView(val)&&typeof val.toJSON!=='function'){const o={};for(const k2 of Object.keys(val).sort())o[k2]=val[k2];return o}return val})}
@@ -2022,8 +2091,8 @@ async function dbApplyRemoteOps(ops,srcDevice){
   __dbLastPersisted=structuredClone(state);
   return{applied,lost};
 }
-const idbGet=k=>new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbGet blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readonly').objectStore(STORE).get(k);q.onsuccess=()=>{diag('idbGet success',k);res(q.result)};q.onerror=()=>{diag('idbGet error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB read failed'))};}catch(e){diag('idbGet threw',e.message);rej(e)}});
-const idbPut=(k,v)=>new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbPut blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readwrite').objectStore(STORE).put(v,k);q.onsuccess=()=>{diag('idbPut success',k);res()};q.onerror=()=>{diag('idbPut error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB write failed'))};}catch(e){diag('idbPut threw',e.message);rej(e)}});
+const idbGet=k=>lsMode()?Promise.resolve(lsRead(STORE,k)):new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbGet blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readonly').objectStore(STORE).get(k);q.onsuccess=()=>{diag('idbGet success',k);res(q.result)};q.onerror=()=>{diag('idbGet error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB read failed'))};}catch(e){diag('idbGet threw',e.message);rej(e)}});
+const idbPut=(k,v)=>lsMode()?Promise.resolve(lsWrite(STORE,k,v)):new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbPut blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readwrite').objectStore(STORE).put(v,k);q.onsuccess=()=>{diag('idbPut success',k);res()};q.onerror=()=>{diag('idbPut error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB write failed'))};}catch(e){diag('idbPut threw',e.message);rej(e)}});
 const enc=new TextEncoder(),dec=new TextDecoder();
 async function derive(password,salt){diag('Derive key start',{passwordLength:password.length,saltBytes:salt?.byteLength||salt?.length});const base=await crypto.subtle.importKey('raw',enc.encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:ITER,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);diag('Derive key success');return key}
 const b64buf=b=>{let s='';b.forEach(x=>s+=String.fromCharCode(x));return btoa(s)};const bufb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
@@ -2269,7 +2338,7 @@ async function unlock(password){
   diag('Legacy vault migrated to delta stores',{activities:state.activities.length,entries:state.entries.length});
   resetHistoryStacks();applyAppearance();showApp();return;
 }
-function lock(){rememberTabPosition();state=null;cryptoKey=null;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('passwordInput').value='';$('loginError').textContent='';$('loginTitle').innerHTML=`Streak OS <span class="appVersion">v${APP_VERSION}</span>`;$('setupNotice').textContent='Enter the password used to unlock this vault.'}
+function lock(){rememberTabPosition();state=null;cryptoKey=null;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('passwordInput').value='';$('loginError').textContent='';$('loginTitle').innerHTML=`Streak OS <span class="appVersion">v${APP_VERSION}</span>`;$('setupNotice').textContent='Enter the password used to unlock this vault.';renderDbPicker()}
 function entryTotal(a,date){return state.entries.filter(e=>e.activityId===a.id&&e.date===date).reduce((s,e)=>s+Number(e.amount||0),0)}
 function entriesFor(a,date){return state.entries.filter(e=>e.activityId===a.id&&e.date===date).sort((x,y)=>String(y.createdAt).localeCompare(String(x.createdAt)))}
 function simulateTo(a,endDate){
@@ -3923,13 +3992,14 @@ $('unlockBtn').onclick=async()=>{
 $('connectDbLoginBtn').onclick=()=>connectLoginDatabase();
 $('localDbLoginBtn').onclick=async()=>{
   try{
+    await ensureDbReady();
     jsonDbHandle=null;jsonDbConnected=false;jsonDbName='';jsonDbEncrypted=false;state=null;
     const raw=await idbGet(DB_KEY).catch(()=>null);
     const coreMeta=await dbCoreMeta().catch(()=>null);
     if(coreMeta&&coreMeta.migrated&&!coreMeta.encrypted){await unlock('');}
     else if(raw&&raw.storage==='plain'&&raw.data){await unlock('');}
-    else if(raw){$('setupNotice').textContent='A protected local database exists. Enter its password, then click Open.';$('passwordInput').focus();}
-    else{state=defaultState();normalizeUi(state);cryptoKey=null;await dbSeedFromState(state,{clear:false});await dbWriteCoreMeta({migrated:1,encrypted:false});await dbJournalClear();resetHistoryStacks();showApp();toast('Local database created');}
+    else if(raw){$('setupNotice').textContent='پایگاه داده محلیِ رمزدار یافت شد — رمز آن را وارد کنید و Open بزنید. / A protected local database exists. Enter its password, then click Open.';$('passwordInput').focus();}
+    else{state=defaultState();normalizeUi(state);cryptoKey=null;await dbSeedFromState(state,{clear:false});await dbWriteCoreMeta({migrated:1,encrypted:false});await dbJournalClear();resetHistoryStacks();showApp();toast('پایگاه داده محلی آماده شد · Local database created');renderDbPicker();}
   }catch(e){$('loginError').textContent=e?.message||'Could not open local database.'}
 };
 $('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlockBtn').click()});$('lockBtn').onclick=lock;$('saveDefaultsBtn').onclick=saveDefaults;$('fType').onchange=()=>syncMeasurementTypeSelect('fType',$('fType').value,null);$('dType').onchange=()=>syncMeasurementTypeSelect('dType',$('dType').value,null);$('quickAddBtn').onclick=()=>openLog(null,selectedDate);$('prevDayBtn').onclick=()=>shiftSelectedDate(-1);$('nextDayBtn').onclick=()=>shiftSelectedDate(1);$('todayBtn').onclick=()=>setSelectedDate(todayKey());$('selectedDateInput').onchange=e=>{const v=dpParseInput(e.target,e.target.value);if(v)setSelectedDate(v);};
@@ -3996,31 +4066,209 @@ $('changePwBtn').onclick=()=>{$('pwModal').classList.add('show')};$('changePwCon
 async function showApp(){applyEasyMode();render();$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');restoreTabPosition(activeSection);applyGlobalTooltips();try{window.dispatchEvent(new CustomEvent('streakos:appopened'))}catch(e){}}
 $('diagToggle').onclick=()=>{const p=$('diagPanel');p.classList.toggle('open');$('diagToggle').textContent=p.classList.contains('open')?'🙈':'🧾';$('diagToggle').title=p.classList.contains('open')?'Hide log':'Show log';diag('Diagnostic panel '+(p.classList.contains('open')?'opened':'closed'))};$('diagCopy').onclick=async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied');diag('Log copied')}catch(e){diag('Copy log failed',e.message)}};$('diagClear').onclick=()=>{__diag.length=0;$('diagLog').textContent='Log cleared.';diag('Log cleared')};
 
+/* ==================== v11.1 DATABASE REGISTRY (workspaces) ====================
+   Users can create several named databases (e.g. «شغل», «ورزش», «شخصی») and switch
+   between them from the login screen. Each workspace owns an isolated namespace:
+   • storage 'idb' → a dedicated IndexedDB database  (streak-os-db-<id>)
+   • storage 'ls'  → a localStorage key prefix       (so-ws-<id>:)
+   The registry itself lives in localStorage so it is readable on every origin,
+   including file:// pages where IndexedDB is denied. The legacy single database
+   (streak-os-db-v1) is adopted once as the "Default" workspace. */
+let registry={v:1,workspaces:[],activeId:null};
+let __idbUsable=null; /* tri-state probe: is IndexedDB usable in this context? */
+function regLoad(){try{const s=window.localStorage.getItem(REG_KEY);if(s){const p=JSON.parse(s);if(p&&Array.isArray(p.workspaces)&&p.workspaces.length)registry=p}}catch(e){diag('Registry load failed',e?.message||String(e))}return registry}
+function regSave(){try{window.localStorage.setItem(REG_KEY,JSON.stringify(registry))}catch(e){diag('Registry save failed',e?.message||String(e))}}
+function regGet(id){return registry.workspaces.find(w=>w.id===id)||null}
+function regSetActive(id){registry.activeId=id;const w=regGet(id);if(w)w.lastOpened=new Date().toISOString();regSave()}
+function regAdd(w){registry.workspaces.push(w);registry.activeId=w.id;regSave()}
+function regRemove(id){registry.workspaces=registry.workspaces.filter(w=>w.id!==id);if(registry.activeId===id)registry.activeId=(registry.workspaces[0]||{}).id||null;regSave()}
+function regRename(id,name){const w=regGet(id);if(w&&name){w.name=name;regSave()}}
+function newWsId(){return 'ws-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)}
+function wsIdbName(w){return w.id===WS_LEGACY_ID?DB_NAME:'streak-os-db-'+w.id}
+function wsLsPrefix(w){return 'so-ws-'+w.id+':'}
+function wsRecentFirst(a,b){return String(b.lastOpened||b.createdAt||'').localeCompare(String(a.lastOpened||a.createdAt||''))}
+async function idbUsable(){
+  if(__idbUsable!==null)return __idbUsable;
+  try{if(new URLSearchParams(location.search).get('soStorage')==='ls'){__idbUsable=false;diag('soStorage=ls requested → localStorage mode');return false}}catch(e){}
+  if(!window.indexedDB){__idbUsable=false;return false}
+  __idbUsable=await new Promise(res=>{
+    try{let settled=false;const done=v=>{if(!settled){settled=true;res(v)}};const r=indexedDB.open('__so_probe',1);
+      r.onsuccess=()=>{try{r.result.close()}catch(e){}done(true)};
+      r.onerror=()=>done(false);r.onblocked=()=>done(true);
+      setTimeout(()=>done(false),1500);
+    }catch(e){res(false)}
+  });
+  if(!__idbUsable)diag('IndexedDB probe failed → localStorage fallback (file:// mode)');
+  return __idbUsable;
+}
+/* activate a workspace: point the storage router at its namespace and reset
+   all per-database memory so no delta leaks across databases */
+async function activateWorkspace(w){
+  if(!w)throw new Error('No database to activate');
+  if(w.storage==='idb'){
+    const name=wsIdbName(w);
+    if(!db||db.name!==name){try{db&&db.close()}catch(e){}db=await openDB(name)}
+    STORE_MODE='idb';__lsPrefix='';
+  }else{
+    try{db&&db.close()}catch(e){}
+    db=null;STORE_MODE='ls';__lsPrefix=wsLsPrefix(w);
+  }
+  __lsSeqCache={};__dbLastPersisted=null;__dbPendingOpsCount=0;__dbReadyHookRan=false;
+  state=null;cryptoKey=null;jsonDbEncrypted=false;jsonDbHandle=null;jsonDbConnected=false;jsonDbName='';
+  const pi=$('passwordInput');if(pi){pi.value='';pi.dataset.dbPassword=''}
+  try{if(typeof csPushTimer!=='undefined'&&csPushTimer){clearTimeout(csPushTimer);csPushTimer=null}}catch(e){}
+  regSetActive(w.id);
+  updateStorageBadge();
+  diag('Workspace activated',{name:w.name,mode:STORE_MODE});
+}
+async function createWorkspaceAndOpen(name){
+  const w={id:newWsId(),name:name||('پایگاه داده '+(registry.workspaces.length+1)),storage:(__idbUsable===true)?'idb':'ls',createdAt:new Date().toISOString(),lastOpened:new Date().toISOString()};
+  regAdd(w);
+  await activateWorkspace(w);
+  state=defaultState();normalizeUi(state);
+  await dbSeedFromState(state,{clear:true});
+  await dbWriteCoreMeta({migrated:1,encrypted:false});
+  await dbJournalClear();
+  resetHistoryStacks();showApp();renderDbPicker();
+  toast(`پایگاه داده «${w.name}» ساخته شد · Database created`);
+  diag('Workspace created',{name:w.name,storage:w.storage});
+}
+/* ---- login screen database picker ---- */
+function fmtLastOpened(iso){
+  if(!iso)return '—';
+  const d=new Date(iso);if(isNaN(d))return '—';
+  const day=86400000,mid=x=>{const t=new Date(x);t.setHours(0,0,0,0);return t.getTime()};
+  const diff=Math.round((mid(Date.now())-mid(d))/day);
+  if(diff<=0)return 'امروز · today';
+  if(diff===1)return 'دیروز · yesterday';
+  return d.toLocaleDateString();
+}
+function updateStorageBadge(){
+  const el=$('dbStorageBadge');if(!el)return;
+  el.textContent=STORE_MODE==='idb'?'💾 IndexedDB':'🗂 localStorage'+(location.protocol==='file:'?' · file://':'');
+  const hint=$('dbPickerHint');
+  if(hint){
+    if(STORE_MODE==='ls'&&location.protocol==='file:'){hint.classList.remove('hidden');hint.textContent='فایل را مستقیم باز کرده‌اید (file://) — مرورگر در این حالت اجازهٔ IndexedDB نمی‌دهد، بنابراین داده‌ها در حافظهٔ محلی مرورگر (localStorage) ذخیره می‌شوند. پایگاه‌های ذخیره‌شده در IndexedDB (مثلاً از طریق Live Server) اینجا فهرست نمی‌شوند.'}
+    else hint.classList.add('hidden');
+  }
+}
+function renderDbPicker(){
+  const list=$('dbPickerList');if(!list)return;
+  list.innerHTML='';
+  const arr=[...registry.workspaces].sort(wsRecentFirst);
+  for(const w of arr){
+    const unavailable=w.storage==='idb'&&__idbUsable!==true;
+    const row=document.createElement('button');row.type='button';
+    row.className='dbPickerItem'+(w.id===registry.activeId?' active':'')+(unavailable?' unavailable':'');
+    row.innerHTML=`<span class="dbPickName">📦 ${esc(w.name||'بدون نام')}${w.id===registry.activeId?' <i class="dbPickActive">فعال · active</i>':''}</span><span class="dbPickMeta">${w.storage==='idb'?'💾 IndexedDB':'🗂 localStorage'} · ${fmtLastOpened(w.lastOpened)}${unavailable?' · <b>اینجا باز نمی‌شود — با Live Server باز کنید</b>':''}</span>`;
+    row.onclick=()=>selectWorkspace(w.id);
+    list.appendChild(row);
+  }
+  if(!arr.length)list.innerHTML='<div class="dbPickEmpty">هنوز پایگاه داده‌ای ساخته نشده — با «＋ ساخت» یکی بسازید.</div>';
+  updateStorageBadge();
+}
+async function selectWorkspace(id){
+  const w=regGet(id);if(!w)return;
+  if(w.storage==='idb'&&__idbUsable!==true){toast('این پایگاه داده در IndexedDB ذخیره شده و با باز کردن مستقیم فایل در دسترس نیست — آن را با Live Server (یا https) باز کنید.');return}
+  $('loginError').textContent='';
+  try{
+    await activateWorkspace(w);
+    const core=await dbCoreMeta().catch(()=>null);
+    const raw=await idbGet(DB_KEY).catch(()=>null);
+    const nm=w.name||'بدون نام';
+    if(core&&core.migrated)$('setupNotice').textContent=core.encrypted?`پایگاه داده «${nm}» رمزنگاری شده — رمز را وارد کنید و Open بزنید. / Encrypted — enter its password, then Open.`:`پایگاه داده «${nm}» آماده است — Open بزنید. / Ready — press Open.`;
+    else if(raw)$('setupNotice').textContent=raw.encrypted?`پایگاه داده «${nm}» رمزدار است — رمز را وارد کنید و Open بزنید.`:`پایگاه داده قدیمی «${nm}» یافت شد — Open بزنید تا به قالب دلتا مهاجرت کند.`;
+    else $('setupNotice').textContent=`پایگاه داده «${nm}» خالی است — Open بزنید تا آماده شود. / Empty database — press Open to initialize.`;
+    renderDbPicker();
+  }catch(e){$('loginError').textContent='خطا در فعال‌سازی پایگاه داده: '+(e?.message||e);diag('Workspace switch failed',e?.message||String(e))}
+}
+function idbDeleteDatabase(name){return new Promise((res,rej)=>{try{const r=indexedDB.deleteDatabase(name);r.onsuccess=()=>res();r.onerror=()=>rej(r.error||new Error('deleteDatabase failed'));r.onblocked=()=>res()}catch(e){rej(e)}})}
+function lsWipePrefix(p){const del=[];for(let i=0;i<window.localStorage.length;i++){const k=window.localStorage.key(i);if(k&&k.indexOf(p)===0)del.push(k)}del.forEach(k=>window.localStorage.removeItem(k));return del.length}
+/* ---- picker buttons: create / rename / delete ---- */
+$('newDbNameInput').addEventListener('keydown',e=>{if(e.key==='Enter'){$('createDbLoginBtn').click()}});
+$('createDbLoginBtn').onclick=async()=>{
+  const inp=$('newDbNameInput');const name=(inp.value||'').trim();$('loginError').textContent='';
+  try{
+    await ensureDbReady();
+    await createWorkspaceAndOpen(name||('پایگاه داده '+(registry.workspaces.length+1)));
+    inp.value='';
+  }catch(e){$('loginError').textContent='ساخت پایگاه داده ناموفق بود: '+(e?.message||e);diag('Create workspace failed',e?.message||String(e))}
+};
+$('renameDbBtn').onclick=()=>{
+  const w=regGet(registry.activeId);if(!w){toast('پایگاه داده‌ای انتخاب نشده');return}
+  const n=prompt('نام جدید پایگاه داده: (New database name)',w.name||'');if(n===null)return;
+  regRename(w.id,n.trim()||w.name);renderDbPicker();toast('نام پایگاه داده تغییر کرد · Renamed');
+};
+$('deleteDbBtn').onclick=async()=>{
+  const w=regGet(registry.activeId);if(!w){toast('پایگاه داده‌ای انتخاب نشده');return}
+  if(!confirm(`حذف پایگاه داده «${w.name}» و همهٔ داده‌هایش؟\n\nDelete database "${w.name}" and ALL of its data?\n(این عمل بازگشت‌پذیر نیست / This cannot be undone)`))return;
+  try{
+    if(w.storage==='idb'){try{db&&db.close()}catch(e){}db=null;if(window.indexedDB)await idbDeleteDatabase(wsIdbName(w)).catch(e=>diag('IDB delete failed',e?.message||String(e)))}
+    else lsWipePrefix(wsLsPrefix(w));
+    regRemove(w.id);
+    let next=[...registry.workspaces].filter(x=>x.storage!=='idb'||__idbUsable===true).sort(wsRecentFirst)[0]||null;
+    if(!next){next={id:newWsId(),name:'Default',storage:lsAvailable()?'ls':'idb',createdAt:new Date().toISOString(),lastOpened:new Date().toISOString()};regAdd(next)}
+    await activateWorkspace(next);
+    $('setupNotice').textContent=`پایگاه داده «${next.name}» فعال شد — Open بزنید. / Switched to "${next.name}" — press Open.`;
+    renderDbPicker();toast('پایگاه داده حذف شد · Deleted');
+  }catch(e){$('loginError').textContent='حذف ناموفق بود: '+(e?.message||e);diag('Delete workspace failed',e?.message||String(e))}
+};
+
 async function initializeAppStorage(){
   diag('Startup begin');iconifyButtons();
   const btn=$('unlockBtn');btn.disabled=true;btn.textContent='⏳';btn.title='Starting secure storage';btn.setAttribute('aria-label','Starting secure storage');
   try{
-    if(!window.indexedDB) throw new Error('IndexedDB is unavailable.');
-    diag('IndexedDB available');
     if(!window.crypto?.subtle) throw new Error('Web Crypto is unavailable in this browser/context.');
     diag('Web Crypto available');
-    db=await openDB();
+    const idbOK=await idbUsable();
+    diag('Storage probe',{idb:idbOK,ls:lsAvailable(),protocol:location.protocol});
+    regLoad();
+    if(!registry.workspaces.length){
+      /* first boot of v11.1 — adopt the legacy single database if it holds data */
+      if(idbOK){
+        let adopted=false;
+        try{
+          db=await openDB(DB_NAME,4000);STORE_MODE='idb';
+          const core=await dbCoreMeta().catch(()=>null);
+          const raw=await idbGet(DB_KEY).catch(()=>null);
+          adopted=!!(core||raw);
+        }catch(e){diag('Legacy adoption probe failed',e?.message||String(e));try{db&&db.close()}catch(_){ }db=null}
+        regAdd({id:WS_LEGACY_ID,name:'Default',storage:'idb',createdAt:new Date().toISOString(),lastOpened:new Date().toISOString(),adopted});
+        diag('Legacy workspace registered',{adopted});
+      }else{
+        regAdd({id:WS_LEGACY_ID,name:'Default',storage:'ls',createdAt:new Date().toISOString(),lastOpened:new Date().toISOString()});
+        diag('No IndexedDB (file:// or private mode) — default workspace registered in localStorage');
+      }
+    }
+    /* choose the active workspace: remembered → most recent usable → create a fresh usable one */
+    const usable=w=>(w.storage!=='idb')||idbOK;
+    let ws=regGet(registry.activeId);
+    if(!ws||!usable(ws)){
+      ws=[...registry.workspaces].filter(usable).sort(wsRecentFirst)[0]||null;
+      if(ws)diag('Active workspace fell back to most recent usable database',{name:ws.name});
+    }
+    if(!ws){
+      ws={id:newWsId(),name:'Default',storage:lsAvailable()?'ls':'idb',createdAt:new Date().toISOString(),lastOpened:new Date().toISOString()};
+      regAdd(ws);diag('No usable database found — fresh workspace auto-created',{storage:ws.storage});
+    }
+    await activateWorkspace(ws);
     dbReady=true;
-    diag('Startup DB ready');
+    diag('Startup DB ready',{mode:STORE_MODE,workspace:ws.name});
     const autoOpened=await autoOpenRememberedDatabase();
     if(autoOpened){diag('Remembered JSON database opened automatically');return;}
     const raw=await idbGet(DB_KEY).catch(()=>null);
     const coreMeta=await dbCoreMeta().catch(()=>null);
+    const nm=ws.name||'Default';
     if(rememberedJsonMeta){
       $('setupNotice').textContent=rememberedJsonMeta.encrypted
         ? `Remembered database "${rememberedJsonMeta.name}" is encrypted. Enter its password to open it.`
         : `Remembered database "${rememberedJsonMeta.name}" needs access permission before it can be opened automatically.`;
       $('connectDbLoginBtn').textContent='📂 Reconnect remembered database';
       diag('Remembered database awaiting access',{name:rememberedJsonMeta.name,encrypted:rememberedJsonMeta.encrypted});
-    }else if(coreMeta&&coreMeta.migrated){$('setupNotice').textContent=coreMeta.encrypted?'Enter the database password used for this encrypted database.':'The local delta database is ready. No password is required while encryption is off.';diag('Existing delta database detected',{encrypted:!!coreMeta.encrypted});}
-    else if(raw){$('setupNotice').textContent=raw.encrypted?'Enter the database password used for this encrypted database.':'The local JSON database is ready. No password is required while encryption is off.';diag('Existing local database detected',{v:raw.v,encrypted:!!raw.encrypted});}
-    else{$('setupNotice').textContent='First launch: connect an existing JSON database, or create/open the local database.';diag('No database detected; waiting for first launch choice');}
-    btn.disabled=false;btn.textContent='🔓';btn.title='Open';btn.setAttribute('aria-label','Open');renderLoginDbInfo();diag('Startup complete; open enabled');
+    }else if(coreMeta&&coreMeta.migrated){$('setupNotice').textContent=coreMeta.encrypted?`پایگاه داده «${nm}» رمزنگاری شده است — رمز آن را وارد کنید و Open بزنید. / Encrypted database — enter its password, then Open.`:`پایگاه داده «${nm}» آماده است — Open بزنید. / Database ready — press Open.`;diag('Existing delta database detected',{encrypted:!!coreMeta.encrypted});}
+    else if(raw){$('setupNotice').textContent=raw.encrypted?'پایگاه داده رمزدار است — رمز آن را وارد کنید و Open بزنید. / Encrypted database — enter its password, then Open.':'پایگاه داده محلی آماده است — Open بزنید. / Local database ready — press Open.';diag('Existing local database detected',{v:raw.v,encrypted:!!raw.encrypted});}
+    else{$('setupNotice').textContent=`پایگاه داده «${nm}» خالی است — Open بزنید تا آماده شود، یا از فهرست بالا پایگاه داده‌ای بسازید/انتخاب کنید. / Empty database — press Open to initialize, or create/select one from the list above.`;diag('Empty workspace; waiting for first launch choice');}
+    btn.disabled=false;btn.textContent='🔓';btn.title='Open';btn.setAttribute('aria-label','Open');renderLoginDbInfo();renderDbPicker();diag('Startup complete; open enabled');
   }catch(e){
     dbInitError=e;
     diag('Startup failed',{name:e?.name,message:e?.message,stack:e?.stack});
