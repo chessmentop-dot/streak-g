@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Streak OS — ردیاب خصوصی و محلی عادت‌ها و زنجیره‌ها با تقویم شمسی و میلادی" />
 <meta name="theme-color" content="#090e1b" />
-<title>Streak OS — v10.2.1</title>
+<title>Streak OS — v11</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%234da3ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='15' fill='url(%23g)'/%3E%3Cpath d='M32 12c2.2 6.2 1 10.6-1.8 13.4-2.6 2.6-5.2 4.9-5.2 9.1 0 2.5 1.4 4.9 3.4 6.2-.6-2.9.4-5.3 2.4-7.2.4 3.1 3.2 4.3 3.2 7.4 0 1.3-.5 2.5-1.3 3.4 3.8-1.1 6.6-4.6 6.6-8.7 0-2.4-.9-4.3-2.2-6.1 3.5 1.4 5.9 4.9 5.9 9 0 .8-.1 1.6-.3 2.3 2.4-2.3 3.9-5.6 3.9-9.2 0-8.6-7-11.2-14.6-19.6z' fill='%23fff' opacity='.95'/%3E%3C/svg%3E" />
 <style>
@@ -457,7 +457,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 <div id="loginView" class="login">
   <div class="loginCard">
     <div class="loginLogo">🔥</div>
-    <h2 id="loginTitle">Streak OS <span class="appVersion">v10.2.1</span></h2>
+    <h2 id="loginTitle">Streak OS <span class="appVersion">v11</span></h2>
     <p id="loginSub">Your personal streak engine. Data is stored locally in this browser and encrypted with your password.</p>
     <div class="passwordBox"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Database password (only for encrypted databases)" /><button id="unlockBtn" class="primarybtn">Open</button></div>
     <div class="dbConnectRow"><button id="connectDbLoginBtn" class="ghostbtn" type="button">📂 Connect existing JSON database</button><button id="localDbLoginBtn" class="ghostbtn" type="button">🗄️ Use local database</button></div>
@@ -481,7 +481,7 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
 
 <div id="appView" class="hidden">
   <header class="topbar">
-    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v10.2.1</span></h1><small id="brandDate"></small></div></div>
+    <div class="brand"><button class="ghostbtn iconOnly" id="sidebarToggleBtn" type="button" title="Toggle sidebar">☰</button><div class="brandmark">🔥</div><div><h1>Streak OS <span class="appVersion">v11</span></h1><small id="brandDate"></small></div></div>
     <div class="toolbar">
       <div class="dateNav"><button class="smallbtn" id="prevDayBtn">←</button><button class="smallbtn" id="todayBtn">Today</button><input id="selectedDateInput" class="dateInput dpInput" type="text" autocomplete="off" data-dp="1" /><button class="smallbtn" id="nextDayBtn">→</button></div>
       <button class="ghostbtn syncPill syncOff" id="syncPill" type="button" title="Cloud sync (GitHub)"><span class="syncPillIcon" id="syncPillIcon">☁️</span><span class="syncPillText" id="syncPillText">Cloud</span></button><button class="ghostbtn" id="easyToggleBtn" type="button" data-no-iconify title="حالت آسان — ثبت سریع با کمترین عناصر">⚡ حالت آسان</button><button class="ghostbtn" id="quickAddBtn" title="Open the log form for the selected day">＋ Log selected day</button><span class="undoRedo"><button class="iconbtn undoBtn iconOnly disabled" id="undoBtn" title="Undo the last change" aria-label="Undo">↶</button><button class="iconbtn redoBtn iconOnly disabled" id="redoBtn" title="Redo the last undone change" aria-label="Redo">↷</button></span><button class="iconbtn undoBtn iconOnly" id="lockBtn" title="Lock the application">🔒</button>
@@ -592,12 +592,12 @@ svg{direction:ltr} /* SVG coordinate systems stay LTR even in RTL mode; Persian 
   <div class="settingsCard"><h4>🔐 Optional encryption</h4><p>By default the JSON database is plain JSON. Turn this on only when you want the JSON file encrypted. Encryption uses AES-GCM with your chosen app password.</p><div class="entryRow"><span>Encrypt JSON database</span><label class="toggle"><input id="jsonDbEncryption" type="checkbox"><span class="toggleTrack"></span></label></div><div class="notice" id="jsonDbEncryptionHint">Encryption is OFF. The JSON database remains human-readable.</div><div class="field"><label>🔑 Database password</label><input id="jsonDbPassword" class="input" type="password" autocomplete="new-password" placeholder="Only needed when encryption is ON" /></div><div class="configActions"><button class="tinybtn" id="changePwBtn" title="Change the password used for encrypted databases">🔑</button></div></div>
 </div></div>
 <div class="panel"><div class="panelhead"><div><h3>☁️ Cloud sync (GitHub)</h3><div class="muted" id="csPanelStatus">Offline-first sync through a private GitHub repository. Data lives locally and syncs automatically when online.</div></div></div><div class="settingsGrid">
-  <div class="settingsCard"><h4>🔌 Connection</h4><p>Store your database as a single JSON file inside your own GitHub repository (fine-grained token, Contents read+write, single repo).</p><div class="entryRow"><span>Enable cloud sync</span><label class="toggle"><input id="csEnabled" type="checkbox"><span class="toggleTrack"></span></label></div><div class="field"><label>📛 Device name</label><input id="csDeviceName" class="input" type="text" placeholder="e.g. Laptop" /></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>👤 Owner (username)</label><input id="csOwner" class="input" type="text" autocomplete="off" placeholder="octocat" /></div><div class="field"><label>📦 Repository</label><input id="csRepo" class="input" type="text" autocomplete="off" placeholder="streak-os-data" /></div></div><div style="display:grid;grid-template-columns:1fr 2fr;gap:10px"><div class="field"><label>🌿 Branch</label><input id="csBranch" class="input" type="text" autocomplete="off" placeholder="main" /></div><div class="field"><label>📄 Data file path</label><input id="csPath" class="input" type="text" autocomplete="off" placeholder="streak-os-data.json" /></div></div><div class="field"><label>🔑 Personal access token</label><div class="syncTokenRow"><input id="csToken" class="input" type="password" autocomplete="off" placeholder="github_pat_… / ghp_…" /><button class="tinybtn" id="csTokenToggle" type="button" title="Show or hide the token">👁</button></div></div><div class="helper">The token is stored only in this browser (IndexedDB) and is never sent anywhere except api.github.com. Recommended: fine-grained token → Only select repositories → Permissions → Contents: Read and write.</div><div class="configActions"><button class="primarybtn" id="csSaveBtn" type="button">💾 Save connection</button><button class="ghostbtn" id="csTestBtn" type="button">🧪 Test connection</button></div><div class="notice hidden" id="csTestResult"></div></div>
+  <div class="settingsCard"><h4>🔌 Connection</h4><p>Sync a delta store (a small manifest + append-only change files) inside your own GitHub repository (fine-grained token, Contents read+write, single repo).</p><div class="entryRow"><span>Enable cloud sync</span><label class="toggle"><input id="csEnabled" type="checkbox"><span class="toggleTrack"></span></label></div><div class="field"><label>📛 Device name</label><input id="csDeviceName" class="input" type="text" placeholder="e.g. Laptop" /></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>👤 Owner (username)</label><input id="csOwner" class="input" type="text" autocomplete="off" placeholder="octocat" /></div><div class="field"><label>📦 Repository</label><input id="csRepo" class="input" type="text" autocomplete="off" placeholder="streak-os-data" /></div></div><div style="display:grid;grid-template-columns:1fr 2fr;gap:10px"><div class="field"><label>🌿 Branch</label><input id="csBranch" class="input" type="text" autocomplete="off" placeholder="main" /></div><div class="field"><label>📁 Data folder (delta root)</label><input id="csPath" class="input" type="text" autocomplete="off" placeholder="streak-db" /></div></div><div class="field"><label>🔑 Personal access token</label><div class="syncTokenRow"><input id="csToken" class="input" type="password" autocomplete="off" placeholder="github_pat_… / ghp_…" /><button class="tinybtn" id="csTokenToggle" type="button" title="Show or hide the token">👁</button></div></div><div class="helper">The token is stored only in this browser (IndexedDB) and is never sent anywhere except api.github.com. Recommended: fine-grained token → Only select repositories → Permissions → Contents: Read and write.</div><div class="configActions"><button class="primarybtn" id="csSaveBtn" type="button">💾 Save connection</button><button class="ghostbtn" id="csTestBtn" type="button">🧪 Test connection</button></div><div class="notice hidden" id="csTestResult"></div></div>
   <div class="settingsCard"><h4>🔄 Sync & status</h4><p>Everything is saved offline first. When a connection is available, changes sync automatically and remote changes from your other devices are merged in.</p><div class="syncStatusRow"><span class="k"><span class="syncDot" id="csDot"></span>Status</span><strong class="v" id="csStatusText">Off</strong></div><div class="syncStatusRow"><span class="k">Last successful sync</span><strong class="v" id="csLastSync">—</strong></div><div class="syncStatusRow"><span class="k">Unsent local changes</span><strong class="v" id="csPending">—</strong></div><div class="syncStatusRow"><span class="k">Cloud version (device · rev · time)</span><strong class="v" id="csRemoteInfo">—</strong></div><div class="configActions" style="margin-top:10px"><button class="primarybtn" id="csSyncNowBtn" type="button">⟳ Sync now</button><button class="ghostbtn" id="csBackupNowBtn" type="button">🗄 Backup now</button><button class="tinybtn" id="csForceUploadBtn" type="button" title="Overwrite the cloud copy with this device">⬆ Overwrite cloud</button><button class="tinybtn" id="csForceDownloadBtn" type="button" title="Discard local changes and adopt the cloud copy">⬇ Adopt cloud</button></div><div class="helper">“Overwrite cloud” backs up the cloud copy first. “Adopt cloud” backs up this device's copy in the cloud backups folder.</div></div>
   <div class="settingsCard"><h4>⚖️ Conflict policy & automation</h4><p>Both devices changed the same part? The newer timestamp wins (Last-Write-Wins) and the losing version is always backed up — nothing is ever silently lost.</p><div class="field"><label>Merge strategy</label><select id="csResolver" class="select" style="width:100%"><option value="three-way-lww">3-way per-key merge + LWW (recommended)</option></select></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>⏱ Periodic sync interval (seconds)</label><input id="csIntervalSec" class="input" type="number" min="0" max="86400" step="10" inputmode="numeric" placeholder="300" /></div><div class="field"><label>⏳ Auto-sync delay after a change (seconds)</label><input id="csAutoSyncDelay" class="input" type="number" min="5" max="3600" step="5" inputmode="numeric" placeholder="60" /></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end"><div class="field"><label>🗃 Keep last N backups</label><input id="csKeepBackups" class="input" type="number" min="3" max="200" step="1" /></div><div class="entryRow" style="margin-bottom:12px"><span>Auto-sync after every change</span><label class="toggle"><input id="csAutoSync" type="checkbox" checked><span class="toggleTrack"></span></label></div></div><div class="helper">Timing: periodic sync runs every N seconds (minimum 30; 0 = only manual / on app open). With “Auto-sync after every change” on, each local change waits the configured delay, then syncs once. The cloud button in the top bar always syncs immediately when clicked.</div><div class="helper">Backups are stored in the “backups” folder of your repository. Old backups beyond the limit are deleted automatically.</div></div>
   <div class="settingsCard" style="grid-column:1/-1"><h4>🛡 Conflict report & log</h4><div class="syncConflictBox hidden" id="csConflictInfo"></div><div class="syncLog" id="csLog" style="margin-top:10px">No sync events yet.</div></div>
 </div></div>
-<div class="panel"><div class="panelhead"><h3>💾 Backup / import</h3></div><div class="metricSection"><div class="unitGroup"><div class="unitGroupHead"><strong>Portable JSON</strong><span>Plain or encrypted</span></div><div style="padding:12px"><div class="entryRow"><span>Export current database</span><button class="tinybtn" id="exportBtn2" title="Export the current database as a portable JSON file">📤</button></div><div class="entryRow"><span>Import database</span><button class="tinybtn" id="importBtn" title="Import a portable JSON database file">📥</button></div><div class="entryRow"><span>Export full history (JSON)</span><button class="tinybtn" id="exportHistoryJsonBtn" title="Export every log entry as a standalone JSON file">📤</button></div><div class="entryRow"><span>Export full history (CSV)</span><button class="tinybtn" id="exportHistoryCsvBtn" title="Export every log entry as a spreadsheet-compatible CSV file">📤</button></div><div class="helper">Imported files preserve activities, history, table settings, themes, and other program data. Encrypted files require their password.</div><div class="helper">Full history is always kept in the database. Nothing expires.</div></div></div></div></div>
+<div class="panel"><div class="panelhead"><h3>💾 Backup / import</h3></div><div class="metricSection"><div class="unitGroup"><div class="unitGroupHead"><strong>Portable JSON</strong><span>Plain or encrypted</span></div><div style="padding:12px"><div class="entryRow"><span>Export current database</span><button class="tinybtn" id="exportBtn2" title="Export the current database as a portable JSON file">📤</button></div><div class="entryRow"><span>Export SQLite database</span><button class="tinybtn" id="exportSqliteBtn" title="Export the current database as a real .sqlite file (db/schema.sql)">🧱</button></div><div class="entryRow"><span>Import database</span><button class="tinybtn" id="importBtn" title="Import a portable JSON database file">📥</button></div><div class="entryRow"><span>Export full history (JSON)</span><button class="tinybtn" id="exportHistoryJsonBtn" title="Export every log entry as a standalone JSON file">📤</button></div><div class="entryRow"><span>Export full history (CSV)</span><button class="tinybtn" id="exportHistoryCsvBtn" title="Export every log entry as a spreadsheet-compatible CSV file">📤</button></div><div class="helper">Imported files preserve activities, history, table settings, themes, and other program data. Encrypted files require their password.</div><div class="helper">Full history is always kept in the database. Nothing expires.</div></div></div></div></div>
 <div class="panel"><div class="panelhead"><div><h3>Security</h3><div class="muted">Legacy encrypted local vaults from earlier versions remain supported.</div></div></div><div class="metricSection"><div class="unitGroup"><div class="unitGroupHead"><strong>Encrypted legacy vault</strong><span>IndexedDB + AES-GCM</span></div><div style="padding:12px"><div class="entryRow"><span>Key derivation</span><strong>PBKDF2 / 310k iterations</strong></div></div></div></div></div><div class="panel"><div class="panelhead"><div><h3>Settings & presets</h3><div class="muted">Explicitly save the current configuration or save it as a named preset.</div></div></div><div class="settingsGrid">
   <div class="settingsCard"><h4>Save current configuration</h4><p>Stores current defaults, table layout, sorting, and tab positions in the encrypted vault.</p><button class="primarybtn" id="saveAllSettingsBtn" title="Save all current program settings to the encrypted vault">Save all settings</button></div>
   <div class="settingsCard"><h4>Create preset</h4><p>Save the current configuration under a name.</p><div class="field"><label for="presetName">Preset name</label><input id="presetName" class="input" placeholder="e.g. Focus view" /></div><div style="margin-top:10px"><button class="primarybtn" id="savePresetBtn" title="Create a named settings preset">Save preset</button></div></div>
@@ -639,7 +639,7 @@ function diag(msg,data){const line=`[${new Date().toISOString()}] ${msg}${data!=
 window.addEventListener('error',e=>diag('window.error',{message:e.message,source:e.filename,line:e.lineno,col:e.colno}));
 window.addEventListener('unhandledrejection',e=>diag('unhandledrejection',{reason:e.reason?.message||String(e.reason)}));
 const DB_NAME='streak-os-db-v1',STORE='vault',DB_KEY='app',JSON_HANDLE_KEY='remembered-json-handle',ITER=310000;
-const APP_VERSION='10.2.1';
+const APP_VERSION='11.0.0';
 let dbReady=false;
 let dbInitError=null;
 let dbInitPromise=null;
@@ -772,7 +772,7 @@ faAdd([
 ['🔑 Database password','🔑 رمز پایگاه داده'],['Only needed when encryption is ON','فقط وقتی رمزنگاری روشن است لازم است'],
 ['Change the password used for encrypted databases','تغییر رمز استفاده‌شده برای پایگاه‌های داده رمزنگاری‌شده'],
 ['💾 Backup / import','💾 پشتیبان‌گیری / وارد کردن'],['Portable JSON','JSON قابل حمل'],['Plain or encrypted','ساده یا رمزنگاری‌شده'],
-['Export current database','صادر کردن پایگاه داده فعلی'],['Import database','وارد کردن پایگاه داده'],
+['Export current database','صادر کردن پایگاه داده فعلی'],['Export SQLite database','خروجی دیتابیس SQLite'],['Import database','وارد کردن پایگاه داده'],
 ['Export the current database as a portable JSON file','صادر کردن پایگاه داده فعلی به‌صورت فایل JSON قابل حمل'],
 ['Import a portable JSON database file','وارد کردن فایل پایگاه داده JSON قابل حمل'],
 ['Imported files preserve activities, history, table settings, themes, and other program data. Encrypted files require their password.','فایل‌های واردشده فعالیت‌ها، سابقه، تنظیمات جدول، پوسته‌ها و سایر داده‌های برنامه را حفظ می‌کنند. فایل‌های رمزنگاری‌شده به رمز خودشان نیاز دارند.'],
@@ -1793,7 +1793,235 @@ function activityGridStyle(){
   return ACTIVITY_COLUMNS.filter(c=>v.columns[c.id]?.visible!==false).map(c=>{const w=v.columns[c.id]?.width,n=Number(w);return (w!=null&&w!==''&&Number.isFinite(n)&&n>0)?`${Math.max(60,Math.min(1000,n))}px`:c.defaultTrack}).join(' ')||'1fr';
 }
 
-function openDB(timeoutMs=8000){diag('Opening IndexedDB',DB_NAME);return new Promise((res,rej)=>{let settled=false,timer=null;const finish=(ok,value)=>{if(settled)return;settled=true;if(timer)clearTimeout(timer);ok?res(value):rej(value)};try{const r=indexedDB.open(DB_NAME,1);timer=setTimeout(()=>{const e=new Error('IndexedDB initialization timed out. Close any other Streak OS tab using this database, then reload.');diag('IndexedDB open timeout',e.message);finish(false,e)},timeoutMs);r.onupgradeneeded=()=>{diag('IndexedDB upgrade');if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE)};r.onsuccess=()=>{diag('IndexedDB open success');finish(true,r.result)};r.onerror=()=>{const e=r.error||new Error('IndexedDB open failed');diag('IndexedDB open error',e.message||e);finish(false,e)};r.onblocked=()=>diag('IndexedDB open blocked')}catch(e){diag('IndexedDB open threw',e.message);finish(false,e)}})}
+/* ================================================================================
+   v11 DELTA CORE — StreakDB (delta journal storage — no full-database rewrites)
+   --------------------------------------------------------------------------------
+   Storage model (mirrors db/schema.sql — SQLite; db/schema.postgres.sql — PostgreSQL):
+     t_meta             → meta(key,value)                    : schema/migration bookkeeping
+     t_activities       → activities(id PK)                  : one record per activity
+     t_entries          → entries(id PK, idx activityId/date): one record per log entry
+     t_measurement_types→ measurement_types(id PK)           : unit catalog
+     t_settings         → settings(key PK)                   : global defaults ('global')
+     t_presets          → presets(name PK)                   : named settings presets
+     t_change_history   → change_history(id PK)              : UI change log (append-only)
+     t_view_settings    → view_settings(key PK)              : per-device UI state (never synced)
+     t_journal          → change_log(seq PK AUTOINCREMENT)   : THE DELTA LOG / sync upload queue
+     t_sync_state       → sync_state(device PK)              : per-remote-device pull cursors
+     t_tombstones       → tombstones(key PK)                 : delete markers (LWW arbitration)
+   Every save() diffs the working state against the last persisted snapshot and writes
+   ONLY the changed records + appends the matching operations to t_journal. Nothing
+   serializes the whole database on a regular save. The legacy single-record vault
+   (STORE/'vault') remains for backward compatibility, downgrade and the keyring salt.
+   ================================================================================ */
+const DB_VERSION=2;
+const T_META='t_meta',T_ACT='t_activities',T_ENT='t_entries',T_MEAS='t_measurement_types',T_SET='t_settings',T_PRE='t_presets',T_HIST='t_change_history',T_VIEW='t_view_settings',T_JOUR='t_journal',T_SYNC='t_sync_state',T_TOMB='t_tombstones';
+const META_CORE='core',META_PENDING_SNAP='pendingSnapshot';
+const SCHEMA_VERSION=11,JOURNAL_PRUNE_KEEP=50,SNAPSHOT_EVERY_OPS=800;
+let __dbLastPersisted=null,__dbPendingOpsCount=0,__dbReadyHookRan=false;
+function openDB(timeoutMs=8000){diag('Opening IndexedDB',DB_NAME);return new Promise((res,rej)=>{let settled=false,timer=null;const finish=(ok,value)=>{if(settled)return;settled=true;if(timer)clearTimeout(timer);ok?res(value):rej(value)};try{const r=indexedDB.open(DB_NAME,DB_VERSION);timer=setTimeout(()=>{const e=new Error('IndexedDB initialization timed out. Close any other Streak OS tab using this database, then reload.');diag('IndexedDB open timeout',e.message);finish(false,e)},timeoutMs);r.onupgradeneeded=()=>{diag('IndexedDB upgrade → v'+DB_VERSION);const d=r.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE);if(!d.objectStoreNames.contains(T_META))d.createObjectStore(T_META,{keyPath:'key'});if(!d.objectStoreNames.contains(T_ACT))d.createObjectStore(T_ACT,{keyPath:'id'});if(!d.objectStoreNames.contains(T_ENT)){const s=d.createObjectStore(T_ENT,{keyPath:'id'});try{s.createIndex('activityId','activityId');s.createIndex('date','date')}catch(e){}}if(!d.objectStoreNames.contains(T_MEAS))d.createObjectStore(T_MEAS,{keyPath:'id'});if(!d.objectStoreNames.contains(T_SET))d.createObjectStore(T_SET,{keyPath:'key'});if(!d.objectStoreNames.contains(T_PRE))d.createObjectStore(T_PRE,{keyPath:'name'});if(!d.objectStoreNames.contains(T_HIST))d.createObjectStore(T_HIST,{keyPath:'id'});if(!d.objectStoreNames.contains(T_VIEW))d.createObjectStore(T_VIEW,{keyPath:'key'});if(!d.objectStoreNames.contains(T_JOUR))d.createObjectStore(T_JOUR,{keyPath:'seq',autoIncrement:true});if(!d.objectStoreNames.contains(T_SYNC))d.createObjectStore(T_SYNC,{keyPath:'device'});if(!d.objectStoreNames.contains(T_TOMB))d.createObjectStore(T_TOMB,{keyPath:'key'})};r.onsuccess=()=>{diag('IndexedDB open success');finish(true,r.result)};r.onerror=()=>{const e=r.error||new Error('IndexedDB open failed');diag('IndexedDB open error',e.message||e);finish(false,e)};r.onblocked=()=>diag('IndexedDB open blocked')}catch(e){diag('IndexedDB open threw',e.message);finish(false,e)}})}
+/* ---- generic per-store helpers (one short transaction per call) ---- */
+function stReq(store,mode,fn){return new Promise((res,rej)=>{try{if(!db){rej(new Error('Database is not ready'));return}const tx=db.transaction(store,mode);const rq=fn(tx.objectStore(store));let out;rq&&(out=rq);tx.oncomplete=()=>res(out&&out.result!==undefined?out.result:undefined);tx.onerror=()=>rej(tx.error||new Error('IDB transaction failed'));tx.onabort=()=>rej(tx.error||new Error('IDB transaction aborted'))}catch(e){rej(e)}})}
+const stGet=(st,key)=>stReq(st,'readonly',s=>s.get(key));
+const stGetAll=st=>stReq(st,'readonly',s=>s.getAll());
+const stCount=st=>stReq(st,'readonly',s=>s.count());
+const stPut=(st,val,key)=>stReq(st,'readwrite',s=>key!==undefined?s.put(val,key):s.put(val));
+const stDelete=(st,key)=>stReq(st,'readwrite',s=>s.delete(key));
+const stClear=st=>stReq(st,'readwrite',s=>s.clear());
+/* ---- record envelope: transparent AES-GCM when the vault is encrypted ----
+   Every store uses an inline keyPath, so the envelope must carry that key property
+   at the top level too (keyProp) — otherwise encrypted records lose their key. */
+const T_KEY={};T_KEY[T_META]='key';T_KEY[T_ACT]='id';T_KEY[T_ENT]='id';T_KEY[T_MEAS]='id';T_KEY[T_SET]='key';T_KEY[T_PRE]='name';T_KEY[T_HIST]='id';T_KEY[T_VIEW]='key';T_KEY[T_JOUR]='seq';T_KEY[T_SYNC]='device';T_KEY[T_TOMB]='key';
+async function recPack(v,keyProp){let env;if(cryptoKey&&jsonDbEncrypted){const e=await encrypt(v,cryptoKey);env={enc:1,iv:e.iv,data:e.data}}else env={p:v};if(keyProp&&v&&v[keyProp]!==undefined)env[keyProp]=v[keyProp];return env}
+async function recUnpack(r){if(r===undefined||r===null)return r;if(r&&r.enc){if(!cryptoKey)throw new Error('Record is encrypted but no key is loaded');return decrypt({iv:r.iv,data:r.data},cryptoKey)}return r&&Object.prototype.hasOwnProperty.call(r,'p')?r.p:r}
+async function recPackAll(list,keyProps){const out=new Array(list.length);for(let i=0;i<list.length;i++)out[i]=await recPack(list[i],keyProps?keyProps[i]:undefined);return out}
+async function recUnpackAll(list){const out=new Array(list.length);for(let i=0;i<list.length;i++)out[i]=await recUnpack(list[i]);return out}
+/* ---- one readwrite transaction across several stores (pre-encoded values) ----
+   All stores use inline keyPaths — the key lives inside the stored value, so puts
+   never pass an out-of-line key; deletions pass the plain key value. */
+function dbBulkWrite(writes){return new Promise((res,rej)=>{try{if(!db){rej(new Error('Database is not ready'));return}const names=[...new Set(writes.map(w=>w.store))];if(!names.length){res();return}const tx=db.transaction(names,'readwrite');for(const w of writes){const s=tx.objectStore(w.store);if(w.del)s.delete(w.key);else s.put(w.val)}tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error||new Error('IDB bulk write failed'));tx.onabort=()=>rej(tx.error||new Error('IDB bulk write aborted'))}catch(e){rej(e)}})}
+/* ============================ DELTA-CORE-PURE-BEGIN ============================
+   Pure, dependency-light delta functions (extracted verbatim by the test suite). */
+function dbCanon(v){return JSON.stringify(v,function(k,val){if(val&&(typeof val==='object')&&!Array.isArray(val)&&!ArrayBuffer.isView(val)&&typeof val.toJSON!=='function'){const o={};for(const k2 of Object.keys(val).sort())o[k2]=val[k2];return o}return val})}
+function dbStateArrays(s){return{activities:(s&&Array.isArray(s.activities)?s.activities:[]),entries:(s&&Array.isArray(s.entries)?s.entries:[]),measurementTypes:(s&&Array.isArray(s.measurementTypes)?s.measurementTypes:[]),presets:(s&&s.viewSettings&&Array.isArray(s.viewSettings.presets)?s.viewSettings.presets:[]),history:(s&&Array.isArray(s.changeHistory)?s.changeHistory:[])}}
+/* dbDiffStates(before,after,nowISO) → ops[{entity,entityId,op,payload,ts,device?}]
+   entity: activity|entry|measurementType|preset|settings|history|meta ; op: upsert|delete|append */
+function dbDiffStates(before,after,nowISO){
+  const ops=[];const B=dbStateArrays(before),A=dbStateArrays(after);
+  const diffById=(entity,bArr,aArr)=>{
+    const bm=new Map();for(const x of bArr)bm.set(x.id,dbCanon(x));
+    for(const rec of aArr){const id=rec.id;const bc=bm.get(id);
+      if(bc===undefined){if(rec.updatedAt===undefined)rec.updatedAt=nowISO;ops.push({entity,entityId:id,op:'upsert',payload:rec,ts:rec.updatedAt})}
+      else if(bc!==dbCanon(rec)){rec.updatedAt=nowISO;ops.push({entity,entityId:id,op:'upsert',payload:rec,ts:nowISO})}}
+    for(const x of bArr)if(!aArr.some(r=>r.id===x.id))ops.push({entity,entityId:x.id,op:'delete',payload:null,ts:nowISO});
+  };
+  diffById('activity',B.activities,A.activities);
+  diffById('entry',B.entries,A.entries);
+  diffById('measurementType',B.measurementTypes,A.measurementTypes);
+  const bpm=new Map();for(const x of B.presets)bpm.set(x.name,dbCanon(x));
+  for(const rec of A.presets){const bc=bpm.get(rec.name);if(bc===undefined||bc!==dbCanon(rec))ops.push({entity:'preset',entityId:rec.name,op:'upsert',payload:{name:rec.name,config:rec.config},ts:nowISO})}
+  for(const x of B.presets)if(!A.presets.some(r=>r.name===x.name))ops.push({entity:'preset',entityId:x.name,op:'delete',payload:null,ts:nowISO});
+  const bs=before&&before.settings||null,as=after&&after.settings||null;
+  if(as&&(!before||dbCanon(bs)!==dbCanon(as)))ops.push({entity:'settings',entityId:'global',op:'upsert',payload:as,ts:nowISO});
+  const bh=new Set();for(const h of B.history)bh.add(h.id);
+  for(const h of A.history)if(h&&h.id&&!bh.has(h.id))ops.push({entity:'history',entityId:h.id,op:'append',payload:h,ts:h.at||nowISO});
+  if(after&&after.createdAt&&(!before||before.createdAt!==after.createdAt))ops.push({entity:'meta',entityId:'createdAt',op:'upsert',payload:{createdAt:after.createdAt},ts:nowISO});
+  return ops;
+}
+/* dbOpWins(op,rec,myDev) — symmetric Last-Writer-Wins arbitration:
+   newer ISO ts wins; exact ties are broken by lexicographically larger device id. */
+function dbOpWins(op,rec,myDev){const opTs=String(op.ts||''),recTs=String(rec&&rec.updatedAt||'');if(opTs>recTs)return true;if(opTs<recTs)return false;return String(op.device||'')>String(rec&&rec.revDevice||myDev||'')}
+function dbTombWins(tomb,op){const tTs=String(tomb&&tomb.ts||''),opTs=String(op.ts||'');if(tTs>opTs)return true;if(tTs<opTs)return false;return String(tomb.device||'')>=String(op.device||'')}
+function dbGroupBatches(ops,maxOps,maxBytes){
+  const batches=[];let cur=[],size=0;
+  const opSize=o=>{try{return JSON.stringify(o).length}catch(e){return 4096}};
+  for(const op of ops){const s=opSize(op);
+    if(cur.length&&(cur.length>=maxOps||size+s>=maxBytes)){batches.push(cur);cur=[];size=0}
+    cur.push(op);size+=s}
+  if(cur.length)batches.push(cur);
+  return batches;
+}
+function dbPadSeq(n){return String(Number(n)||0).padStart(12,'0')}
+/* ============================= DELTA-CORE-PURE-END ============================= */
+function dbDeviceId(){return (typeof csMeta!=='undefined'&&csMeta&&csMeta.deviceId)||'dev-unknown'}
+/* ---- journal (delta log) management ---- */
+async function dbJournalPending(){try{const rows=(await stGetAll(T_JOUR))||[];const pend=rows.filter(r=>r&&!r.synced).sort((a,b)=>a.seq-b.seq);__dbPendingOpsCount=pend.length;return pend}catch(e){diag('dbJournalPending failed',e?.message||String(e));return[]}}
+async function dbJournalAppend(ops,nowISO){
+  if(!ops.length)return;const dev=dbDeviceId();const rows=[];
+  for(const op of ops)rows.push({id:uid(),entity:op.entity,entityId:op.entityId,op:op.op,ts:op.ts||nowISO,device:dev,at:nowISO,synced:0,payload:await recPack(op.payload===undefined?null:op.payload)});
+  await dbBulkWrite(rows.map(r=>({store:T_JOUR,val:r})));
+  __dbPendingOpsCount+=rows.length;
+}
+async function dbJournalMarkSynced(uptoSeq){try{const rows=(await stGetAll(T_JOUR))||[];const wr=[];let max=0;for(const r of rows){if(!r.synced&&(uptoSeq===undefined||r.seq<=uptoSeq)){r.synced=1;wr.push({store:T_JOUR,val:r});if(r.seq>max)max=r.seq}}if(wr.length)await dbBulkWrite(wr);__dbPendingOpsCount=Math.max(0,__dbPendingOpsCount-wr.length);await dbJournalPrune();return max}catch(e){diag('dbJournalMarkSynced failed',e?.message||String(e));return 0}}
+async function dbJournalPrune(){try{const rows=(await stGetAll(T_JOUR))||[];const synced=rows.filter(r=>r.synced).sort((a,b)=>b.seq-a.seq);const del=synced.slice(JOURNAL_PRUNE_KEEP);if(del.length)await dbBulkWrite(del.map(r=>({store:T_JOUR,del:1,key:r.seq})));return del.length}catch(e){return 0}}
+async function dbJournalClear(){await stClear(T_JOUR);__dbPendingOpsCount=0}
+/* ---- tombstones ---- */
+async function dbPutTombstones(items){if(!items.length)return;const packed=await recPackAll(items,items.map(()=>'key'));await dbBulkWrite(items.map((it,i)=>({store:T_TOMB,val:packed[i],key:it.key})))}
+async function dbGetTombstone(key){try{return await recUnpack(await stGet(T_TOMB,key))}catch(e){return null}}
+async function dbTombstonePrune(){try{const all=(await stGetAll(T_TOMB))||[];if(all.length<=4000)return 0;const dec=await recUnpackAll(all);dec.sort((a,b)=>String(a.ts||'').localeCompare(String(b.ts||'')));const del=dec.slice(0,dec.length-4000);await dbBulkWrite(del.map(t=>({store:T_TOMB,del:1,key:t.key})));return del.length}catch(e){return 0}}
+/* ---- sync cursors (per remote device) ---- */
+async function dbSyncCursor(dev){try{return await stGet(T_SYNC,dev)||null}catch(e){return null}}
+async function dbSetSyncCursor(dev,lastSeq,epoch){const prev=await dbSyncCursor(dev);const row={device:dev,lastSeq:Number(lastSeq)||0,epoch:Number(epoch)||(prev&&prev.epoch)||1,at:new Date().toISOString()};await stPut(T_SYNC,row);return row}
+async function dbAllSyncCursors(){try{const rows=(await stGetAll(T_SYNC))||[];const out={};for(const r of rows)out[r.device]=r.lastSeq||0;return out}catch(e){return{}}}
+/* ---- pending-snapshot marker ("local state was replaced wholesale — publish a snapshot") ---- */
+async function dbSetPendingSnapshot(reason){await stPut(T_META,{key:META_PENDING_SNAP,reason:reason||'replace',at:new Date().toISOString()})}
+async function dbGetPendingSnapshot(){try{const r=await stGet(T_META,META_PENDING_SNAP);return r||null}catch(e){return null}}
+async function dbClearPendingSnapshot(){try{await stDelete(T_META,META_PENDING_SNAP)}catch(e){}}
+/* ---- core meta row (plain — must be readable before the key is derived) ---- */
+async function dbCoreMeta(){try{const r=await stGet(T_META,META_CORE);return r&&r.key?r:null}catch(e){return null}}
+async function dbWriteCoreMeta(patch){const cur=await dbCoreMeta()||{key:META_CORE};const next=Object.assign(cur,patch||{},{key:META_CORE,schemaVersion:SCHEMA_VERSION,updatedAt:new Date().toISOString()});await stPut(T_META,next);return next}
+/* ---- persist current state as a delta (the heart of save()) ---- */
+async function dbPersistCurrent(){
+  if(!state)return;
+  const nowISO=new Date().toISOString();
+  const before=__dbLastPersisted;
+  const ops=dbDiffStates(before,state,nowISO);
+  const viewChanged=!before||dbCanon(before.viewSettings||null)!==dbCanon(state.viewSettings||null);
+  if(!ops.length&&!viewChanged){__dbLastPersisted=structuredClone(state);return}
+  const writes=[];const jourOps=[];
+  for(const op of ops){
+    if(op.entity==='activity'||op.entity==='entry'||op.entity==='measurementType'){
+      const store=op.entity==='activity'?T_ACT:op.entity==='entry'?T_ENT:T_MEAS;
+      if(op.op==='upsert'){op.payload.revDevice=dbDeviceId();writes.push({store,val:null,pack:op.payload,key:op.entityId})}
+      else{writes.push({store,del:1,key:op.entityId});writes.push({store:T_TOMB,val:null,pack:{key:op.entity+':'+op.entityId,entity:op.entity,id:op.entityId,ts:op.ts,device:dbDeviceId()},key:op.entity+':'+op.entityId})}
+      jourOps.push(op);
+    }else if(op.entity==='settings'){writes.push({store:T_SET,val:null,pack:{key:'global',data:op.payload},key:'global'});jourOps.push(op)}
+    else if(op.entity==='preset'){if(op.op==='upsert')writes.push({store:T_PRE,val:null,pack:op.payload,key:op.entityId});else writes.push({store:T_PRE,del:1,key:op.entityId});jourOps.push(op)}
+    else if(op.entity==='history'){writes.push({store:T_HIST,val:null,pack:op.payload,key:op.entityId});jourOps.push(op)}
+    else if(op.entity==='meta'){const core=await dbCoreMeta()||{key:META_CORE};core.createdAt=op.payload.createdAt;await stPut(T_META,core)}
+  }
+  if(viewChanged)writes.push({store:T_VIEW,val:null,pack:{key:'view',data:state.viewSettings},key:'view'});
+  /* encode records first, then one short transaction (IndexedDB transactions must not await) */
+  const packed=await recPackAll(writes.map(w=>w.pack),writes.map(w=>T_KEY[w.store]));
+  writes.forEach((w,i)=>{w.val=packed[i];delete w.pack});
+  await dbBulkWrite(writes);
+  await dbJournalAppend(jourOps,nowISO);
+  if(jourOps.length)await dbTombstonePrune();
+  __dbLastPersisted=structuredClone(state);
+  diag('Delta persist',{ops:jourOps.length,view:viewChanged?1:0,pending:__dbPendingOpsCount});
+}
+/* ---- hydrate state from the normalized stores ---- */
+async function dbHydrateFromStores(){
+  const core=await dbCoreMeta();
+  const [actP,entP,measP,setP,preP,histP,viewP]=await Promise.all([stGetAll(T_ACT),stGetAll(T_ENT),stGetAll(T_MEAS),stGetAll(T_SET),stGetAll(T_PRE),stGetAll(T_HIST),stGet(T_VIEW,'view')]);
+  const [acts,ents,meas,setRows,preRows,hist,viewRow]=await Promise.all([recUnpackAll(actP||[]),recUnpackAll(entP||[]),recUnpackAll(measP||[]),recUnpackAll(setP||[]),recUnpackAll(preP||[]),recUnpackAll(histP||[]),recUnpack(viewP)]);
+  const s=defaultState();
+  if(core&&core.createdAt)s.createdAt=core.createdAt;
+  s.activities=acts||[];s.entries=ents||[];
+  s.measurementTypes=(meas&&meas.length)?meas:cloneDefaultMeasurements();
+  const g=(setRows||[]).find(r=>r&&r.key==='global');if(g&&g.data)s.settings=g.data;
+  const v=viewRow&&viewRow.data;if(v)s.viewSettings=v;
+  s.changeHistory=(hist||[]).sort((a,b)=>String(a.at||'').localeCompare(String(b.at||'')));
+  normalizeState(s);normalizeUi(s);
+  return{state:s,core,empty:!(acts||[]).length&&!(ents||[]).length&&!(hist||[]).length&&!(preRows||[]).length};
+}
+/* ---- wholesale (re)seed of the stores from a full state object ----
+   Used by: legacy one-time migration, JSON import, file-DB open, cloud adoption.
+   clear=true removes previous records; marker=true flags the next sync to publish
+   a fresh snapshot so other devices rebase onto this state. */
+async function dbSeedFromState(src,opts){
+  opts=opts||{};const o={clear:!!opts.clear,marker:!!opts.marker};
+  const s=normalizeState(JSON.parse(JSON.stringify(src)));
+  normalizeUi(s);
+  if(o.clear){await Promise.all([stClear(T_ACT),stClear(T_ENT),stClear(T_MEAS),stClear(T_SET),stClear(T_PRE),stClear(T_HIST),stClear(T_VIEW),stClear(T_JOUR),stClear(T_TOMB)]);__dbPendingOpsCount=0}
+  const A=dbStateArrays(s);
+  const writes=[];
+  for(const rec of A.activities)writes.push({store:T_ACT,val:null,pack:rec,key:rec.id});
+  for(const rec of A.entries)writes.push({store:T_ENT,val:null,pack:rec,key:rec.id});
+  for(const rec of A.measurementTypes)writes.push({store:T_MEAS,val:null,pack:rec,key:rec.id});
+  for(const rec of A.presets)writes.push({store:T_PRE,val:null,pack:{name:rec.name,config:rec.config},key:rec.name});
+  for(const rec of A.history)writes.push({store:T_HIST,val:null,pack:rec,key:rec.id});
+  writes.push({store:T_SET,val:null,pack:{key:'global',data:s.settings},key:'global'});
+  writes.push({store:T_VIEW,val:null,pack:{key:'view',data:s.viewSettings},key:'view'});
+  const packed=await recPackAll(writes.map(w=>w.pack),writes.map(w=>T_KEY[w.store]));
+  writes.forEach((w,i)=>{w.val=packed[i];delete w.pack});
+  writes.push({store:T_META,val:{key:META_CORE,createdAt:s.createdAt,schemaVersion:SCHEMA_VERSION,updatedAt:new Date().toISOString()}});
+  await dbBulkWrite(writes);
+  if(o.marker)await dbSetPendingSnapshot(opts.reason||'seed');
+  __dbLastPersisted=structuredClone(s);
+  state=s;
+  await dbJournalPending();
+  diag('Delta seed',{clear:o.clear,marker:o.marker,activities:A.activities.length,entries:A.entries.length});
+}
+/* ---- apply a remote delta batch (pull path) — never re-journaled ---- */
+async function dbApplyRemoteOps(ops,srcDevice){
+  if(!state||!ops||!ops.length)return 0;
+  const myDev=dbDeviceId();const writes=[];let applied=0,lost=0;
+  for(const op of ops){
+    const entity=op.entity,oid=String(op.entityId);
+    if(entity==='activity'||entity==='entry'||entity==='measurementType'){
+      const store=entity==='activity'?T_ACT:entity==='entry'?T_ENT:T_MEAS;
+      const arr=entity==='activity'?state.activities:entity==='entry'?state.entries:state.measurementTypes;
+      const idx=arr.findIndex(x=>x.id===oid);const cur=idx>=0?arr[idx]:null;
+      if(op.op==='upsert'){
+        const tomb=await dbGetTombstone(entity+':'+oid);
+        if(tomb&&dbTombWins(tomb,op)){lost++;continue}
+        if(cur&&!dbOpWins(op,cur,myDev)){lost++;continue}
+        const rec=JSON.parse(JSON.stringify(op.payload));rec.revDevice=op.device||srcDevice||'';
+        if(idx>=0)arr[idx]=rec;else arr.push(rec);
+        writes.push({store,val:null,pack:rec,key:oid});applied++;
+      }else if(op.op==='delete'){
+        if(cur&&op.ts&&String(cur.updatedAt||'')>String(op.ts)){lost++;continue}
+        if(idx>=0)arr.splice(idx,1);applied++;
+        writes.push({store,del:1,key:oid});
+        writes.push({store:T_TOMB,val:null,pack:{key:entity+':'+oid,entity,id:oid,ts:op.ts,device:op.device||srcDevice||''},key:entity+':'+oid});
+      }
+    }else if(entity==='settings'){
+      if(dbOpWins(op,state.settings,myDev)||!state.settings){state.settings=JSON.parse(JSON.stringify(op.payload));writes.push({store:T_SET,val:null,pack:{key:'global',data:state.settings},key:'global'});applied++}else lost++;
+    }else if(entity==='preset'){
+      ensureViewSettings(state);const ps=state.viewSettings.presets;const idx=ps.findIndex(x=>x.name===oid);
+      if(op.op==='upsert'){const rec={name:oid,config:JSON.parse(JSON.stringify(op.payload.config||{}))};
+        if(idx<0||dbOpWins(op,idx>=0?{updatedAt:ps[idx].updatedAt||'',revDevice:ps[idx].revDevice}:null,myDev)){if(idx>=0)ps[idx]=rec;else ps.push(rec);writes.push({store:T_PRE,val:null,pack:{name:oid,config:rec.config},key:oid});writes.push({store:T_VIEW,val:null,pack:{key:'view',data:state.viewSettings},key:'view'});applied++}else lost++}
+      else if(idx>=0){ps.splice(idx,1);writes.push({store:T_PRE,del:1,key:oid});writes.push({store:T_VIEW,val:null,pack:{key:'view',data:state.viewSettings},key:'view'});applied++}
+    }else if(entity==='history'){
+      if(op.op==='append'){state.changeHistory.push(JSON.parse(JSON.stringify(op.payload)));writes.push({store:T_HIST,val:null,pack:op.payload,key:oid});applied++}
+    }else if(entity==='meta'&&oid==='createdAt'){
+      if(op.payload&&op.payload.createdAt&&String(op.payload.createdAt)<String(state.createdAt||'')){state.createdAt=op.payload.createdAt;const core=await dbCoreMeta()||{key:META_CORE};core.createdAt=state.createdAt;await stPut(T_META,core);applied++}
+    }
+  }
+  if(writes.length){const packed=await recPackAll(writes.map(w=>w.pack),writes.map(w=>T_KEY[w.store]));writes.forEach((w,i)=>{w.val=packed[i];delete w.pack});await dbBulkWrite(writes)}
+  __dbLastPersisted=structuredClone(state);
+  return{applied,lost};
+}
 const idbGet=k=>new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbGet blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readonly').objectStore(STORE).get(k);q.onsuccess=()=>{diag('idbGet success',k);res(q.result)};q.onerror=()=>{diag('idbGet error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB read failed'))};}catch(e){diag('idbGet threw',e.message);rej(e)}});
 const idbPut=(k,v)=>new Promise((res,rej)=>{try{if(!db){const e=new Error('Database is not ready');diag('idbPut blocked',e.message);return rej(e)}const q=db.transaction(STORE,'readwrite').objectStore(STORE).put(v,k);q.onsuccess=()=>{diag('idbPut success',k);res()};q.onerror=()=>{diag('idbPut error',q.error?.message||q.error);rej(q.error||new Error('IndexedDB write failed'))};}catch(e){diag('idbPut threw',e.message);rej(e)}});
 const enc=new TextEncoder(),dec=new TextDecoder();
@@ -1808,7 +2036,9 @@ async function jsonDbEnvelopeEncrypted(password){const salt=state.__salt?.byteLe
 async function writeJsonDbNow(){if(!jsonDbHandle||!state)return;const pack=jsonDbEncrypted?await jsonDbEnvelopeEncrypted(currentDbPassword()):jsonDbEnvelopePlain();const text=JSON.stringify(pack,null,2);const w=await jsonDbHandle.createWritable();await w.write(text);await w.close();jsonDbWriteSeq++;updateJsonDbUi('Saved');}
 function scheduleJsonDbWrite(){if(!jsonDbHandle||!state)return;clearTimeout(jsonDbWriteTimer);jsonDbWriteTimer=setTimeout(()=>writeJsonDbNow().catch(e=>diag('JSON DB write failed',e?.message||String(e))),550)}
 function currentDbPassword(){return $('jsonDbPassword')?.value||$('passwordInput').dataset.dbPassword||''}
-async function cacheLocalState(){try{if(jsonDbEncrypted){const pw=currentDbPassword();if(!pw)throw new Error('A password is required for encrypted JSON database storage.');const pack=await jsonDbEnvelopeEncrypted(pw);await idbPut(DB_KEY,{v:3,storage:'json-cache',...pack});}else{await idbPut(DB_KEY,{v:3,storage:'plain',data:stateForJson()});}}catch(e){diag('Local cache save failed',e?.message||String(e))}}
+/* v11: the single-record JSON cache was replaced by the Delta Core (dbPersistCurrent).
+   Kept as a thin alias for any legacy call sites. */
+async function cacheLocalState(){try{return await dbPersistCurrent()}catch(e){diag('Delta persist failed',e?.message||String(e))}}
 async function save(){
   if(!state){diag('Save skipped',{hasState:false});clearPendingHistory();return}
   const before=comparableState(lastSavedSnapshot||state);
@@ -1818,7 +2048,7 @@ async function save(){
     const h=pendingHistoryAction||{label:'Change',meta:'',kind:'change'};
     recordChangeHistory(h.label,h.meta,h.kind||'change');
   }
-  await cacheLocalState();scheduleJsonDbWrite();lastSavedSnapshot=snapshotStateForUndo();applyAppearance();updateHistoryButtons();renderChangeHistory();diag('Save complete');clearPendingHistory();
+  await dbPersistCurrent();scheduleJsonDbWrite();lastSavedSnapshot=snapshotStateForUndo();applyAppearance();updateHistoryButtons();renderChangeHistory();diag('Save complete');clearPendingHistory();
   try{window.dispatchEvent(new CustomEvent('streakos:localchange'))}catch(e){}
 }
 
@@ -1911,11 +2141,33 @@ async function chooseJsonDatabase(){if(window.showOpenFilePicker){const [h]=awai
 async function loadJsonTextFile(fileOrHandle){const file=fileOrHandle.getFile?await fileOrHandle.getFile():fileOrHandle;return await file.text()}
 async function parsePortableDatabase(text){const parsed=JSON.parse(text);if(parsed?.format==='streak-os-json-db'&&parsed.encrypted){const pw=currentDbPassword();if(!pw)throw new Error('Enter the database password in the password field first.');const key=await derive(pw,bufb64(parsed.salt));const plain=await decrypt(parsed.payload,key);plain.__salt=bufb64(parsed.salt);return normalizeState(plain)}if(parsed?.format==='streak-os-json-db'&&parsed.data)return normalizeState(parsed.data);if(parsed?.format==='streak-os-encrypted-backup'&&parsed.payload){const pw=currentDbPassword();if(!pw)throw new Error('Password required for this encrypted backup.');const key=await derive(pw,bufb64(parsed.payload.salt));const plain=await decrypt(parsed.payload,key);plain.__salt=bufb64(parsed.payload.salt);return normalizeState(plain)}return normalizeState(parsed)}
 async function connectJsonDatabase(){try{const chosen=await chooseJsonDatabase();const text=await loadJsonTextFile(chosen);const parsed=JSON.parse(text);const detectedEncrypted=!!parsed?.encrypted||(!!parsed?.format&&parsed.format==='streak-os-encrypted-backup');if(detectedEncrypted&&!currentDbPassword())throw new Error('Enter the database password before connecting an encrypted database.');const loaded=await parsePortableDatabase(text);state=loaded;jsonDbConnected=!!chosen.getFile;if(chosen.getFile){jsonDbHandle=chosen;jsonDbName=(await chosen.getFile()).name;await rememberJsonHandle(chosen);rememberedJsonMeta={name:jsonDbName,encrypted:jsonDbEncrypted}}else{jsonDbHandle=null;jsonDbName=chosen.name}jsonDbEncrypted=detectedEncrypted;if(jsonDbEncrypted)$('passwordInput').dataset.dbPassword=currentDbPassword();resetHistoryStacks();applyAppearance();render();renderSettings();updateJsonDbUi('JSON database connected');await cacheLocalState()}catch(e){diag('JSON DB connect failed',e?.message||String(e));toast(e?.message||'Could not open JSON database')}}
-async function setJsonDbEncryption(enabled){if(!state)return;const previous=jsonDbEncrypted;try{if(enabled){let pw=$('jsonDbPassword')?.value.trim()||currentDbPassword();if(!pw){$('jsonDbEncryption').checked=false;throw new Error('Enter a database password first.')} $('passwordInput').dataset.dbPassword=pw;state.__salt=crypto.getRandomValues(new Uint8Array(16));jsonDbEncrypted=true;cryptoKey=await derive(pw,state.__salt);if(jsonDbHandle)await writeJsonDbNow();await cacheLocalState();updateJsonDbUi('JSON database encryption enabled 🔐');}else{jsonDbEncrypted=false;delete state.__salt;if(jsonDbHandle)await writeJsonDbNow();await cacheLocalState();updateJsonDbUi('JSON database encryption disabled 🔓');}}catch(e){jsonDbEncrypted=previous;$('jsonDbEncryption').checked=previous;diag('JSON DB encryption change failed',e?.message||String(e));toast(e?.message||'Could not change JSON database encryption')}}
+async function setJsonDbEncryption(enabled){if(!state)return;const previous=jsonDbEncrypted;try{if(enabled){let pw=$('jsonDbPassword')?.value.trim()||currentDbPassword();if(!pw){$('jsonDbEncryption').checked=false;throw new Error('Enter a database password first.')} $('passwordInput').dataset.dbPassword=pw;await dbRekey(pw);}else{await dbRekey(null);$('passwordInput').dataset.dbPassword='';if($('jsonDbPassword'))$('jsonDbPassword').value='';}if(jsonDbHandle)await writeJsonDbNow();updateJsonDbUi(enabled?'Database encryption enabled 🔐':'Database encryption disabled 🔓');}catch(e){jsonDbEncrypted=previous;$('jsonDbEncryption').checked=previous;diag('Encryption change failed',e?.message||String(e));toast(e?.message||'Could not change database encryption')}}
 async function createJsonDatabase(){try{let handle;if(window.showSaveFilePicker){handle=await showSaveFilePicker({suggestedName:`streak-os-${todayKey()}.json`,types:[{description:'Streak OS JSON database',accept:{'application/json':['.json']}}]});jsonDbHandle=handle;jsonDbName=(await handle.getFile()).name;jsonDbConnected=true;await rememberJsonHandle(handle)}else{toast('This browser does not support direct file creation. Export the database instead.');return}jsonDbEncrypted=!!$('jsonDbEncryption')?.checked;await writeJsonDbNow();updateJsonDbUi('JSON database created')}catch(e){diag('JSON DB create failed',e?.message||String(e))}}
 async function disconnectJsonDatabase(){jsonDbHandle=null;jsonDbName='';jsonDbConnected=false;clearTimeout(jsonDbWriteTimer);await forgetJsonHandle();updateJsonDbUi('JSON database disconnected')}
 function defaultState(){return{version:2,createdAt:new Date().toISOString(),measurementTypes:cloneDefaultMeasurements(),settings:{type:'time',unit:'minutes',target:60,savers:4,min:0,priority:null},viewSettings:defaultViewSettings(),activities:[],entries:[],__salt:new Uint8Array(16)}}
 async function firstSetup(password){diag('First setup start');state=defaultState();normalizeUi(state);const salt=crypto.getRandomValues(new Uint8Array(16));state.__salt=salt;cryptoKey=await derive(password,salt);await save();diag('First setup complete')}
+/* ---- wholesale re-encryption of the stores (enable/disable/change password) ---- */
+async function dbRekey(password){
+  if(!state)return;
+  const A=dbStateArrays(state);
+  const writes=[];
+  for(const rec of A.activities)writes.push({store:T_ACT,val:null,pack:rec,key:rec.id});
+  for(const rec of A.entries)writes.push({store:T_ENT,val:null,pack:rec,key:rec.id});
+  for(const rec of A.measurementTypes)writes.push({store:T_MEAS,val:null,pack:rec,key:rec.id});
+  for(const rec of A.presets)writes.push({store:T_PRE,val:null,pack:{name:rec.name,config:rec.config},key:rec.name});
+  for(const rec of A.history)writes.push({store:T_HIST,val:null,pack:rec,key:rec.id});
+  writes.push({store:T_SET,val:null,pack:{key:'global',data:state.settings},key:'global'});
+  writes.push({store:T_VIEW,val:null,pack:{key:'view',data:state.viewSettings},key:'view'});
+  const newSalt=password?crypto.getRandomValues(new Uint8Array(16)):null;
+  jsonDbEncrypted=!!password;
+  cryptoKey=password?await derive(password,newSalt):null;
+  const packed=await recPackAll(writes.map(w=>w.pack),writes.map(w=>T_KEY[w.store]));
+  writes.forEach((w,i)=>{w.val=packed[i];delete w.pack});
+  await dbBulkWrite(writes);
+  if(password&&state)state.__salt=newSalt;
+  await dbWriteCoreMeta({migrated:1,encrypted:!!password,salt:newSalt?b64buf(newSalt):null});
+  diag('Database rekeyed',{encrypted:!!password});
+}
 function recomputeProgramOriginOnObject(obj){
   if(!obj)return;
   const dates=[];if(obj.createdAt)dates.push(obj.createdAt.slice(0,10));
@@ -1949,37 +2201,73 @@ async function unlock(password){
     }
     state=await parsePortableDatabase(text);
     normalizeState(state);normalizeUi(state);
-    resetHistoryStacks();applyAppearance();await cacheLocalState();showApp();updateJsonDbUi('JSON database opened');return;
+    /* v11: the file database is merged into the delta stores as per-record deltas —
+       records the file changed get a fresh updatedAt and win LWW on the next sync. */
+    try{
+      const core=await dbCoreMeta();
+      if(core&&core.migrated){
+        const cur=await dbHydrateFromStores();
+        __dbLastPersisted=structuredClone(cur.state);
+        await dbPersistCurrent();
+      }else{
+        await dbSeedFromState(state,{clear:false});
+        await dbWriteCoreMeta({migrated:1,encrypted:jsonDbEncrypted});
+        await dbJournalClear();
+      }
+    }catch(e){diag('File DB delta import failed',e?.message||String(e))}
+    resetHistoryStacks();applyAppearance();showApp();updateJsonDbUi('JSON database opened');return;
   }
-  const raw=await idbGet(DB_KEY);
-  diag('Vault read result',raw?{v:raw.v,storage:raw.storage,encrypted:raw.encrypted}:'NO_VAULT');
+  const core=await dbCoreMeta();
+  const raw=await idbGet(DB_KEY).catch(()=>null);
+  diag('Vault read result',{legacy:raw?{v:raw.v,storage:raw.storage,encrypted:raw.encrypted}:null,migrated:!!(core&&core.migrated),encrypted:!!(core&&core.encrypted)});
+  if(core&&core.migrated){
+    /* v11 delta stores are the primary database */
+    if(core.encrypted){
+      if(!password)throw new Error('Enter your database password.');
+      if(!core.salt)throw new Error('The keyring salt is missing — cannot derive the key.');
+      const salt=core.salt instanceof Uint8Array?core.salt:bufb64(core.salt);
+      cryptoKey=await derive(password,salt);jsonDbEncrypted=true;
+      $('passwordInput').dataset.dbPassword=password;if($('jsonDbPassword'))$('jsonDbPassword').value=password;
+    }else{
+      jsonDbEncrypted=false;cryptoKey=null;
+      $('passwordInput').dataset.dbPassword='';if($('jsonDbPassword'))$('jsonDbPassword').value='';
+    }
+    const h=await dbHydrateFromStores();
+    state=h.state;
+    if(core.encrypted&&core.salt){const salt=core.salt instanceof Uint8Array?core.salt:bufb64(core.salt);state.__salt=salt}
+    __dbLastPersisted=structuredClone(state); /* avoid a phantom full-diff on the first save after unlock */
+    await dbJournalPending();
+    resetHistoryStacks();applyAppearance();showApp();return;
+  }
   if(!raw){
     state=defaultState();normalizeUi(state);
     $('passwordInput').dataset.dbPassword=password||'';jsonDbEncrypted=false;cryptoKey=null;
-    await cacheLocalState();resetHistoryStacks();showApp();toast('Local JSON database created');return;
+    await dbSeedFromState(state,{clear:false});await dbWriteCoreMeta({migrated:1,encrypted:false});
+    resetHistoryStacks();showApp();toast('Local database created');return;
   }
-  if(raw.storage==='plain'&&raw.data){
-    state=normalizeState(raw.data);jsonDbEncrypted=false;cryptoKey=null;
-    $('passwordInput').dataset.dbPassword='';if($('jsonDbPassword'))$('jsonDbPassword').value='';
-    resetHistoryStacks();applyAppearance();showApp();return;
-  }
-  if(raw.storage==='json-cache'&&raw.format==='streak-os-json-db'){
+  /* legacy single-record vault (v10 or earlier) → one-time migration into the delta stores */
+  let legacyState=null,legacyEnc=false,legacySalt=null;
+  if(raw.storage==='plain'&&raw.data){legacyState=raw.data;legacyEnc=false}
+  else if(raw.storage==='json-cache'&&raw.format==='streak-os-json-db'){
     if(raw.encrypted){
       if(!password)throw new Error('Enter your database password.');
-      const key=await derive(password,bufb64(raw.salt));state=normalizeState(await decrypt(raw.payload,key));state.__salt=bufb64(raw.salt);
-      jsonDbEncrypted=true;$('passwordInput').dataset.dbPassword=password;if($('jsonDbPassword'))$('jsonDbPassword').value=password;cryptoKey=key;
-    }else{
-      state=normalizeState(raw.data);jsonDbEncrypted=false;$('passwordInput').dataset.dbPassword='';cryptoKey=null;
-    }
-    resetHistoryStacks();applyAppearance();showApp();return;
+      const key=await derive(password,bufb64(raw.salt));legacyState=await decrypt(raw.payload,key);legacyState.__salt=bufb64(raw.salt);legacyEnc=true;legacySalt=bufb64(raw.salt);cryptoKey=key;
+    }else legacyState=raw.data;
   }
-  if(raw.salt&&raw.iv&&raw.data){
-    const key=await derive(password,bufb64(raw.salt));const decrypted=normalizeState(await decrypt(raw,key));decrypted.__salt=bufb64(raw.salt);
-    cryptoKey=key;state=decrypted;$('passwordInput').dataset.dbPassword=password;
-    if($('jsonDbPassword'))$('jsonDbPassword').value=password;
-    jsonDbEncrypted=true;resetHistoryStacks();applyAppearance();showApp();return;
+  else if(raw.salt&&raw.iv&&raw.data){
+    if(!password)throw new Error('Enter your database password.');
+    const key=await derive(password,bufb64(raw.salt));legacyState=await decrypt(raw,key);legacyState.__salt=bufb64(raw.salt);legacyEnc=true;legacySalt=bufb64(raw.salt);cryptoKey=key;
   }
-  throw new Error('The saved database format is invalid.');
+  else throw new Error('The saved database format is invalid.');
+  state=normalizeState(legacyState);
+  jsonDbEncrypted=legacyEnc;
+  if(legacyEnc){$('passwordInput').dataset.dbPassword=password;if($('jsonDbPassword'))$('jsonDbPassword').value=password;}
+  else{$('passwordInput').dataset.dbPassword='';if($('jsonDbPassword'))$('jsonDbPassword').value='';cryptoKey=null}
+  await dbSeedFromState(state,{clear:false});
+  await dbWriteCoreMeta({migrated:1,encrypted:legacyEnc,salt:legacySalt?b64buf(legacySalt):null,createdAt:state.createdAt});
+  await dbJournalClear();
+  diag('Legacy vault migrated to delta stores',{activities:state.activities.length,entries:state.entries.length});
+  resetHistoryStacks();applyAppearance();showApp();return;
 }
 function lock(){rememberTabPosition();state=null;cryptoKey=null;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('passwordInput').value='';$('loginError').textContent='';$('loginTitle').innerHTML=`Streak OS <span class="appVersion">v${APP_VERSION}</span>`;$('setupNotice').textContent='Enter the password used to unlock this vault.'}
 function entryTotal(a,date){return state.entries.filter(e=>e.activityId===a.id&&e.date===date).reduce((s,e)=>s+Number(e.amount||0),0)}
@@ -2797,7 +3085,7 @@ function shiftSelectedDate(delta){const d=new Date(selectedDate+'T12:00:00');d.s
 function showSection(id){rememberTabPosition();activeSection=id;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));render();restoreTabPosition(id);if(state)save().catch(e=>diag('Tab position save failed',e?.message||String(e)));}
 
 /* ================================================================================
-   CLOUD SYNC MODULE — offline-first sync over a GitHub repository (single JSON file)
+   CLOUD SYNC MODULE — offline-first sync over a GitHub repository (append-only delta store)
    --------------------------------------------------------------------------------
    Layered, pluggable architecture (future-proof by design):
      SyncUI            → status pill + settings panel (talks only to SyncEngine)
@@ -2819,7 +3107,7 @@ const CS_SYNC_LOCK='streakos-sync-op';
 async function csWithSyncLock(fn){if(!(navigator.locks&&navigator.locks.request))return fn();try{return await navigator.locks.request(CS_SYNC_LOCK,fn)}catch(e){return fn()}}
 function csNotifyIfChanged(rev){rev=Number(rev)||0;if(!rev||rev<=(csLastNotifiedRev||0))return;csLastNotifiedRev=rev;try{if(csBC)csBC.postMessage({t:'remote-changed',tabId:csTabId,rev:rev})}catch(e){}}
 try{csBC=new BroadcastChannel('streakos-sync');csBC.onmessage=function(ev){const d=ev&&ev.data||{};if(d.t!=='remote-changed'||d.tabId===csTabId)return;const rev=Number(d.rev)||0;if(rev&&(csLastNotifiedRev||0)>=rev)return;csLastNotifiedRev=rev;csLog('Another tab synced — checking for updates');if(csConfig&&csConfig.enabled&&!csOffline&&!document.hidden&&state&&!csBusy){clearTimeout(csPushTimer);csPushTimer=setTimeout(function(){csSyncNow('remote-notify').catch(function(){})},1200+Math.floor(Math.random()*1800))}}}catch(e){csBC=null}
-function csDefaultConfig(){return{enabled:false,autoSync:true,intervalSec:300,autoSyncDelaySec:60,keepBackups:30,token:'',owner:'',repo:'',branch:'',path:'streak-os-data.json',backupsPath:'backups',deviceName:''}}
+function csDefaultConfig(){return{enabled:false,autoSync:true,intervalSec:300,autoSyncDelaySec:60,keepBackups:30,token:'',owner:'',repo:'',branch:'',path:'streak-os-data.json',deltaRoot:'streak-db',backupsPath:'backups',deviceName:''}}
 function csDefaultMeta(){return{deviceId:'dev-'+Math.random().toString(36).slice(2,10),deviceName:'',rev:0,lastSyncAt:null,lastResult:null,lastError:null,log:[]}}
 function csLog(m,l){l=l||'info';if(!csMeta)return;csMeta.log.unshift({t:new Date().toISOString(),l:l,m:String(m).slice(0,300)});if(csMeta.log.length>40)csMeta.log.length=40;diag('[sync] '+m);try{idbPut(CS_META,csMeta)}catch(e){}try{csRenderPanel()}catch(e){}}
 function csCanon(v){return JSON.stringify(v,function(k,val){if(val&&(typeof val==='object')&&!Array.isArray(val)&&!ArrayBuffer.isView(val)&&typeof val.toJSON!=='function'){const o={};for(const k2 of Object.keys(val).sort())o[k2]=val[k2];return o}return val})}
@@ -2842,8 +3130,8 @@ function csB64Decode(b64){const bin=atob(String(b64||'').replace(/\s/g,''));cons
 /* ---- FA dictionary additions for the sync UI (integrated with the app i18n walker) ---- */
 faAdd([
 ['Cloud sync (GitHub)','هم‌گام‌سازی ابری (گیت‌هاب)'],['Offline-first sync through a private GitHub repository. Data lives locally and syncs automatically when online.','هم‌گام‌سازی آفلاین‌محور از طریق یک مخزن خصوصی گیت‌هاب. داده‌ها محلی هستند و هنگام اتصال، خودکار هم‌گام می‌شوند.'],
-['Connection','اتصال'],['Store your database as a single JSON file inside your own GitHub repository (fine-grained token, Contents read+write, single repo)','پایگاه داده شما به‌صورت یک فایل JSON در مخزن گیت‌هاب خودتان ذخیره می‌شود (توکن محدود، دسترسی Contents خواندن+نوشتن، فقط یک مخزن)'],
-['Enable cloud sync','فعال‌سازی هم‌گام‌سازی ابری'],['Device name','نام دستگاه'],['Owner (username)','مالک (نام کاربری)'],['Repository','مخزن'],['Branch','شاخه'],['Data file path','مسیر فایل داده'],['Personal access token','توکن دسترسی شخصی'],
+['Connection','اتصال'],['Sync a delta store (a small manifest + append-only change files) inside your own GitHub repository (fine-grained token, Contents read+write, single repo)','یک مخزن دلتا (مانيفست کوچک + فایل‌های تغییرات الحاقی) در مخزن گیت‌هاب خودتان هم‌گام می‌شود (توکن محدود، دسترسی Contents خواندن+نوشتن، فقط یک مخزن)'],
+['Enable cloud sync','فعال‌سازی هم‌گام‌سازی ابری'],['Device name','نام دستگاه'],['Owner (username)','مالک (نام کاربری)'],['Repository','مخزن'],['Branch','شاخه'],['Data folder (delta root)','پوشه داده (ریشه دلتا)'],['Personal access token','توکن دسترسی شخصی'],
 ['Save connection','ذخیره اتصال'],['Test connection','تست اتصال'],['Sync & status','هم‌گام‌سازی و وضعیت'],
 ['Everything is saved offline first. When a connection is available, changes sync automatically and remote changes from your other devices are merged in.','همه‌چیز ابتدا آفلاین ذخیره می‌شود. هرگاه اتصال برقرار باشد، تغییرات خودکار هم‌گام شده و تغییرات دستگاه‌های دیگر شما ادغام می‌شود.'],
 ['Status','وضعیت'],['Last successful sync','آخرین هم‌گام‌سازی موفق'],['Unsent local changes','تغییرات محلی ارسال‌نشده'],['Cloud version (device · rev · time)','نسخه ابری (دستگاه · بازبینی · زمان)'],
@@ -2857,7 +3145,7 @@ faAdd([
 ['Cloud','ابر'],['Offline','آفلاین'],['Syncing…','در حال هم‌گام‌سازی…'],['Sync error','خطای هم‌گام‌سازی'],['Pending sync','در انتظار هم‌گام‌سازی'],['Synced','هم‌گام شد'],['Not configured','پیکربندی نشده'],['Waiting','در انتظار'],['Click to sync now','برای هم‌گام‌سازی فوری کلیک کنید'],
 ['Off','خاموش'],['Up to date','به‌روز'],['Yes — will sync automatically','بله — به‌صورت خودکار هم‌گام می‌شود'],['No','خیر'],['Error','خطا'],['Merged with conflicts','با تعارض ادغام شد'],
 ['Cloud sync is off — enable it in Settings','هم‌گام‌سازی ابری خاموش است — آن را در تنظیمات فعال کنید'],['You are offline — changes are saved locally and will sync automatically','آفلاین هستید — تغییرات محلی ذخیره می‌شوند و بعداً خودکار هم‌گام می‌شوند'],['Synchronizing with GitHub…','در حال هم‌گام‌سازی با گیت‌هاب…'],['There are local changes waiting to sync','تغییرات محلی در انتظار هم‌گام‌سازی هستند'],['Synced with GitHub','با گیت‌هاب هم‌گام شد'],['Cloud sync needs a token, owner, and repository','هم‌گام‌سازی ابری به توکن، مالک و مخزن نیاز دارد'],['Conflicts were merged — losing versions are backed up. See the report in Settings.','تعارض‌ها ادغام شدند — نسخه‌های بازنده پشتیبان‌گیری شده‌اند. گزارش را در تنظیمات ببینید.'],['Waiting for the first sync','در انتظار اولین هم‌گام‌سازی'],
-['Configuration saved','پیکربندی ذخیره شد'],['Connection OK','اتصال برقرار است'],['Testing…','در حال تست…'],['data file found','فایل داده پیدا شد'],['data file will be created on first sync','فایل داده در اولین هم‌گام‌سازی ساخته می‌شود'],['branch','شاخه'],
+['Configuration saved','پیکربندی ذخیره شد'],['Connection OK','اتصال برقرار است'],['Testing…','در حال تست…'],['delta store found','مخزن دلتا پیدا شد'],['delta store will be created on first sync','مخزن دلتا در اولین هم‌گام‌سازی ساخته می‌شود'],['branch','شاخه'],
 ['Published to the cloud','در ابر منتشر شد'],['Updates received from the cloud','به‌روزرسانی‌ها از ابر دریافت شد'],['Synced with the cloud','با ابر هم‌گام شد'],['Cloud copy adopted — local copy backed up','نسخه ابری پذیرفته شد — از نسخه محلی پشتیبان‌گیری شد'],['Cloud copy overwritten','نسخه ابری بازنویسی شد'],['Conflicts merged — losing versions backed up','تعارض‌ها ادغام شدند — از نسخه‌های بازنده پشتیبان گرفته شد'],['Merged and synced','ادغام و هم‌گام شد'],['Merged with conflicts — backups saved','با تعارض ادغام شد — پشتیبان‌ها ذخیره شدند'],
 ['Enable cloud sync first','ابتدا هم‌گام‌سازی ابری را فعال کنید'],['Backup uploaded to the cloud','پشتیبان در ابر آپلود شد'],['Conflict report cleared','گزارش تعارض پاک شد'],['Overwrite the cloud copy with this device data? The current cloud copy will be backed up first.','نسخه ابری با داده‌های این دستگاه بازنویسی شود؟ ابتدا از نسخه فعلی ابر پشتیبان‌گیری می‌شود.'],['Adopt the cloud copy and discard unsynced local changes? A backup of the local copy will be uploaded first.','نسخه ابری پذیرفته شود و تغییرات محلی هم‌گام‌نشده حذف شود؟ ابتدا از نسخه محلی پشتیبان آپلود می‌شود.'],
 ]);
@@ -2865,8 +3153,8 @@ faAdd([
 faAdd([
 ['☁️ Cloud sync (GitHub)','☁️ هم‌گام‌سازی ابری (گیت‌هاب)'],
 ['🔌 Connection','🔌 اتصال'],
-['Store your database as a single JSON file inside your own GitHub repository (fine-grained token, Contents read+write, single repo).','پایگاه داده شما به‌صورت یک فایل JSON در مخزن گیت‌هاب خودتان ذخیره می‌شود (توکن محدود، دسترسی Contents خواندن+نوشتن، فقط یک مخزن).'],
-['📛 Device name','📛 نام دستگاه'],['👤 Owner (username)','👤 مالک (نام کاربری)'],['📦 Repository','📦 مخزن'],['🌿 Branch','🌿 شاخه'],['📄 Data file path','📄 مسیر فایل داده'],['🔑 Personal access token','🔑 توکن دسترسی شخصی'],
+['Store your database as a delta store (manifest + append-only change files) inside your own GitHub repository (fine-grained token, Contents read+write, single repo).','پایگاه داده شما به‌صورت یک مخزن دلتا (مانيفست + فایل‌های تغییرات الحاقی) در مخزن گیت‌هاب خودتان ذخیره می‌شود (توکن محدود، دسترسی Contents خواندن+نوشتن، فقط یک مخزن).'],
+['📛 Device name','📛 نام دستگاه'],['👤 Owner (username)','👤 مالک (نام کاربری)'],['📦 Repository','📦 مخزن'],['🌿 Branch','🌿 شاخه'],['📁 Data folder (delta root)','📁 پوشه داده (ریشه دلتا)'],['🔑 Personal access token','🔑 توکن دسترسی شخصی'],
 ['💾 Save connection','💾 ذخیره اتصال'],['🧪 Test connection','🧪 تست اتصال'],
 ['🔄 Sync & status','🔄 هم‌گام‌سازی و وضعیت'],
 ['⟳ Sync now','⟳ هم‌گام‌سازی فوری'],['🗄 Backup now','🗄 پشتیبان فوری'],['⬆ Overwrite cloud','⬆ بازنویسی ابر'],['⬇ Adopt cloud','⬇ پذیرش ابر'],
@@ -2978,6 +3266,9 @@ function csReadInputs(){
   csConfig.repo=(g('csRepo').trim()||'').replace(/\.git$/,'');
   csConfig.branch=g('csBranch').trim();
   csConfig.path=(g('csPath').trim()||'streak-os-data.json').replace(/^\/+/,'');
+  /* v11: the data path is a folder (delta store root); a legacy .json path maps to the default folder */
+  const __root=g('csPath').trim();
+  csConfig.deltaRoot=(!__root||/\.json$/i.test(__root))?'streak-db':__root.replace(/^\/+|\/+$/g,'');
   csConfig.backupsPath='backups';
   csConfig.token=g('csToken').trim();
   csConfig.intervalSec=(function(){const v=Math.max(0,Math.min(86400,Math.round(Number(g('csIntervalSec')))||0));return v===0?0:Math.max(30,v)})();
@@ -2992,7 +3283,7 @@ function csFillInputs(){
   if(!g('csOwner').value)g('csOwner').value=csConfig.owner||'';
   if(!g('csRepo').value)g('csRepo').value=csConfig.repo||'';
   if(!g('csBranch').value)g('csBranch').value=csConfig.branch||'';
-  if(!g('csPath').value)g('csPath').value=csConfig.path||'streak-os-data.json';
+  if(!g('csPath').value)g('csPath').value=csConfig.deltaRoot||'streak-db';
   if(!g('csToken').value)g('csToken').value=csConfig.token||'';
   g('csResolver').value='three-way-lww';
   g('csIntervalSec').value=String(csConfig.intervalSec!=null?csConfig.intervalSec:300);
@@ -3091,36 +3382,157 @@ async function csRecordConflicts(items,reason,backupCtx){
   csLog('Conflicts resolved by LWW ('+items.length+' key(s)): '+items.map(function(i){return i.key+(i.resolution?(' → '+i.resolution):'')}).join(', '),'warn');
   return true;
 }
-async function csPushWithRetry(backend,env,parentSha,attempts){
-  attempts=attempts||4;
-  try{
-    const res=await backend.push(JSON.stringify(env),parentSha,'Streak OS sync · '+(env.deviceName||env.deviceId)+' · rev '+env.rev);
-    csLastRemoteMeta={updatedAt:env.updatedAt,rev:env.rev,deviceId:env.deviceId,deviceName:env.deviceName};
-    await csSaveBase(csLastRemoteMeta,env.data,res.sha);
-    return res;
-  }catch(e){
-    if((e.code===409||e.code===422||e.code===412)&&attempts>1){
-      const waitMs=400*Math.pow(2,4-attempts)+Math.floor(Math.random()*600);
-      csLog('Push conflict (code '+e.code+'): cloud changed mid-flight — re-pulling and re-merging in '+Math.round(waitMs)+' ms','warn');
-      await new Promise(function(r){setTimeout(r,waitMs)});
-      const remote=await backend.pull();
-      const baseRec=(await idbGet(CS_BASE))||null;
-      if(remote.exists&&remote.env){
-        const m=csMergeThreeWay(baseRec?baseRec.data:{},env.data,remote.env.data,(Date.parse(env.updatedAt)||Date.now()),(Date.parse(remote.env.updatedAt)||0),env.deviceId,remote.env.deviceId);
-        const hadConflicts=await csRecordConflicts(m.conflicts,'push-retry',{backend:backend,remoteEnv:remote.env,localData:env.data});
-        if(!csEq(csStripVolatile(m.merged),csStripVolatile(remote.env.data))){
-          await csApplyRemote(m.merged,{keepLocalViewSettings:true});
-          const env2=await csBuildEnvelope(m.merged);
-          return csPushWithRetry(backend,env2,remote.sha,attempts-1);
-        }
-        await csSaveBase({updatedAt:String(remote.env.updatedAt||''),rev:Number(remote.env.rev||0),deviceId:String(remote.env.deviceId||'')},remote.env.data,remote.sha);
-        if(hadConflicts)csSetStatus('conflict');
-        return{sha:remote.sha};
-      }
-      return csPushWithRetry(backend,env,null,attempts-1);
-    }
-    throw e;
+/* ==================== BackendAdapter: GitHub Delta store (Git Data API) ====================
+   The remote database is a small append-only "delta store" instead of one rewritten JSON file:
+     <root>/manifest.json                          — tiny index (devices, cursors, batch lists, acks)
+     <root>/deltas/<deviceId>/<from>-<to>.json     — append-only operation batches (never rewritten)
+     <root>/snapshots/<deviceId>/snap-<seq>.json   — periodic full snapshots (rare)
+   One sync = ONE atomic commit (blobs → tree → commit → ref). Only the new small delta files and
+   the manifest are touched, so Git history growth is proportional to the actual changes, not to
+   the database size. Large files travel through the Git Blobs API (no 1 MB Contents-API limit).
+   Files become deletable once a newer snapshot of the same device covers them and every other
+   active device has acknowledged the range (acks; devices silent >90 days stop blocking GC). */
+class DeltaBackend extends GitHubBackend{
+  root(){const r=String(this.cfg.deltaRoot||'streak-db').replace(/^\/+|\/+$/g,'');return r||'streak-db'}
+  manifestPath(){return this.root()+'/manifest.json'}
+  legacyPath(){return String(this.cfg.path||'streak-os-data.json')}
+  async pullManifest(){const b=await this.resolvedBranch();
+    try{const j=await this.req(this.api('/contents/'+csEncPath(this.manifestPath()),'ref='+encodeURIComponent(b)+'&_='+Date.now()));
+      let text='';if(j&&typeof j.content==='string'&&j.content.length)text=csB64Decode(j.content);else if(j&&j.git_url){const bj=await this.req(j.git_url);text=csB64Decode(bj.content)}
+      let manifest=null;try{manifest=JSON.parse(text)}catch(e){}
+      if(!manifest||typeof manifest!=='object')throw new Error('manifest.json exists but is unreadable');
+      return{exists:true,sha:j.sha,manifest:manifest}}
+    catch(e){if(e.code===404)return{exists:false};throw e}}
+  async fetchBlobText(sha){const j=await this.req(this.api('/git/blobs/'+encodeURIComponent(sha)));if(j&&j.base64_content)return csB64Decode(j.base64_content);if(j&&j.content)return j.encoding==='base64'?csB64Decode(j.content):j.content;throw new Error('Blob '+sha+' is unreadable')}
+  async createBlob(text){const j=await this.req(this.api('/git/blobs'),{method:'POST',body:JSON.stringify({content:csB64Encode(text),encoding:'base64'})});return j.sha}
+  async headInfo(){const b=await this.resolvedBranch();
+    try{const ref=await this.req(this.api('/git/ref/heads/'+encodeURIComponent(b)));const headSha=ref.object.sha;let baseTree=null;try{const c=await this.req(this.api('/git/commits/'+headSha));baseTree=c.tree&&c.tree.sha}catch(e){}return{branch:b,headSha,baseTree}}
+    catch(e){if(e.code===404||e.code===422)return{branch:b,headSha:null,baseTree:null}}throw e}
+  /* files:[{path,text,sha?}] — sha may be pre-created; deletions:[path] */
+  async commitFiles(files,deletions,message){
+    const head=await this.headInfo();const entries=[];
+    for(const f of files){let sha=f.sha;if(!sha)sha=await this.createBlob(f.text);entries.push({path:f.path,mode:'100644',type:'blob',sha})}
+    for(const p of deletions||[])entries.push({path:p,mode:'100644',type:'blob',sha:null});
+    const body=head.baseTree?{base_tree:head.baseTree,tree:entries}:{tree:entries};
+    const tree=await this.req(this.api('/git/trees'),{method:'POST',body:JSON.stringify(body)});
+    const commit=await this.req(this.api('/git/commits'),{method:'POST',body:JSON.stringify({message:message,tree:tree.sha,parents:head.headSha?[head.headSha]:[]})});
+    if(head.headSha)await this.req(this.api('/git/refs/heads/'+encodeURIComponent(head.branch)),{method:'PATCH',body:JSON.stringify({sha:commit.sha,force:false})});
+    else await this.req(this.api('/git/refs'),{method:'POST',body:JSON.stringify({ref:'refs/heads/'+head.branch,sha:commit.sha})});
+    return{commit:commit.sha,branch:head.branch}}
+  async test(){const info=await this.repoInfo();const b=(info&&info.default_branch)||this.branch||'main';if(!this.branch&&info&&info.default_branch)this.cfg.branch=info.default_branch;
+    let man={exists:false};try{man=await this.pullManifest()}catch(e){}
+    return{ok:true,repo:(info&&info.full_name)||'',priv:!!(info&&info.private),branch:b,storeExists:!!man.exists,permissions:(info&&info.permissions)||null}}
+}
+/* ==================== Delta sync core ==================== */
+const DS_FORMAT='streak-os-delta-db',DS_BATCH='streak-os-delta-batch',DS_SNAPSHOT='streak-os-delta-snapshot';
+const DS_GC_STALE_DAYS=90;
+function csManifestDefault(){return{format:DS_FORMAT,version:1,schemaVersion:SCHEMA_VERSION,appVersion:APP_VERSION,createdAt:csNowISO(),updatedAt:csNowISO(),devices:{},deltas:{},acks:{}}}
+function csManifestNormalize(m){const d=csManifestDefault();if(!m||typeof m!=='object'||m.format!==DS_FORMAT)return null;const out=Object.assign(d,m);out.devices=out.devices&&typeof out.devices==='object'?out.devices:{};out.deltas=out.deltas&&typeof out.deltas==='object'?out.deltas:{};out.acks=out.acks&&typeof out.acks==='object'?out.acks:{};return out}
+async function csDeltaPublishSnapshot(backend,manifest,opts){
+  /* publish the full local state as a snapshot; rebases every other device (epoch bump)
+     opts:{reason:'baseline'|'marker'|'force'|'snapshot-due'} */
+  const me=csMeta.deviceId,root=backend.root();
+  const info=manifest.devices[me]||(manifest.devices[me]={name:csMeta.deviceName||csConfig.deviceName||me,lastSeq:0,epoch:0,lastSeenAt:csNowISO()});
+  const pending=await dbJournalPending();
+  let maxSeq=info.lastSeq||0;for(const r of pending)if(r.seq>maxSeq)maxSeq=r.seq;
+  info.lastSeq=maxSeq;info.epoch=(Number(info.epoch)||0)+1;info.name=csMeta.deviceName||csConfig.deviceName||me;info.lastSeenAt=csNowISO();
+  const env=await SyncSerializer.encode(stateForJson(),{});env.seq=maxSeq;env.epoch=info.epoch;env.reason=opts&&opts.reason||'snapshot';
+  const file=root+'/snapshots/'+csEncPath(me)+'/snap-'+dbPadSeq(maxSeq)+'.json';
+  const text=JSON.stringify(env);
+  const sha=await backend.createBlob(text);
+  /* delete my previous snapshot + my superseded delta batches (covered by this snapshot) */
+  const deletions=[];const oldSnap=info.snapshot;if(oldSnap&&oldSnap.file)deletions.push(oldSnap.file);
+  const myBatches=(manifest.deltas[me]||[]).slice();
+  for(const b of myBatches)deletions.push(b.file);
+  if(manifest.deltas)manifest.deltas[me]=[];
+  info.snapshot={seq:maxSeq,file:file,sha:sha,size:text.length,at:csNowISO()};
+  manifest.updatedAt=csNowISO();manifest.schemaVersion=SCHEMA_VERSION;manifest.appVersion=APP_VERSION;
+  manifest.acks[me]=await dbAllSyncCursors();
+  const files=[{path:file,text:text,sha:sha},{path:backend.manifestPath(),text:JSON.stringify(manifest)}];
+  const res=await backend.commitFiles(files,deletions,'Streak OS delta · snapshot by '+(info.name||me)+' ('+(opts&&opts.reason||'snapshot')+') · seq '+maxSeq);
+  await dbJournalMarkSynced(maxSeq);await dbJournalPrune();await dbClearPendingSnapshot();
+  await dbSetSyncCursor(me,maxSeq,info.epoch).catch(function(){});
+  csLog('Snapshot published ('+(opts&&opts.reason||'snapshot')+') · seq '+maxSeq+' · commit '+String(res.commit).slice(0,7));
+  return res;
+}
+async function csDeltaPushBatches(backend,manifest,pending){
+  const me=csMeta.deviceId,root=backend.root();
+  const info=manifest.devices[me]||(manifest.devices[me]={name:csMeta.deviceName||csConfig.deviceName||me,lastSeq:0,epoch:1,lastSeenAt:csNowISO()});
+  const groups=dbGroupBatches(pending,400,1400000);const files=[];const batchInfos=[];let toSeq=info.lastSeq||0;
+  for(const group of groups){
+    const from=group[0].seq,to=group[group.length-1].seq;toSeq=Math.max(toSeq,to);
+    const batch={format:DS_BATCH,version:1,deviceId:me,deviceName:csMeta.deviceName||'',from:from,to:to,at:csNowISO(),appVersion:APP_VERSION,
+      ops:await Promise.all(group.map(async function(r){return{seq:r.seq,id:r.id,entity:r.entity,entityId:r.entityId,op:r.op,ts:r.ts,device:r.device,payload:await recUnpack(r.payload)}}))};
+    const text=JSON.stringify(batch);const file=root+'/deltas/'+csEncPath(me)+'/'+dbPadSeq(from)+'-'+dbPadSeq(to)+'.json';
+    const sha=await backend.createBlob(text);
+    files.push({path:file,text:text,sha:sha});
+    batchInfos.push({from:from,to:to,file:file,sha:sha,size:text.length,at:batch.at});
   }
+  info.lastSeq=Math.max(info.lastSeq||0,toSeq);info.name=csMeta.deviceName||csConfig.deviceName||me;info.lastSeenAt=csNowISO();
+  if(!manifest.deltas[me])manifest.deltas[me]=[];manifest.deltas[me].push(...batchInfos);
+  manifest.acks[me]=await dbAllSyncCursors();
+  manifest.updatedAt=csNowISO();manifest.schemaVersion=SCHEMA_VERSION;manifest.appVersion=APP_VERSION;
+  files.push({path:backend.manifestPath(),text:JSON.stringify(manifest)});
+  const res=await backend.commitFiles(files,[],'Streak OS delta · '+pending.length+' op(s) by '+(info.name||me)+' · seq '+toSeq);
+  await dbJournalMarkSynced(toSeq);
+  csLog('Pushed '+pending.length+' delta op(s) in '+groups.length+' batch file(s) · commit '+String(res.commit).slice(0,7));
+  return res;
+}
+function csDeltaGcDeletions(manifest,me){
+  /* a device's delta files become deletable when its own snapshot covers them AND every other
+     active device has acknowledged the range (devices silent for >90 days stop blocking GC) */
+  const deletions=[];const now=Date.now();
+  for(const dev of Object.keys(manifest.devices||{})){
+    const info=manifest.devices[dev];const snap=info&&info.snapshot;if(!snap)continue;
+    const stale=info.lastSeenAt&&(now-Date.parse(info.lastSeenAt))>DS_GC_STALE_DAYS*86400000;
+    const batches=manifest.deltas[dev]||[];const keep=[];
+    for(const b of batches){
+      if(b.to<=snap.seq){
+        const allAcked=Object.keys(manifest.devices||{}).every(function(obs){
+          if(obs===dev)return true;
+          const o=manifest.devices[obs];if(stale&&false)return true;
+          if(o&&o.lastSeenAt&&(now-Date.parse(o.lastSeenAt))>DS_GC_STALE_DAYS*86400000)return true;
+          return Number((manifest.acks[obs]||{})[dev]||0)>=b.to});
+        if(allAcked)deletions.push(b.file);else keep.push(b);
+      }else keep.push(b);
+    }
+    manifest.deltas[dev]=keep;
+  }
+  return deletions;
+}
+async function csDeltaFetchSnapshot(backend,snapInfo){const text=await backend.fetchBlobText(snapInfo.sha);const env=JSON.parse(text);const data=await SyncSerializer.decode(env);return data.data}
+async function csDeltaApplyBatch(backend,batchInfo,dev){
+  const text=await backend.fetchBlobText(batchInfo.sha);const batch=JSON.parse(text);
+  if(!batch||batch.format!==DS_BATCH||!Array.isArray(batch.ops))throw new Error('Delta batch file is unreadable');
+  batch.ops.sort(function(a,b){return (Number(a.seq)||0)-(Number(b.seq)||0)});
+  const r=await dbApplyRemoteOps(batch.ops,batch.deviceId||dev);
+  resetHistoryStacks();applyAppearance();render();renderSettings();
+  csLog('Applied '+r.applied+' op(s) from '+(batch.deviceName||batch.deviceId||dev)+(r.lost?(' · '+r.lost+' superseded (LWW)'):''));
+  return r;
+}
+function csDeltaNewestDevice(manifest,me){
+  /* the remote device whose snapshot is the most recent (by snapshot timestamp) */
+  let best=null;
+  for(const dev of Object.keys(manifest.devices||{})){
+    if(dev===me)continue;
+    const s=manifest.devices[dev].snapshot;if(!s)continue;
+    if(!best||String(s.at||'')>String(best.at||''))best={dev:dev,seq:s.seq,at:s.at||''};
+  }
+  return best;
+}
+async function csDeltaBackupRemote(backend,manifest,tag){
+  /* back up the current cloud state into backups/ before it is overwritten */
+  try{
+    const me=csMeta.deviceId;
+    const newest=csDeltaNewestDevice(manifest,me);
+    if(!newest)return null;
+    const data=await csDeltaFetchSnapshot(backend,manifest.devices[newest.dev].snapshot);
+    const env=await SyncSerializer.encode(data,{});
+    const name=await backend.putBackup(JSON.stringify(env,null,2),'remote-'+(tag||'superseded')+'-'+Date.now()+'.json');
+    await csCleanupBackups(backend);
+    csLog('Cloud copy backed up to '+csConfig.backupsPath+'/ ('+(tag||'superseded')+')','warn');
+    return name;
+  }catch(e){csLog('Cloud backup failed: '+(e&&e.message||e),'error');return null}
 }
 async function csSyncNow(reason,opts){
   reason=reason||'manual';opts=opts||{};
@@ -3153,92 +3565,187 @@ async function csSyncNow(reason,opts){
 async function csDoSync(reason,opts){
   const forceUpload=!!opts.forceUpload,forceDownload=!!opts.forceDownload;
   clearTimeout(csPushTimer);csPushTimer=null; /* a sync covers any pending auto-push */
-  const backend=new GitHubBackend(csConfig);
-  const localData=stateForJson();
-  const baseRec=(await idbGet(CS_BASE))||null;
-  const remote=await backend.pull();
-  const remoteData=remote.exists&&remote.env?remote.env.data:null;
-  const remoteMeta=remote.exists&&remote.env?{updatedAt:String(remote.env.updatedAt||''),rev:Number(remote.env.rev||0),deviceId:String(remote.env.deviceId||''),deviceName:String(remote.env.deviceName||'')}:null;
-  if(remoteMeta)csLastRemoteMeta=remoteMeta;
-  const localDiffersFromBase=baseRec?!csEq(csStripVolatile(localData),csStripVolatile(baseRec.data)):true;
-  /* Dirty ONLY when this tab's user really changed something (csDirty) AND the data actually
-     moved away from the last-synced base. Differences without a user action (reload normalization,
-     another TAB updating the shared storage, cosmetic viewSettings) must never trigger a push —
-     they mean “pull”, not “push”. This kills phantom app-open pushes and cross-tab clobbering.
-     Exception — first contact (no base yet): local data must not be silently discarded, so any
-     real local content still routes into the 3-way merge instead of a wholesale cloud adopt. */
-  const dirty=baseRec?(csDirty&&localDiffersFromBase):(csDirty||localDiffersFromBase);
-  const localStamp=csLastLocalChangeAt||((baseRec&&Date.parse(baseRec.syncedAt))||0);
-  const remoteStamp=remoteMeta?(Date.parse(remoteMeta.updatedAt)||0):0;
-  const remoteChanged=remote.exists&&(!baseRec||!remoteMeta||remoteMeta.updatedAt!==String((baseRec.meta&&baseRec.meta.updatedAt)||'')||remoteMeta.rev!==Number((baseRec.meta&&baseRec.meta.rev)||0)||!csEq(csStripVolatile(remoteData),csStripVolatile(baseRec.data)));
-  csLog('Sync ('+reason+') · localDirty='+dirty+' · remote='+(remote.exists?(remoteMeta.updatedAt+' · rev '+remoteMeta.rev):'empty')+(forceUpload?' · FORCE-UPLOAD':'')+(forceDownload?' · FORCE-DOWNLOAD':''));
-  /* FORCE DOWNLOAD — adopt cloud wholesale (local backed up first) */
-  if(forceDownload&&remote.exists){
-    await csBackupLocal(backend,localData,'pre-adopt');
-    await csApplyRemote(remoteData);
-    await csSaveBase(remoteMeta,remoteData,remote.sha);
+  const backend=new DeltaBackend(csConfig);
+  const me=csMeta.deviceId;
+  csLog('Delta sync ('+reason+')'+(forceUpload?' · FORCE-UPLOAD':'')+(forceDownload?' · FORCE-DOWNLOAD':''));
+  let man=await backend.pullManifest();
+  /* FORCE DOWNLOAD — adopt the cloud delta store wholesale (local backed up first) */
+  if(forceDownload&&man.exists){
+    const manifest=csManifestNormalize(man.manifest);
+    if(!manifest)throw new Error('The remote delta store has an unsupported format');
+    const newest=csDeltaNewestDevice(manifest,me);
+    if(newest){
+      await csBackupLocal(backend,stateForJson(),'pre-adopt');
+      await dbJournalClear();
+      const info=manifest.devices[newest.dev];
+      if(info.snapshot){
+        const data=await csDeltaFetchSnapshot(backend,info.snapshot);
+        await dbSeedFromState(data,{clear:true,marker:false});
+        await dbSetSyncCursor(newest.dev,info.snapshot.seq,info.epoch);
+      }else{
+        for(const b of (manifest.deltas[newest.dev]||[]).slice().sort((x,y)=>x.from-y.from)){await csDeltaApplyBatch(backend,b,newest.dev);await dbSetSyncCursor(newest.dev,b.to,info.epoch||1)}
+      }
+      for(const d of Object.keys(manifest.devices||{})){if(d!==me&&manifest.devices[d].snapshot)await dbSetSyncCursor(d,manifest.devices[d].snapshot.seq,manifest.devices[d].epoch)}
+      resetHistoryStacks();applyAppearance();render();renderSettings();
+      csLog('Adopted the cloud store (previous local copy backed up)','warn');
+    }
     csSetStatus('idle');
-    csLog('Adopted the cloud copy (previous local copy backed up)','warn');
     toast(tt('Cloud copy adopted — local copy backed up'));return;
   }
-  /* FORCE UPLOAD — overwrite cloud wholesale (remote backed up first) */
-  if(forceUpload){
-    if(remote.exists&&remoteData&&!csEq(remoteData,localData))await csBackupRemote(backend,remote.env,'pre-overwrite');
-    const env=await csBuildEnvelope(localData);
-    await csPushWithRetry(backend,env,remote.exists?remote.sha:null);
-    csNotifyIfChanged(env.rev);
-    csSetStatus('idle');
-    csLog('Cloud overwritten with this device data'+(remote.exists?' (previous cloud copy backed up)':''));
-    toast(tt('Cloud copy overwritten'));return;
-  }
-  /* CASE 1 — everything already in sync */
-  if(!dirty&&remote.exists&&baseRec&&!remoteChanged){
-    /* Same-browser multi-tab: another TAB may have advanced the SHARED base (IndexedDB) while this
-       tab's in-memory state stayed old. Local is clean, so just refresh memory — never push. */
-    if(localDiffersFromBase&&baseRec.meta&&baseRec.meta.tabId&&baseRec.meta.tabId!==csTabId&&!csLcTimer){
-      await csApplyRemote(remoteData,{keepLocalViewSettings:true});
-      csLog('Refreshed in-memory state from the synced base (another tab of this browser synced)');
+  /* ---- bootstrap: no delta store yet → one-time legacy single-file import, then baseline ---- */
+  if(!man.exists){
+    let legacyEnv=null;
+    try{const legacy=await backend.pull();if(legacy.exists&&legacy.env)legacyEnv=legacy.env}catch(e){}
+    if(legacyEnv){
+      await csBackupRemote(backend,legacyEnv,'legacy-import');
+      const localData=stateForJson();
+      const localHas=!!((localData.activities||[]).length+(localData.entries||[]).length+(localData.changeHistory||[]).length);
+      const remoteData=legacyEnv.data;
+      const remoteHas=!!(((remoteData&&remoteData.activities)||[]).length+((remoteData&&remoteData.entries)||[]).length);
+      if(remoteHas&&localHas&&!csEq(csStripVolatile(localData),csStripVolatile(remoteData))){
+        const m=csMergeThreeWay({},localData,remoteData,csLastLocalChangeAt||Date.now(),Date.parse(legacyEnv.updatedAt||'')||0,csMeta.deviceId,String(legacyEnv.deviceId||'legacy'));
+        if(m.conflicts&&m.conflicts.length)await csRecordConflicts(m.conflicts,'legacy-import',{});
+        await dbSeedFromState(m.merged,{clear:true,marker:false});
+        resetHistoryStacks();applyAppearance();render();renderSettings();
+        csLog('Legacy cloud file merged into the delta store');
+      }else if(remoteHas&&!localHas){
+        await dbSeedFromState(remoteData,{clear:true,marker:false});
+        resetHistoryStacks();applyAppearance();render();renderSettings();
+        csLog('Legacy cloud file adopted into the delta store');
+      }
     }
-    csSetStatus('idle');csMeta.lastResult='in-sync';if(reason==='manual'||reason==='pill')toast(tt('Synced with the cloud'));return}
-  /* CASE 2 — remote file missing → publish local */
-  if(!remote.exists){
-    if(baseRec)csLog('Cloud file is missing (deleted externally). Re-publishing local copy.','warn');
-    const env=await csBuildEnvelope(localData);
-    await csPushWithRetry(backend,env,null);
-    csNotifyIfChanged(env.rev);
+    await csDeltaPublishSnapshot(backend,csManifestDefault(),{reason:'baseline'});
+    csMeta.rev=(csMeta.rev||0)+1;try{idbPut(CS_META,csMeta)}catch(e){}
     csSetStatus('idle');toast(tt('Published to the cloud'));return;
   }
-  /* CASE 3 — first contact with the cloud (no base snapshot yet) */
-  if(!baseRec){
-    const localEmpty=!(localData.activities||[]).length&&!(localData.entries||[]).length&&!(localData.changeHistory||[]).length;
-    if(!dirty||localEmpty||csEq(csStripVolatile(localData),csStripVolatile(remoteData))){
-      if(!csEq(csStripVolatile(localData),csStripVolatile(remoteData)))await csApplyRemote(remoteData,{adoptAll:false});
-      await csSaveBase(remoteMeta,remoteData,remote.sha);
-      csSetStatus('idle');
-      csLog('First sync: adopted the cloud database');toast(tt('Synced with the cloud'));return;
+  const manifest=csManifestNormalize(man.manifest);
+  if(!manifest)throw new Error('The remote delta store has an unsupported format');
+  if(!manifest.devices[me])manifest.devices[me]={name:csMeta.deviceName||csConfig.deviceName||me,lastSeq:0,epoch:1,lastSeenAt:csNowISO()};
+  /* ---- PULL: apply what other devices published since my last pull ---- */
+  let pulledAny=false;
+  for(const dev of Object.keys(manifest.devices)){
+    if(dev===me)continue;
+    const info=manifest.devices[dev];
+    let cur=await dbSyncCursor(dev);
+    const localPending=await dbJournalPending();
+    if(cur&&Number(info.epoch||1)!==Number(cur.epoch||1)){
+      /* that device rebased (snapshot publish / force upload) → adopt its snapshot */
+      if(info.snapshot){
+        if(localPending.length)await csBackupLocal(backend,stateForJson(),'pre-rebase-adopt');
+        const data=await csDeltaFetchSnapshot(backend,info.snapshot);
+        await dbSeedFromState(data,{clear:true,marker:false});
+        await dbJournalClear();
+        await dbSetSyncCursor(dev,info.snapshot.seq,info.epoch);
+        resetHistoryStacks();applyAppearance();render();renderSettings();
+        pulledAny=true;
+        csLog('Rebased onto the snapshot of '+(info.name||dev)+' (epoch '+info.epoch+')','warn');
+      }
+      continue;
     }
-    const m=csMergeThreeWay({},localData,remoteData,localStamp,remoteStamp,csMeta.deviceId,remoteMeta.deviceId);
-    await csHandleMergeOutcome(m,{backend:backend,localData:localData,remoteEnv:remote.env,remoteSha:remote.sha,reason:reason||'first-merge'});return;
+    if(!cur){
+      /* first contact with this device */
+      const localHas=!!((state.activities||[]).length+(state.entries||[]).length);
+      const devBatches=(manifest.deltas[dev]||[]).slice().sort((x,y)=>x.from-y.from);
+      if((localHas||localPending.length)&&info.snapshot){
+        const data=await csDeltaFetchSnapshot(backend,info.snapshot);
+        const localData=stateForJson();
+        if(!csEq(csStripVolatile(localData),csStripVolatile(data))){
+          const m=csMergeThreeWay({},localData,data,csLastLocalChangeAt||Date.now(),Date.parse(info.snapshot.at||'')||0,me,dev);
+          if(m.conflicts&&m.conflicts.length)await csRecordConflicts(m.conflicts,'first-contact',{});
+          await dbSeedFromState(m.merged,{clear:true,marker:true,reason:'first-contact'});
+          resetHistoryStacks();applyAppearance();render();renderSettings();
+          csLog('First contact with '+(info.name||dev)+': merged both sides');
+        }
+        await dbSetSyncCursor(dev,info.snapshot.seq,info.epoch);
+        pulledAny=true;
+      }else if(info.snapshot){
+        const data=await csDeltaFetchSnapshot(backend,info.snapshot);
+        await dbSeedFromState(data,{clear:true,marker:false});
+        await dbSetSyncCursor(dev,info.snapshot.seq,info.epoch);
+        resetHistoryStacks();applyAppearance();render();renderSettings();
+        pulledAny=true;
+        csLog('Adopted the store of '+(info.name||dev));
+      }else if(devBatches.length){
+        for(const b of devBatches){await csDeltaApplyBatch(backend,b,dev);await dbSetSyncCursor(dev,b.to,info.epoch||1)}
+        pulledAny=true;
+      }
+      continue;
+    }
+    /* normal incremental pull */
+    if(info.lastSeq>(cur.lastSeq||0)){
+      const batches=(manifest.deltas[dev]||[]).slice().sort((x,y)=>x.from-y.from).filter(b=>b.to>(cur.lastSeq||0));
+      if(batches.length&&batches[0].from>(cur.lastSeq||0)+1){
+        const snap=info.snapshot;
+        if(snap&&snap.seq>=(cur.lastSeq||0)){
+          /* gap: covered batches were GC'd → rebase from the snapshot, then replay newer batches */
+          if(localPending.length)await csBackupLocal(backend,stateForJson(),'pre-gap-adopt');
+          const data=await csDeltaFetchSnapshot(backend,snap);
+          await dbSeedFromState(data,{clear:true,marker:false});
+          await dbJournalClear();
+          await dbSetSyncCursor(dev,snap.seq,info.epoch);
+          resetHistoryStacks();applyAppearance();render();renderSettings();
+          pulledAny=true;csLog('Batch gap detected — rebased from the snapshot of '+(info.name||dev),'warn');
+          cur=await dbSyncCursor(dev);
+          for(const b of (manifest.deltas[dev]||[]).slice().sort((x,y)=>x.from-y.from).filter(b2=>b2.to>(cur.lastSeq||0))){
+            await csDeltaApplyBatch(backend,b,dev);await dbSetSyncCursor(dev,b.to,info.epoch);
+          }
+        }else{csLog('Skipped '+(info.name||dev)+': batch gap without a covering snapshot','warn');continue}
+      }else{
+        for(const b of batches){await csDeltaApplyBatch(backend,b,dev);await dbSetSyncCursor(dev,b.to,info.epoch||1);pulledAny=true}
+      }
+    }
   }
-  /* CASE 4 — local advanced, remote unchanged → fast-forward push */
-  if(dirty&&!remoteChanged){
-    const env=await csBuildEnvelope(localData);
-    await csPushWithRetry(backend,env,remote.sha);
-    csNotifyIfChanged(env.rev);
-    csSetStatus('idle');csLog('Pushed local changes to the cloud');return;
+  /* ---- PUSH: publish my pending delta ops (or a snapshot when one is due) ---- */
+  const pending=await dbJournalPending();
+  const marker=await dbGetPendingSnapshot();
+  const myInfo=manifest.devices[me];
+  const sinceSnap=(myInfo.lastSeq||0)-((myInfo.snapshot&&myInfo.snapshot.seq)||0);
+  let pushed=false;
+  if(forceUpload){
+    await csDeltaBackupRemote(backend,manifest,'pre-overwrite');
+    await csDeltaPublishSnapshot(backend,manifest,{reason:'force'});
+    pushed=true;
+    csLog('Cloud overwritten with this device data (snapshot rebase)','warn');
+    toast(tt('Cloud copy overwritten'));
+  }else if(marker||!myInfo.snapshot){
+    await csDeltaPublishSnapshot(backend,manifest,{reason:marker?('marker:'+((marker&&marker.reason)||'')):'baseline'});
+    pushed=true;
+  }else if(pending.length){
+    let attempts=4,done=false,lastErr=null;
+    while(attempts>0&&!done){
+      try{await csDeltaPushBatches(backend,manifest,pending);done=true;pushed=true}
+      catch(e){
+        if((e.code===409||e.code===422||e.code===412)&&attempts>1){
+          attempts--;lastErr=e;
+          const waitMs=400*Math.pow(2,4-attempts)+Math.floor(Math.random()*600);
+          csLog('Ref moved mid-push — re-pulling the manifest and retrying in '+Math.round(waitMs)+' ms','warn');
+          await new Promise(function(r){setTimeout(r,waitMs)});
+          const fresh=await backend.pullManifest();
+          if(fresh.exists){const nm=csManifestNormalize(fresh.manifest);if(nm){nm.devices[me]=nm.devices[me]||myInfo;Object.assign(manifest,nm)}}
+        }else{throw e}
+      }
+    }
+    if(!done)throw lastErr||new Error('Delta push failed');
+  }else if(pulledAny){
+    /* pull-only sync → publish my acks in a tiny manifest-only commit */
+    manifest.acks[me]=await dbAllSyncCursors();
+    manifest.devices[me].lastSeenAt=csNowISO();
+    manifest.updatedAt=csNowISO();
+    try{await backend.commitFiles([{path:backend.manifestPath(),text:JSON.stringify(manifest)}],[],'Streak OS delta · ack update by '+(csMeta.deviceName||me))}catch(e){}
   }
-  /* CASE 5 — remote advanced, local clean → pull */
-  if(!dirty&&remoteChanged){
-    if(!csEq(csStripVolatile(localData),csStripVolatile(remoteData)))await csApplyRemote(remoteData,{keepLocalViewSettings:true});
-    await csSaveBase(remoteMeta,remoteData,remote.sha);
-    csNotifyIfChanged(remoteMeta.rev);
-    csSetStatus('idle');
-    csLog('Pulled cloud changes from device '+(remoteMeta.deviceName||remoteMeta.deviceId||'?'));
-    toast(tt('Updates received from the cloud'));return;
+  if(pushed){
+    csMeta.rev=(csMeta.rev||0)+1;try{idbPut(CS_META,csMeta)}catch(e){}
+    /* GC: remove delta files covered by a snapshot once every active device has acked them */
+    const deletions=csDeltaGcDeletions(manifest,me);
+    if(deletions.length){
+      manifest.updatedAt=csNowISO();
+      try{await backend.commitFiles([{path:backend.manifestPath(),text:JSON.stringify(manifest)}],deletions,'Streak OS delta · GC '+deletions.length+' covered batch file(s)');csLog('GC: removed '+deletions.length+' covered delta file(s)')}catch(e){}
+    }
   }
-  /* CASE 6 — both advanced → 3-way per-key merge */
-  const m=csMergeThreeWay(baseRec.data,localData,remoteData,localStamp,remoteStamp,csMeta.deviceId,remoteMeta.deviceId);
-  await csHandleMergeOutcome(m,{backend:backend,localData:localData,remoteEnv:remote.env,remoteSha:remote.sha,reason:reason});
+  csSetStatus('idle');
+  csMeta.lastResult='ok';csMeta.lastSyncAt=csNowISO();csMeta.lastError=null;try{idbPut(CS_META,csMeta)}catch(e){}
+  if(pulledAny&&!pending.length&&!pushed)toast(tt('Updates received from the cloud'));
+  else if(reason==='manual'||reason==='pill')toast(tt('Synced with the cloud'));
 }
 async function csHandleMergeOutcome(m,ctx){
   const mergedEqualsRemote=csEq(csStripVolatile(m.merged),csStripVolatile(ctx.remoteEnv.data));
@@ -3305,9 +3812,9 @@ function csBindUI(){
   on('csSaveBtn','click',async function(){csReadInputs();await csPersistConfig();toast(tt('Configuration saved'));csRenderPill();if(csConfig.enabled&&!csOffline)csScheduleInitialSync(true)});
   on('csTestBtn','click',async function(){
     const res=$('csTestResult');if(!res)return;res.classList.remove('hidden');res.textContent=tt('Testing…');
-    try{csReadInputs();const info=await new GitHubBackend(csConfig).test();
+    try{csReadInputs();const info=await new DeltaBackend(csConfig).test();
       await idbPut(CS_CFG,csConfig);
-      res.textContent='✅ '+tt('Connection OK')+' — '+info.repo+' · '+tt('branch')+' '+info.branch+' · '+(info.fileExists?tt('data file found'):tt('data file will be created on first sync'));
+      res.textContent='✅ '+tt('Connection OK')+' — '+info.repo+' · '+tt('branch')+' '+info.branch+' · '+(info.storeExists?tt('delta store found'):tt('delta store will be created on first sync'));
       csLog('Connection test OK: '+info.repo+' @ '+info.branch);
     }catch(e){res.textContent='❌ '+((e&&e.message)||String(e));csLog('Connection test failed: '+((e&&e.message)||e),'error')}
   });
@@ -3340,7 +3847,7 @@ function csBindUI(){
 /* ==================== Bootstrap & triggers ==================== */
 /* A local change counts as “dirty” only if real data (non-volatile) actually moved away from the
    last-synced base. Cosmetic-only changes (viewSettings) ride along on the next real sync. */
-function csHasRealChanges(){return idbGet(CS_BASE).then(function(baseRec){if(!baseRec)return true;return !csEq(csStripVolatile(stateForJson()),csStripVolatile(baseRec.data))}).catch(function(){return true})}
+function csHasRealChanges(){return dbJournalPending().then(function(pending){return pending.length>0}).catch(function(){return true})}
 window.addEventListener('streakos:localchange',function(){
   if(csApplying)return;
   clearTimeout(csLcTimer);
@@ -3374,7 +3881,8 @@ window.StreakSync={
   sync:function(reason,opts){return csSyncNow(reason,opts)},
   reload:function(){return csLoadState()},
   get status(){return csStatus},get config(){return csConfig},get meta(){return csMeta},
-  log:csLog,merge:csMergeThreeWay,strip:csStripVolatile,serializer:SyncSerializer,backend:GitHubBackend,
+  log:csLog,merge:csMergeThreeWay,strip:csStripVolatile,serializer:SyncSerializer,backend:GitHubBackend,deltaBackend:DeltaBackend,
+  journal:function(){return dbJournalPending()},cursors:function(){return dbAllSyncCursors()},
   /* Diagnostics surface (read-mostly) for power users and automated tests */
   debug:{
     get state(){return state},get dirty(){return csDirty},get busy(){return csBusy},
@@ -3388,7 +3896,7 @@ window.StreakSync={
     eq:csEq
   }
 };
-diag('Cloud sync module loaded (v1 · GitHub backend · three-way LWW resolver)');
+diag('Cloud sync module loaded (v2 · GitHub delta store backend · per-entity LWW resolver)');
 
 $('unlockBtn').onclick=async()=>{
   diag('Open button clicked');
@@ -3399,7 +3907,8 @@ $('unlockBtn').onclick=async()=>{
   }
   if(jsonDbConnected&&jsonDbEncrypted&&!p){err.textContent='Enter the database password.';return}
   const raw=jsonDbConnected?null:await idbGet(DB_KEY).catch(()=>null);
-  const requiresPassword=!jsonDbConnected&&!!raw&&(raw.storage==='json-cache'&&raw.encrypted||(!raw.storage&&raw.salt));
+  const coreMeta=jsonDbConnected?null:await dbCoreMeta().catch(()=>null);
+  const requiresPassword=!jsonDbConnected&&((!!coreMeta&&!!coreMeta.migrated&&!!coreMeta.encrypted)||((!!raw&&(raw.storage==='json-cache'&&raw.encrypted||(!raw.storage&&raw.salt)))&&!(coreMeta&&coreMeta.migrated)));
   if(requiresPassword&&!p){err.textContent='Enter the database password.';return}
   const btn=$('unlockBtn');btn.classList.add('loginBusy');btn.disabled=true;btn.textContent='⏳';err.textContent='';
   try{
@@ -3416,9 +3925,11 @@ $('localDbLoginBtn').onclick=async()=>{
   try{
     jsonDbHandle=null;jsonDbConnected=false;jsonDbName='';jsonDbEncrypted=false;state=null;
     const raw=await idbGet(DB_KEY).catch(()=>null);
-    if(raw&&raw.storage==='plain'&&raw.data){await unlock('');}
+    const coreMeta=await dbCoreMeta().catch(()=>null);
+    if(coreMeta&&coreMeta.migrated&&!coreMeta.encrypted){await unlock('');}
+    else if(raw&&raw.storage==='plain'&&raw.data){await unlock('');}
     else if(raw){$('setupNotice').textContent='A protected local database exists. Enter its password, then click Open.';$('passwordInput').focus();}
-    else{state=defaultState();normalizeUi(state);cryptoKey=null;await cacheLocalState();resetHistoryStacks();showApp();toast('Local JSON database created');}
+    else{state=defaultState();normalizeUi(state);cryptoKey=null;await dbSeedFromState(state,{clear:false});await dbWriteCoreMeta({migrated:1,encrypted:false});await dbJournalClear();resetHistoryStacks();showApp();toast('Local database created');}
   }catch(e){$('loginError').textContent=e?.message||'Could not open local database.'}
 };
 $('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlockBtn').click()});$('lockBtn').onclick=lock;$('saveDefaultsBtn').onclick=saveDefaults;$('fType').onchange=()=>syncMeasurementTypeSelect('fType',$('fType').value,null);$('dType').onchange=()=>syncMeasurementTypeSelect('dType',$('dType').value,null);$('quickAddBtn').onclick=()=>openLog(null,selectedDate);$('prevDayBtn').onclick=()=>shiftSelectedDate(-1);$('nextDayBtn').onclick=()=>shiftSelectedDate(1);$('todayBtn').onclick=()=>setSelectedDate(todayKey());$('selectedDateInput').onchange=e=>{const v=dpParseInput(e.target,e.target.value);if(v)setSelectedDate(v);};
@@ -3433,9 +3944,55 @@ window.addEventListener('scroll',()=>{if(!state)return;ensureViewSettings().tabP
 window.addEventListener('beforeunload',()=>{try{rememberTabPosition();if(jsonDbHandle)writeJsonDbNow().catch(()=>{})}catch{}});
 $('undoBtn').onclick=()=>undoLastChange().catch(err=>diag('Undo failed',err?.message||String(err)));$('redoBtn').onclick=()=>redoLastChange().catch(err=>diag('Redo failed',err?.message||String(err)));document.addEventListener('keydown',e=>{if(!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();(e.shiftKey?redoLastChange():undoLastChange()).catch(err=>diag('History shortcut failed',err?.message||String(err)));return}if(!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redoLastChange().catch(err=>diag('Redo shortcut failed',err?.message||String(err)));return}const input=e.target.closest('.quickInput');if(input&&e.key==='Enter'){e.preventDefault();addQuickEntry(input.dataset.quickInput,input)}});
 async function exportPortableJson(){if(!state){toast('Nothing to export');return}let pack;if(jsonDbEncrypted){pack=await jsonDbEnvelopeEncrypted(currentDbPassword())}else pack=jsonDbEnvelopePlain();const blob=new Blob([JSON.stringify(pack,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`streak-os-${todayKey()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('JSON database exported 📤')}
-const __exportBtnEl=$('exportBtn');if(__exportBtnEl)__exportBtnEl.onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('exportBtn2').onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('importBtn').onclick=()=>chooseJsonDatabase().then(async chosen=>{const text=await loadJsonTextFile(chosen);const loaded=await parsePortableDatabase(text);state=loaded;jsonDbHandle=chosen.getFile?chosen:null;jsonDbConnected=!!chosen.getFile;jsonDbName=chosen.getFile?(await chosen.getFile()).name:chosen.name;let p={};try{p=JSON.parse(text)}catch{}jsonDbEncrypted=!!p?.encrypted;if(chosen.getFile){await rememberJsonHandle(chosen);rememberedJsonMeta={name:jsonDbName,encrypted:jsonDbEncrypted};}resetHistoryStacks();await save();render();toast('JSON database imported 📥')}).catch(e=>toast(e?.message||'Invalid database file'));
+/* ---- v11: export a real SQLite database file (schema: db/schema.sql) ----
+   SQLite WASM (sql.js) is lazy-loaded on first use; the canonical relational schema
+   is embedded verbatim from db/schema.sql so the artifact matches the documented model. */
+const SQLITE_CDN='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/';
+let __sqlJsLoading=null;
+function loadSqlJs(){if(window.initSqlJs)return Promise.resolve();if(!__sqlJsLoading)__sqlJsLoading=new Promise(function(res,rej){const s=document.createElement('script');s.src=SQLITE_CDN+'sql-wasm.js';s.onload=function(){res()};s.onerror=function(){__sqlJsLoading=null;rej(new Error('Could not load the SQLite engine (sql.js) — an internet connection is required for the first export.'))};document.head.appendChild(s)});return __sqlJsLoading}
+const SQLITE_SCHEMA=`CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS activities (id TEXT PRIMARY KEY, name TEXT NOT NULL, category TEXT, type TEXT, unit TEXT, target REAL, savers INTEGER, min REAL, priority INTEGER, initial_streak INTEGER, initial_best INTEGER, status TEXT, created_at TEXT, updated_at TEXT, rev_device TEXT, data_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS entries (id TEXT PRIMARY KEY, activity_id TEXT NOT NULL REFERENCES activities(id), date TEXT NOT NULL, amount REAL NOT NULL DEFAULT 0, note TEXT, created_at TEXT, updated_at TEXT, rev_device TEXT, data_json TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_entries_activity_date ON entries(activity_id, date);
+CREATE TABLE IF NOT EXISTS measurement_types (id TEXT PRIMARY KEY, name TEXT, data_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS presets (name TEXT PRIMARY KEY, data_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, data_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS view_settings (key TEXT PRIMARY KEY, data_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS change_history (id TEXT PRIMARY KEY, at TEXT, kind TEXT, label TEXT, meta TEXT);
+CREATE TABLE IF NOT EXISTS change_log (seq INTEGER PRIMARY KEY AUTOINCREMENT, id TEXT UNIQUE, device_id TEXT NOT NULL, entity TEXT NOT NULL, entity_id TEXT NOT NULL, op TEXT NOT NULL, payload_json TEXT, ts TEXT, synced INTEGER NOT NULL DEFAULT 0, created_at TEXT);
+CREATE INDEX IF NOT EXISTS idx_change_log_synced ON change_log(synced, seq);
+CREATE TABLE IF NOT EXISTS sync_state (device_id TEXT PRIMARY KEY, last_seq INTEGER NOT NULL DEFAULT 0, epoch INTEGER NOT NULL DEFAULT 1, updated_at TEXT);
+CREATE TABLE IF NOT EXISTS tombstones (key TEXT PRIMARY KEY, entity TEXT, entity_id TEXT, ts TEXT, device_id TEXT);`;
+async function exportSqliteDb(){
+  if(!state){toast('Nothing to export');return}
+  toast('Preparing SQLite export…');
+  try{
+    await loadSqlJs();
+    const SQL=await window.initSqlJs({locateFile:f=>SQLITE_CDN+f});
+    const sq=new SQL.Database();sq.run(SQLITE_SCHEMA);
+    const ins=(sql,rows)=>{if(!rows.length)return;const st=sq.prepare(sql);try{for(const r of rows)st.run(r)}finally{st.free()}};
+    const now=new Date().toISOString();const dev=dbDeviceId();
+    ins('INSERT INTO meta(key,value_json) VALUES (?,?)',[
+      ['schema_version',JSON.stringify(SCHEMA_VERSION)],['app_version',JSON.stringify(APP_VERSION)],['device_id',JSON.stringify(dev)],
+      ['created_at',JSON.stringify(state.createdAt||null)],['exported_at',JSON.stringify(now)]]);
+    ins('INSERT INTO activities (id,name,category,type,unit,target,savers,min,priority,initial_streak,initial_best,status,created_at,updated_at,rev_device,data_json) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+      (state.activities||[]).map(a=>[a.id,a.name||'',a.category||'Uncategorized',a.type||'time',a.unit||'units',Number(a.target||0),Number(a.savers||0),Number(a.min||0),a.priority==null?null:Number(a.priority),Number(a.initialStreak||0),Number(a.initialBest||0),String(a.lifecycle||'active'),a.createdAt||null,a.updatedAt||null,a.revDevice||null,JSON.stringify(a)]));
+    ins('INSERT INTO entries (id,activity_id,date,amount,note,created_at,updated_at,rev_device,data_json) VALUES (?,?,?,?,?,?,?,?,?)',
+      (state.entries||[]).map(e=>[e.id,e.activityId,e.date,Number(e.amount||0),e.note||null,e.createdAt||null,e.updatedAt||null,e.revDevice||null,JSON.stringify(e)]));
+    ins('INSERT INTO measurement_types (id,name,data_json) VALUES (?,?,?)',(state.measurementTypes||[]).map(m=>[m.id,m.name||m.id,JSON.stringify(m)]));
+    ins('INSERT INTO presets (name,data_json) VALUES (?,?)',((state.viewSettings&&state.viewSettings.presets)||[]).map(p=>[p.name,JSON.stringify(p.config||{})]));
+    ins('INSERT INTO settings (key,data_json) VALUES (?,?)',[['global',JSON.stringify(state.settings||{})]]);
+    ins('INSERT INTO view_settings (key,data_json) VALUES (?,?)',[['view',JSON.stringify(state.viewSettings||{})]]);
+    ins('INSERT INTO change_history (id,at,kind,label,meta) VALUES (?,?,?,?,?)',(state.changeHistory||[]).map(h=>[h.id,h.at||null,h.kind||'change',h.label||'',h.meta||'']));
+    const blob=new Blob([new Uint8Array(sq.export())],{type:'application/x-sqlite3'});
+    sq.close();
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`streak-os-${todayKey()}.sqlite`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    toast('SQLite database exported 🧱');
+  }catch(e){diag('SQLite export failed',e?.message||String(e));toast(e?.message||'SQLite export failed')}
+}
+const __exportBtnEl=$('exportBtn');if(__exportBtnEl)__exportBtnEl.onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('exportBtn2').onclick=()=>exportPortableJson().catch(e=>toast(e?.message||'Export failed'));$('exportSqliteBtn')?.addEventListener('click',()=>exportSqliteDb().catch(e=>toast(e?.message||'Export failed')));$('importBtn').onclick=()=>chooseJsonDatabase().then(async chosen=>{const text=await loadJsonTextFile(chosen);const loaded=await parsePortableDatabase(text);state=loaded;jsonDbHandle=chosen.getFile?chosen:null;jsonDbConnected=!!chosen.getFile;jsonDbName=chosen.getFile?(await chosen.getFile()).name:chosen.name;let p={};try{p=JSON.parse(text)}catch{}jsonDbEncrypted=!!p?.encrypted;if(chosen.getFile){await rememberJsonHandle(chosen);rememberedJsonMeta={name:jsonDbName,encrypted:jsonDbEncrypted};}resetHistoryStacks();await save();render();toast('JSON database imported 📥')}).catch(e=>toast(e?.message||'Invalid database file'));
 $('fileInput').onchange=async e=>{const f=e.target.files[0];if(!f)return;e.target.value=''};
-$('changePwBtn').onclick=()=>{$('pwModal').classList.add('show')};$('changePwConfirm').onclick=async()=>{const old=$('oldPw').value,n1=$('newPw').value,n2=$('newPw2').value;if(!n1||n1!==n2){toast('Enter a matching new password');return}if(jsonDbEncrypted&&old!==currentDbPassword()){toast('Current database password is incorrect');return}try{$('passwordInput').dataset.dbPassword=n1;if($('jsonDbPassword'))$('jsonDbPassword').value=n1;jsonDbEncrypted=true;state.__salt=crypto.getRandomValues(new Uint8Array(16));cryptoKey=await derive(n1,state.__salt);if(jsonDbHandle)await writeJsonDbNow();await cacheLocalState();renderSettings();closeModal('pwModal');$('oldPw').value=$('newPw').value=$('newPw2').value='';toast('Database password updated 🔐')}catch(e){toast(e?.message||'Password update failed')}};
+$('changePwBtn').onclick=()=>{$('pwModal').classList.add('show')};$('changePwConfirm').onclick=async()=>{const old=$('oldPw').value,n1=$('newPw').value,n2=$('newPw2').value;if(!n1||n1!==n2){toast('Enter a matching new password');return}if(jsonDbEncrypted&&old!==currentDbPassword()){toast('Current database password is incorrect');return}try{$('passwordInput').dataset.dbPassword=n1;if($('jsonDbPassword'))$('jsonDbPassword').value=n1;await dbRekey(n1);if(jsonDbHandle)await writeJsonDbNow();renderSettings();closeModal('pwModal');$('oldPw').value=$('newPw').value=$('newPw2').value='';toast('Database password updated 🔐')}catch(e){toast(e?.message||'Password update failed')}};
 async function showApp(){applyEasyMode();render();$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');restoreTabPosition(activeSection);applyGlobalTooltips();try{window.dispatchEvent(new CustomEvent('streakos:appopened'))}catch(e){}}
 $('diagToggle').onclick=()=>{const p=$('diagPanel');p.classList.toggle('open');$('diagToggle').textContent=p.classList.contains('open')?'🙈':'🧾';$('diagToggle').title=p.classList.contains('open')?'Hide log':'Show log';diag('Diagnostic panel '+(p.classList.contains('open')?'opened':'closed'))};$('diagCopy').onclick=async()=>{try{await navigator.clipboard.writeText(__diag.join('\n'));toast('Log copied');diag('Log copied')}catch(e){diag('Copy log failed',e.message)}};$('diagClear').onclick=()=>{__diag.length=0;$('diagLog').textContent='Log cleared.';diag('Log cleared')};
 
@@ -3452,14 +4009,16 @@ async function initializeAppStorage(){
     diag('Startup DB ready');
     const autoOpened=await autoOpenRememberedDatabase();
     if(autoOpened){diag('Remembered JSON database opened automatically');return;}
-    const raw=await idbGet(DB_KEY);
+    const raw=await idbGet(DB_KEY).catch(()=>null);
+    const coreMeta=await dbCoreMeta().catch(()=>null);
     if(rememberedJsonMeta){
       $('setupNotice').textContent=rememberedJsonMeta.encrypted
         ? `Remembered database "${rememberedJsonMeta.name}" is encrypted. Enter its password to open it.`
         : `Remembered database "${rememberedJsonMeta.name}" needs access permission before it can be opened automatically.`;
       $('connectDbLoginBtn').textContent='📂 Reconnect remembered database';
       diag('Remembered database awaiting access',{name:rememberedJsonMeta.name,encrypted:rememberedJsonMeta.encrypted});
-    }else if(raw){$('setupNotice').textContent=raw.encrypted?'Enter the database password used for this encrypted database.':'The local JSON database is ready. No password is required while encryption is off.';diag('Existing local database detected',{v:raw.v,encrypted:!!raw.encrypted});}
+    }else if(coreMeta&&coreMeta.migrated){$('setupNotice').textContent=coreMeta.encrypted?'Enter the database password used for this encrypted database.':'The local delta database is ready. No password is required while encryption is off.';diag('Existing delta database detected',{encrypted:!!coreMeta.encrypted});}
+    else if(raw){$('setupNotice').textContent=raw.encrypted?'Enter the database password used for this encrypted database.':'The local JSON database is ready. No password is required while encryption is off.';diag('Existing local database detected',{v:raw.v,encrypted:!!raw.encrypted});}
     else{$('setupNotice').textContent='First launch: connect an existing JSON database, or create/open the local database.';diag('No database detected; waiting for first launch choice');}
     btn.disabled=false;btn.textContent='🔓';btn.title='Open';btn.setAttribute('aria-label','Open');renderLoginDbInfo();diag('Startup complete; open enabled');
   }catch(e){
